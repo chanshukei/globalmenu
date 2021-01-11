@@ -1,0 +1,72 @@
+﻿nav {
+    font-size: 10pt;
+    background-color: #F5F5F5;
+}
+
+.breadcrumb{
+    margin: 0;
+    background: none;
+    padding:2px 5px 2px 5px;
+}
+
+input{
+    margin: 2px;
+}
+
+.select2{
+    margin: 2px;
+}
+
+table {
+    border: none;
+    background: none;
+}
+
+td {
+    border: 1px solid #DCDCDC;
+    font-size: 10pt;
+    padding:2px;
+}
+    td:hover {
+        border: 1px solid #87CEFA;
+        font-size: 10pt;
+    }
+
+th {
+    border: 1px solid #DCDCDC;
+    font-size: 10pt;
+    font-weight: bold;
+    background-color: #F5F5F5;
+    padding: 2px;
+}
+
+td > textarea{
+    border: none;
+    width: 90%;
+}
+
+td > input {
+    border: none;
+    width: 90%;
+}
+button {
+    border: 1px solid #F0F8FF;
+    background-color: #F0F8FF;
+    padding: 5px;
+}
+button:hover {
+    border: 1px solid #87CEFA;
+    background-color: #E6E6FA;
+}
+
+.navbar {
+    background-color: #F0F8FF;
+    border-bottom: 1px solid grey;
+    padding: 2px;
+}
+
+h1{
+    text-align:center;
+    text-decoration:underline;
+    font-size:14pt;
+}
