@@ -2,13 +2,12 @@
 function signIn() {
     console.log('called signIn');
     var pData = {
-        "action": 'SIGNIN',
         "usernameEmail": $('#usernameEmail').val(),
         "password": $('#password').val()
     };
     $.ajax({
         type: "POST",
-        url: "https://bizdoc.azurewebsites.net/api/SignInSession",
+        url: "https://globalmenu-login.azurewebsites.net/api/SignInSession",
         data: JSON.stringify(pData),
         contentType: "application/json",
         dataType: "json",
