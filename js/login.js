@@ -15,7 +15,7 @@ function signIn() {
             if (jqXHR.readyState === 4) {
                 var signInSession = JSON.parse(jqXHR.responseText);
                 Cookies.set('sessionID', signInSession.signInSessionID);
-                window.location.href = '/project.html';
+                window.location.href = '/dashboard.html';
             }
         }
     });

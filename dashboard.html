@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <title></title>
+</head>
+<body>
+    <script src="/js/jquery-3.5.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/js.cookie.min.js"></script>
+    <script src="/js/sitemap.js"></script>
+
+    <h1>My projects</h1>
+    <div id="projectList">
+        <table>
+            <tr>
+                <th>Project Name</th>
+                <th>Company Name</th>
+                <th>Project Owner</th>
+                <th>Status</th>
+                <th>Current Phase</th>
+            </tr>
+            <tr v-for="(item, index) in Projects">
+                <td>{{item.PROJECT_NAME}}</td>
+                <td>{{item.COMPANY_NAME}}</td>
+                <td>{{item.PROJECT_OWNER}}</td>
+                <td>{{item.STATUS}}</td>
+                <td>{{item.CURRENT_PHASE}}</td>
+            </tr>
+        </table>
+    </div>
+    <br><br>
+    <form id="newProject">
+        <input type="hidden" name="Project_ID" />
+        <div class="row">
+            <label class="col-md-2">Project Name</label>
+            <input class="col-md-2" type="projectName" />
+        </div>
+        <div class="row">
+            <label class="col-md-2">Company Name</label>
+            <input class="col-md-2" type="companyName" />
+        </div>
+        <div class="row">
+            <label class="col-md-2">Project Owner</label>
+            <input class="col-md-2" type="projectOwner" />
+        </div>
+        <div class="row">Meeting Minutes</div>
+        <div class="row">
+            <button type="button" onclick="gotoMeetingMinute()">Add New</button>
+        </div>
+    </form>
+
+    <script>
+        var app = new Vue({
+            el: '#projectList',
+            data: {
+                Projects: Array,
+                SelectedProject: Object
+            },
+            created: function () {
+                console.log('Load Projects: ' + Cookies.get('sessionID'));
+                var self = this;
+                var pData = {
+                    "SESSION_ID": Cookies.get('sessionID')
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "https://bizdoc.azurewebsites.net/api/Project",
+                    data: JSON.stringify(pData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    complete: function (jqXHR) {
+                        if (jqXHR.readyState === 4) {
+                            console.log(jqXHR.responseText);
+                            self.Projects = JSON.parse(jqXHR.responseText);
+                        }
+                    }
+                });
+
+            },
+            methods: {
+                loadProjects: function () {
+                    console.log('Load Projects');
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
