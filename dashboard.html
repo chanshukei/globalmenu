@@ -17,6 +17,7 @@
     <script src="./js/vue.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/sitemap.js"></script>
+    <script src="./js/gm-image.js"></script>
 
     <h1>My Shops</h1>
     <!-- div id="projectList">
@@ -41,6 +42,16 @@
         <div class="form-create">
             <div class="row">            
                 <h2 class="col-md-12">New Shop</h2>
+            </div>
+            <div class="row">
+                <label class="col-md-4">Shop Image</label>
+                <div class="preview-box" onclick="$('#shopImageFile').click();">
+                    <img id="shopImageImg" src="#" alt="Shop Image" />
+                </div>
+                <input  style="display: none;" name="shopImageFile" type="file" 
+                        id="shopImageFile"
+                        onchange="previewImage('shopImageFile', 'shopImageImg')"
+                        accept="image/x-png,image/gif,image/jpeg"/>
             </div>
             <div class="row">
                 <label class="col-md-4">Shop Name</label>
