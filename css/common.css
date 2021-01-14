@@ -91,7 +91,7 @@ h3{
 }
 
 .form-create{
-    max-width: 400px;
+    min-width: 400px;
     background-color: #F0F0F0;
     border-radius: 10px;
     padding: 5px;
@@ -99,7 +99,7 @@ h3{
 }
 
 label{
-    text-align: left;
+    text-align: right;
     font-weight: bold;
     margin: 2px;
     font-size: 10pt;
