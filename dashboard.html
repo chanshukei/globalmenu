@@ -4,19 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/common.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="./css/bootstrap-toggle.min.css">
     <title></title>
 </head>
 <body>
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/vue.js"></script>
-    <script src="/js/js.cookie.min.js"></script>
-    <script src="/js/sitemap.js"></script>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrap-toggle.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/js.cookie.min.js"></script>
+    <script src="./js/sitemap.js"></script>
 
-    <h1>My projects</h1>
-    <div id="projectList">
+    <h1>My Shops</h1>
+    <!-- div id="projectList">
         <table>
             <tr>
                 <th>Project Name</th>
@@ -33,25 +36,127 @@
                 <td>{{item.CURRENT_PHASE}}</td>
             </tr>
         </table>
-    </div>
-    <br><br>
-    <form id="newProject">
-        <input type="hidden" name="Project_ID" />
-        <div class="row">
-            <label class="col-md-2">Project Name</label>
-            <input class="col-md-2" type="projectName" />
-        </div>
-        <div class="row">
-            <label class="col-md-2">Company Name</label>
-            <input class="col-md-2" type="companyName" />
-        </div>
-        <div class="row">
-            <label class="col-md-2">Project Owner</label>
-            <input class="col-md-2" type="projectOwner" />
-        </div>
-        <div class="row">Meeting Minutes</div>
-        <div class="row">
-            <button type="button" onclick="gotoMeetingMinute()">Add New</button>
+    </div -->
+    <form id="newShop">
+        <div class="form-create">
+            <div class="row">            
+                <h2 class="col-md-12">New Shop</h2>
+            </div>
+            <div class="row">
+                <label class="col-md-4">Shop Name</label>
+                <input class="col-md-6" name="shopName" />
+            </div>
+            <div class="row">
+                <label class="col-md-4">Address 1</label>
+                <input class="col-md-6" name="address1" />
+            </div>
+            <div class="row">
+                <label class="col-md-4">Address 2</label>
+                <input class="col-md-6" name="address2" />
+            </div>
+            <div class="row">
+                <label class="col-md-4">Address 3</label>
+                <input class="col-md-6" name="address3" />
+            </div>
+            <div class="row">
+                <label class="col-md-4">Food Style</label>
+                <select class="col-md-6" name="foodStyle">
+                    <option>American</option>
+                    <option>Japanese</option>
+                    <option>Korean</option>
+                    <option>Others</option>
+                </select>
+            </div>
+            <div class="row">
+                <h3 class="col-md-12">Opening Hours</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="checkbox" data-toggle="toggle" name="monOpen"/>
+                    Monday
+                </div>
+                <div class="col-md-5">
+                    <label>Opens from</label>
+                    <input name="monOpenTime" type="time"/>
+                    <label>to</label>
+                    <input name="monCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Tuesday</label>
+                <div class="col-md-1">
+                    <input type="checkbox" data-toggle="toggle" name="tueOpen"/>
+                </div>
+                <div class="col-md-9">
+                    Opens from
+                    <input name="tueOpenTime" type="time"/>
+                    To
+                    <input name="tueCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Wednesday</label>
+                <div class="col-md-1">
+                    <input type="checkbox" data-toggle="toggle" name="wedOpen"/>
+                </div>
+                <div class="col-md-9">
+                    Opens from
+                    <input name="wedOpenTime" type="time"/>
+                    To
+                    <input name="wedCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Thursday</label>
+                <div class="col-md-1">
+                    <input type="checkbox" data-toggle="toggle" name="thuOpen"/>
+                </div>
+                <div class="col-md-9">
+                    Opens from
+                    <input name="thuOpenTime" type="time"/>
+                    To
+                    <input name="thuCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Friday</label>
+                <div class="col-md-1">
+                    <input type="checkbox" data-toggle="toggle" name="friOpen"/>
+                </div>
+                <div class="col-md-9">
+                    Opens from
+                    <input name="friOpenTime" type="time"/>
+                    To
+                    <input name="friCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Saturday</label>
+                <div class="col-md-1">
+                    <input type="checkbox" data-toggle="toggle" name="satOpen"/>
+                </div>
+                <div class="col-md-9">
+                    Opens from
+                    <input name="satOpenTime" type="time"/>
+                    To
+                    <input name="satCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Sunday</label>
+                <div class="col-md-1">
+                    <input type="checkbox" data-toggle="toggle" name="sunOpen"/>
+                </div>
+                <div class="col-md-9">
+                    Opens from
+                    <input name="sunOpenTime" type="time"/>
+                    To
+                    <input name="sunCloseTime" type="time"/>
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" onclick="addNewShop()">Create</button>
+            </div>
         </div>
     </form>
 
