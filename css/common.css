@@ -81,7 +81,7 @@ h1{
 }
 
 h2{
-    text-align:center;
+    text-align:left;
     font-size:14pt;
 }
 
@@ -92,7 +92,7 @@ h3{
 
 .form-create{
     min-width: 400px;
-    background-color: #F0F0F0;
+    background-color: #F8F8F8;
     border-radius: 10px;
     padding: 5px;
     width: 95%;
