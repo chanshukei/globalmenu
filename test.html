@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <title>Test pages</title>
 </head>
 <body class="container" style="background-color: #000000; text-align:center">
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <div style="width:400px; background-color: #FFFAFA; border-radius: 10px; padding:20px; margin:50px; display:inline-block">
         <script>
             function testUpload(fileEleId){
@@ -51,24 +51,22 @@
     <div style="width:400px; background-color: #FFFAFA; border-radius: 10px; padding:20px; margin:50px; display:inline-block">
         <script>
             function testGetImage(imgEleId){
-                reader.onloadend = function () {
-                    var pData = {
-                        "imageId": $('#'+imgEleId).attr('image-id')
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "https://globalmenu-image.azurewebsites.net/api/GetImage",
-                        data: JSON.stringify(pData),
-                        contentType: "application/json",
-                        dataType: "json",
-                        complete: function (jqXHR) {
-                            if (jqXHR.readyState === 4) {
-                                var img = JSON.parse(jqXHR.responseText);
-                                $('#'+imgEleId).attr('src', img.imageData);                                
-                            }
+                var pData = {
+                    "imageId": $('#'+imgEleId).attr('image-id')
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "https://globalmenu-image.azurewebsites.net/api/GetImage",
+                    data: JSON.stringify(pData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    complete: function (jqXHR) {
+                        if (jqXHR.readyState === 4) {
+                            var img = JSON.parse(jqXHR.responseText);
+                            $('#'+imgEleId).attr('src', img.imageData);                                
                         }
-                    });
-                }
+                    }
+                });
             }
 
             $(function() {
