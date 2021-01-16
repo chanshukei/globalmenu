@@ -12,3 +12,22 @@ function previewImage(imgFileEleId, imgEleId){
         reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
 }
+
+function preloadImage(imgEleId){
+    var pData = {
+        "imageId": $('#'+imgEleId).attr('image-id')
+    };
+    $.ajax({
+        type: "POST",
+        url: "https://globalmenu-image.azurewebsites.net/api/GetImage",
+        data: JSON.stringify(pData),
+        contentType: "application/json",
+        dataType: "json",
+        complete: function (jqXHR) {
+            if (jqXHR.readyState === 4) {
+                var img = JSON.parse(jqXHR.responseText);
+                $('#'+imgEleId).attr('src', img.imageData);                                
+            }
+        }
+    });
+}
