@@ -13,7 +13,13 @@ function previewImage(imgFileEleId, imgEleId){
     }
 }
 
-function preloadImage(imgEleId){
+function preloadImage(){
+    $('img[image-id]').each(function(index, value) {
+        preloadImageById(value.id);
+    });
+}
+
+function preloadImageById(imgEleId){
     var pData = {
         "imageId": $('#'+imgEleId).attr('image-id')
     };
