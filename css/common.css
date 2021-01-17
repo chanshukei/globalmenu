@@ -83,12 +83,13 @@ h2{
 }
 
 .chatbox{
+    padding: 5px;
     border-radius: 5px;
-    border: 1px dashed #353535;
+    border: 1px dashed #FFFFFF;
     text-align:left;
     font-size:10pt;
-    color: #0f0f0f;
-    font-style: italic;
+    color: #FFFFFF;
+    background-color:#000000;
     font-family: 'Courier New', Courier, monospace
 }
 
@@ -124,5 +125,5 @@ body{
 }
 
 img{
-    margin: 2px;
+    margin: 5px;
 }
