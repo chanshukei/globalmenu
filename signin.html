@@ -16,30 +16,29 @@
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/login.js"></script>
 
-    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block">
-        <div class="text-center">
-            <img style="padding: 5px;" src="./ico/tomsix.png" />
+    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block; background-color: #f0f0f0;">
+        <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
+            <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
+            Sign in
         </div>
         <div class="text-center">
+            <div class="row chatbox" style="display: none;">
+                <div style="max-width: 40px;"><img src="./ico/user2.png" /></div>
+                <div>
+                    Please input ...
+                </div>                    
+            </div>
             <form>
-                <div class="row chatbox" style="display: none;">
-                    <div style="max-width: 40px;"><img src="./ico/user2.png" /></div>
-                    <div>
-                        Please input ...
-                    </div>                    
-                </div>
-                <form>
-                    <input class="form-control" 
-                            id="usernameEmail"
-                            name="usernameEmail" type="text"
-                            placeholder="Username or email address" />
-                    <input class="form-control" 
-                            id="password"
-                            name="password" type="password"
-                            placeholder="Password" />
-                    <button class="btn btn-success" style="width:100%" onclick="signIn()" type="button">Sign in</button>
-                    <button class="btn btn-dark" style="width:100%" onclick="backFromSignin()" type="button">Back</button>
-                </form>
+                <input class="form-control" 
+                        id="usernameEmail"
+                        name="usernameEmail" type="text"
+                        placeholder="Username or email address" />
+                <input class="form-control" 
+                        id="password"
+                        name="password" type="password"
+                        placeholder="Password" />
+                <button class="btn btn-success" style="width:100%" onclick="signIn()" type="button">Sign in</button>
+                <button class="btn btn-dark" style="width:100%" onclick="backFromSignin()" type="button">Back</button>
             </form>
         </div>
     </div>

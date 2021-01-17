@@ -118,7 +118,7 @@ label{
     font-size: 14pt;
     background-color: #b3ffc4;
     color: #0f0f0f;
-    border: 5px solid #FFFFFF;
+    border: 5px solid transparent;
     border-radius: 5px;
 }
 
@@ -131,14 +131,14 @@ label{
 
 .btn-dark{
     font-size: 14pt;
-    background-color: #000000;
+    background-color: #202020;
     color: #FFFFFF;
-    border: 5px solid #FFFFFF;
+    border: 5px solid transparent;
     border-radius: 5px;
 }
 
 .btn-dark:hover{
-    background-color: #000000;
+    background-color: #202020;
     color: #ffffff;
     border: 5px solid #000000;
     border-radius: 5px;
