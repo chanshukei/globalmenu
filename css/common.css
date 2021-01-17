@@ -87,7 +87,7 @@ h2{
     border-radius: 5px;
     border: 1px dashed #FFFFFF;
     text-align:left;
-    font-size:10pt;
+    font-size:12pt;
     color: #FFFFFF;
     background-color:#000000;
     font-family: 'Courier New', Courier, monospace
@@ -108,7 +108,7 @@ label{
 }
 
 .btn-success{
-    font-size: 12pt;
+    font-size: 14pt;
     background-color: #b3ffc4;
     color: #0f0f0f;
     border: 5px solid #FFFFFF;
