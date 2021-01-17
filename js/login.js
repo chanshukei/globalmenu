@@ -25,6 +25,10 @@ function gotoSignIn(){
     window.location.href = './signin.html';
 }
 
+function backFromSignin(){
+    window.location.href = './index.html';
+}
+
 //google login
 function onGoogleSignInSuccess(googleUser) {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail);

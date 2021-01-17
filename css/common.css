@@ -13,7 +13,13 @@ input{
     margin: 5px;
     border: none;
     border-bottom: 1px solid black;
-    font-size: 10pt;
+    font-size: 12pt;
+}
+
+.form-control{
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 12pt;
 }
 
 select{
@@ -102,9 +108,10 @@ h2{
 }
 
 label{
-    text-align: right;
+    text-align: left;
     margin: 2px;
     font-size: 10pt;
+
 }
 
 .btn-success{
@@ -112,12 +119,29 @@ label{
     background-color: #b3ffc4;
     color: #0f0f0f;
     border: 5px solid #FFFFFF;
+    border-radius: 5px;
 }
 
 .btn-success:hover{
     background-color: #b3ffc4;
     color: #0f0f0f;
     border: 5px solid #80d499;
+    border-radius: 5px;
+}
+
+.btn-dark{
+    font-size: 14pt;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 5px solid #FFFFFF;
+    border-radius: 5px;
+}
+
+.btn-dark:hover{
+    background-color: #000000;
+    color: #ffffff;
+    border: 5px solid #000000;
+    border-radius: 5px;
 }
 
 body{
