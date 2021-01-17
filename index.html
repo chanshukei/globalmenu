@@ -5,50 +5,30 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="google-signin-client_id"
-          content="941729682379-d65c4ihhkqnnqdt5jlvd0lccm0le2odq.apps.googleusercontent.com">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/common.css">
     <title>Login</title>
 </head>
-<body class="container" style="background-color: #000000; text-align:center">
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/login.js"></script>
-    <script src="/js/js.cookie.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+<body class="container" style="background-color: #ffffff; text-align:center">
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/js.cookie.min.js"></script>
+    <script src="./js/login.js"></script>
 
-    <div style="width:400px; background-color: #FFFAFA; border-radius: 10px; padding:20px; margin:50px; display:inline-block">
+    <div style="width:400px; border-radius: 10px; padding:20px; margin:50px; display:inline-block">
         <div class="text-center">
-            <img src="/ico/noodles.png" />
+            <img style="padding: 5px;" src="./ico/tomsix.png" />
         </div>
         <div class="text-center">
-            <h1>Sign in to Global Menu</h1>
-        </div>
-        <div class="row text-left">
-            <form style="width:90%; margin:10px">
-                <div class="form-group">
-                    <label for="username">Username or email address</label>
-                    <input class="form-control" 
-                           id="usernameEmail"
-                           name="usernameEmail" type="text" />
-                </div>
-                <div class="form-group">
-                    <label for="email">Password</label>
-                    <input class="form-control" 
-                           id="password"
-                           name="password" type="password" />
-                </div>
-                <button class="btn btn-success" style="width:100%" onclick="signIn()" type="button">Sign in</button>
+            <form>
+                <h3>
+                    <img src="./ico/user.png" />Hello, I am TOMSIX. Let's start to
+                </h3>
+                <button class="btn btn-success" style="width:100%" onclick="gotoSignIn()" type="button">Sign in</button>
+                <button class="btn btn-success" style="width:100%" onclick="gotoRegister()" type="button">Register</button>
             </form>
         </div>
-        <div class="text-center">
-            <h6>or</h6>
-        </div>
-
-        <!-- GOOGLE LOGIN hidden first -->
-        <!-- div id="my-signin2" class="g-signin2" data-onsuccess="onSignIn"></div -->
     </div>
 </body>
 </html>

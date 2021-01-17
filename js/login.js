@@ -15,11 +15,14 @@ function signIn() {
             if (jqXHR.readyState === 4) {
                 var signInSession = JSON.parse(jqXHR.responseText);
                 Cookies.set('sessionID', signInSession.signInSessionID);
-                window.location.href = '/dashboard.html';
+                window.location.href = './dashboard.html';
             }
         }
     });
+}
 
+function gotoSignIn(){
+    window.location.href = './signin.html';
 }
 
 //google login

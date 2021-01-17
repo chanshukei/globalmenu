@@ -59,14 +59,9 @@ td > input {
     border: none;
     width: 90%;
 }
+
 button {
-    border: 1px solid #F0F8FF;
-    background-color: #F0F8FF;
-    padding: 5px;
-}
-button:hover {
-    border: 1px solid #87CEFA;
-    background-color: #E6E6FA;
+    margin: 2px;
 }
 
 .navbar {
@@ -78,6 +73,8 @@ button:hover {
 h1{
     text-align:center;
     font-size:14pt;
+    color: #0f0f0f;
+    font-style: italic;
 }
 
 h2{
@@ -86,8 +83,12 @@ h2{
 }
 
 h3{
+    border-radius: 5px;
+    border: 1px dashed #353535;
     text-align:left;
-    font-size:12pt;
+    font-size:10pt;
+    color: #0f0f0f;
+    font-style: italic;
 }
 
 .form-create{
@@ -100,8 +101,27 @@ h3{
 
 label{
     text-align: right;
-    font-weight: bold;
     margin: 2px;
     font-size: 10pt;
 }
 
+.btn-success{
+    font-size: 12pt;
+    background-color: #b3ffc4;
+    color: #0f0f0f;
+    border: 5px solid #FFFFFF;
+}
+
+.btn-success:hover{
+    background-color: #b3ffc4;
+    color: #0f0f0f;
+    border: 5px solid #80d499;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+img{
+    margin: 5px;
+}
