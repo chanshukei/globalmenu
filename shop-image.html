@@ -29,19 +29,19 @@
         <div class="row text-center">
             <div class="chatbox">
                 <img style="float: left;" src="./ico/user2.png" />
-                No shops found.<br />
-                Let's create your first shop.
+                You shop is created.
+                Now you can add the shop logo.
             </div>
         </div>
         
         <div id='shops'>
             <form>
                 <div class="row">
-                    <label>Shop Image</label>
+                    <label>Shop Logo</label>
                     <div class="preview-box">                        
                         <img id="shopImageImg" src="./image/no-photo.png" alt="Shop Image"/>
                         <button class="btn btn-dark" type="button" onclick="$('#shopImageFile').click();">
-                            Add Shop Image
+                            Add Shop Logo
                         </button>
                         <input
                             style="display: none;" name="shopImageFile" type="file" 
@@ -51,8 +51,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn btn-success" type="button" onclick="saveShopLogo()">Save</button>
-                    <button class="btn btn-dark" type="button" onclick="skipShopLogo()">Skip</button>
+                    <button class="btn btn-success" type="button" v-on:click="saveShopLogo()">Save</button>
+                    <button class="btn btn-dark" type="button" v-on:click="skipShopLogo()">Skip</button>
                 </div>            
             </form>
         </div>
