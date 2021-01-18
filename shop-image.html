@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-toggle.min.css">
     <link rel="stylesheet" href="./css/common.css">
     <title>Login</title>
 </head>
 <body class="container" style="background-color: #f0f0f0;">
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
+    <script src="./js/gm-image.js"></script>
+    <script src="./js/bootstrap-toggle.min.js"></script>
     <script src="./js/vue.js"></script>
 
     <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
@@ -34,6 +36,20 @@
         
         <div id='shops'>
             <form>
+                <div class="row">
+                    <label>Shop Image</label>
+                    <div class="preview-box">                        
+                        <img id="shopImageImg" src="./image/no-photo.png" alt="Shop Image"/>
+                        <button class="btn btn-dark" type="button" onclick="$('#shopImageFile').click();">
+                            Add Shop Image
+                        </button>
+                        <input
+                            style="display: none;" name="shopImageFile" type="file" 
+                            id="shopImageFile"
+                            onchange="previewImage('shopImageFile', 'shopImageImg')"
+                            accept="image/x-png,image/gif,image/jpeg"/>
+                    </div>
+                </div>
                 <div class="row">
                     <label>Shop Name</label>
                     <input class="form-control" name="shopName" />
@@ -91,26 +107,23 @@
                 addNewShop: function () {
                     var self = this;
                     console.log('addNewShop');
-                    console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
                         "SHOP_NAME": this.SHOP_NAME,
                         "POSTCODE": this.POSTCODE,
                         "ADDRESS1": this.ADDRESS1,
                         "ADDRESS2": this.ADDRESS2,
                         "ADDRESS3": this.ADDRESS3,
-                        "FOOD_STYLE": this.FOOD_STYLE,
-                        "SESSION_ID": Cookies.get('sessionID')
+                        "FOOD_STYLE": this.FOOD_STYLE
                     };
                     $.ajax({
                         type: "POST",
-                        url: "https://bizdoc.azurewebsites.net/api/MeetingMinutes",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/AddNewShop",
                         data: JSON.stringify(pData),
                         contentType: "application/json",
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
-                                var shop = JSON.parse(jqXHR.responseText);
-                                window.location.href = './shop-image.html?shopId='+shop.shopId;
+                                self.alertInfo += 'The meeting minutues is saved successfully ' + moment().fromNow();
                             }
                         }
                     });
