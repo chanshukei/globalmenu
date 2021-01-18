@@ -22,7 +22,7 @@
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
-            Shops
+            Update Shop Logo
         </div>
 
         <!-- chatbox -->
@@ -51,38 +51,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label>Shop Name</label>
-                    <input class="form-control" name="shopName" />
-                </div>
-                <div class="row">
-                    <label>Postcode</label>
-                    <input class="form-control" name="postcode" />                
-                </div>
-                <div class="row">
-                    <label>Address 1</label>
-                    <input class="form-control" name="address1" />
-                </div>
-                <div class="row">
-                    <label>Address 2</label>
-                    <input class="form-control" name="address2" />
-                </div>
-                <div class="row">
-                    <label>Address 3</label>
-                    <input class="form-control" name="address3" />
-                </div>
-                <div class="row">
-                    <label>Food Style</label>
-                    <select class="form-control" name="foodStyle">
-                        <option value="american">American</option>
-                        <option value='japanese'>Japanese</option>
-                        <option value="korean">Korean</option>
-                        <option value="others">Others</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <button class="btn btn-success" type="button" onclick="addNewShop()">Create</button>
-                    </div>    
+                    <button class="btn btn-success" type="button" onclick="saveShopLogo()">Save</button>
+                    <button class="btn btn-dark" type="button" onclick="skipShopLogo()">Skip</button>
                 </div>            
             </form>
         </div>
@@ -104,29 +74,15 @@
             },
 
             methods: {
-                addNewShop: function () {
-                    var self = this;
-                    console.log('addNewShop');
-                    var pData = {
-                        "SHOP_NAME": this.SHOP_NAME,
-                        "POSTCODE": this.POSTCODE,
-                        "ADDRESS1": this.ADDRESS1,
-                        "ADDRESS2": this.ADDRESS2,
-                        "ADDRESS3": this.ADDRESS3,
-                        "FOOD_STYLE": this.FOOD_STYLE
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "https://globalmenu-shop.azurewebsites.net/api/AddNewShop",
-                        data: JSON.stringify(pData),
-                        contentType: "application/json",
-                        dataType: "json",
-                        complete: function (jqXHR) {
-                            if (jqXHR.readyState === 4) {
-                                self.alertInfo += 'The meeting minutues is saved successfully ' + moment().fromNow();
-                            }
-                        }
-                    });
+                saveShopLogo: function () {
+                    var pSessionId = Cookies.get('sessionID');
+                    var pShopId = Cookies.get('shopId');
+                    uploadImage(pSessionId, 'SHOP_LOGO', pShopId, 'shopImageFile');
+                },
+
+                skipShopLogo: function () {
+                    console.log('skipShopLogo');
+                    window.location.href = './shop-openhours.html?shopId='+shop.shopId;
                 }
             }
         })

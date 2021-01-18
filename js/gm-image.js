@@ -37,3 +37,31 @@ function preloadImageById(imgEleId){
         }
     });
 }
+
+function uploadImage(pSessionId, pImageType, pKey, fileEleId){
+    var reader = new FileReader();
+    var f = document.getElementById(fileEleId).files;
+    reader.onloadend = function () {
+        var pData = {
+            "data": reader.result,
+            "imageId": '',
+            "sessionId": pSessionId,
+            "imageType": pImageType,
+            "imageKey": pKey
+        };
+        $.ajax({
+            type: "POST",
+            url: "https://globalmenu-image.azurewebsites.net/api/UploadImage",
+            data: JSON.stringify(pData),
+            contentType: "application/json",
+            dataType: "json",
+            complete: function (jqXHR) {
+                if (jqXHR.readyState === 4) {
+                    var img = JSON.parse(jqXHR.responseText);
+                    console.log("Image uploaded:" + img.imageId);                                
+                }
+            }
+        });
+    }
+    reader.readAsDataURL(f[0]);
+}
