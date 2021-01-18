@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/bootstrap-toggle.min.css">
+    <link rel="stylesheet" href="./css/common.css">
     <title>Login</title>
 </head>
 <body class="container" style="background-color: #ffffff; text-align:center">
@@ -36,7 +36,7 @@
             </div>
         </div>
         
-        <div class="text-center" id='shops'>
+        <div id='shops'>
             <form>
                 <div class="row">
                     <label class="col-md-4">Shop Image</label>
@@ -48,31 +48,30 @@
                             onchange="previewImage('shopImageFile', 'shopImageImg')"
                             accept="image/x-png,image/gif,image/jpeg"/>
                 </div>
-                <div class="row">
-                    <label class="col-md-4">Shop Name</label>
-                    <input class="col-md-6" name="shopName" />
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Address 1</label>
-                    <input class="col-md-6" name="address1" />
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Address 2</label>
-                    <input class="col-md-6" name="address2" />
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Address 3</label>
-                    <input class="col-md-6" name="address3" />
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Food Style</label>
-                    <select class="col-md-6" name="foodStyle">
-                        <option value="american">American</option>
-                        <option value='japanese'>Japanese</option>
-                        <option value="korean">Korean</option>
-                        <option value="others">Others</option>
-                    </select>
-                </div>
+
+                <label>Shop Name</label>
+                <input class="form-control" name="shopName" />
+                
+                <label>Post Code</label>
+                <input class="form-control" name="postcode" />                
+
+                <label>Address 1</label>
+                <input class="form-control" name="address1" />
+                
+                <label>Address 2</label>
+                <input class="form-control" name="address2" />
+                
+                <label>Address 3</label>
+                <input class="form-control" name="address3" />
+
+                <label>Food Style</label>
+                <select class="form-control" name="foodStyle">
+                    <option value="american">American</option>
+                    <option value='japanese'>Japanese</option>
+                    <option value="korean">Korean</option>
+                    <option value="others">Others</option>
+                </select>
+                
                 <div class="row">
                     <button class="btn btn-success" type="button" onclick="addNewShop()">Create</button>
                 </div>                
