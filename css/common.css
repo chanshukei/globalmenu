@@ -20,6 +20,7 @@ input{
     border: none;
     border-bottom: 1px solid black;
     font-size: 12pt;
+    max-width: 350px;
 }
 
 select{
@@ -89,14 +90,15 @@ h2{
 }
 
 .chatbox{
-    padding: 5px;
     border-radius: 5px;
     border: 1px dashed #FFFFFF;
     text-align:left;
     font-size:12pt;
     color: #FFFFFF;
     background-color:#000000;
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'Courier New', Courier, monospace;
+    padding: 5px;
+    width: 95%;
 }
 
 .form-create{
@@ -148,4 +150,22 @@ img{
 label{
     font-size: 12pt;
     font-weight: bold;
+}
+
+.preview-box{
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    text-align:  center;
+    max-width: 350px;
+}
+
+.preview-box > button {
+    width: 95% !important;
+}
+
+.row{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 0px;
 }
