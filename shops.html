@@ -16,12 +16,16 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/gm-image.js"></script>
     <script src="./js/bootstrap-toggle.min.js"></script>
+    <script src="./js/vue.js"></script>
 
     <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block; background-color: #f0f0f0;">
+        <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
             Shops
         </div>
+
+        <!-- chatbox -->
         <div class="text-center">
             <div class="row chatbox">
                 <div style="max-width: 40px;"><img src="./ico/user2.png" /></div>
@@ -30,12 +34,14 @@
                     Let's create your first shop.
                 </div>                    
             </div>
-
+        </div>
+        
+        <div class="text-center" id='shops'>
             <form>
                 <div class="row">
                     <label class="col-md-4">Shop Image</label>
                     <div class="preview-box" onclick="$('#shopImageFile').click();">
-                        <img id="shopImageImg" src="#" alt="Shop Image" style="display: none;"/>
+                        <img id="shopImageImg" src="./image/no-photo.png" alt="Shop Image"/>
                     </div>
                     <input  style="display: none;" name="shopImageFile" type="file" 
                             id="shopImageFile"
@@ -61,10 +67,10 @@
                 <div class="row">
                     <label class="col-md-4">Food Style</label>
                     <select class="col-md-6" name="foodStyle">
-                        <option>American</option>
-                        <option>Japanese</option>
-                        <option>Korean</option>
-                        <option>Others</option>
+                        <option value="american">American</option>
+                        <option value='japanese'>Japanese</option>
+                        <option value="korean">Korean</option>
+                        <option value="others">Others</option>
                     </select>
                 </div>
                 <div class="row">
@@ -73,5 +79,50 @@
             </form>
         </div>
     </div>
+
+    <script>
+        var app = new Vue({
+            el: '#shops',
+            data: {
+                SHOP_NAME: '',
+                POSTCODE: '',
+                ADDRESS1: '',
+                ADDRESS2: '',
+                ADDRESS3: '',
+                FOOD_STYLE: ''                
+            },
+            created: function () {
+                console.log('Load Shops');
+            },
+
+            methods: {
+                addNewShop: function () {
+                    var self = this;
+                    console.log('addNewShop');
+                    var pData = {
+                        "SHOP_NAME": this.SHOP_NAME,
+                        "POSTCODE": this.POSTCODE,
+                        "ADDRESS1": this.ADDRESS1,
+                        "ADDRESS2": this.ADDRESS2,
+                        "ADDRESS3": this.ADDRESS3,
+                        "FOOD_STYLE": this.FOOD_STYLE
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://bizdoc.azurewebsites.net/api/MeetingMinutes",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                self.alertInfo += 'The meeting minutues is saved successfully ' + moment().fromNow();
+                            }
+                        }
+                    });
+                }
+            }
+        })
+    </script>
+
 </body>
 </html>
