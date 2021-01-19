@@ -38,7 +38,7 @@ function preloadImageById(imgEleId){
     });
 }
 
-function uploadImage(pSessionId, pImageType, pKey, fileEleId){
+function uploadImage(pSessionId, pImageType, pKey, fileEleId, pSuccessCallback){
     var reader = new FileReader();
     var f = document.getElementById(fileEleId).files;
     reader.onloadend = function () {
@@ -58,7 +58,8 @@ function uploadImage(pSessionId, pImageType, pKey, fileEleId){
             complete: function (jqXHR) {
                 if (jqXHR.readyState === 4) {
                     var img = JSON.parse(jqXHR.responseText);
-                    console.log("Image uploaded:" + img.imageId);                                
+                    console.log("Image uploaded:" + img.imageId);     
+                    pSuccessCallback();                           
                 }
             }
         });
