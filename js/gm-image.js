@@ -47,7 +47,7 @@ function uploadImage(pSessionId, pImageType, pKey, fileEleId){
             "imageId": '',
             "sessionId": pSessionId,
             "imageType": pImageType,
-            "imageKey": pKey
+            "keyId": pKey
         };
         $.ajax({
             type: "POST",
