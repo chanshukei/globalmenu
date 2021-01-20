@@ -4,13 +4,15 @@ function goStep2(){
 }
 
 function goStep3(){
-    $('#step2').hide();    
+    $('#step2').hide();
+    console.log($('#openTime').val());
+    console.log($('#closeTime').val());
     $('#step3').show();
 }
 
 function backStep1(){
-    $('#step1').hide();    
-    $('#step2').show();
+    $('#step2').hide();    
+    $('#step1').show();
 }
 
 function backStep2(){
