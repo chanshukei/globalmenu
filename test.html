@@ -11,6 +11,8 @@
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/gm-image.js"></script>
+    <script src="./js/vue.js"></script>
+
 
     <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block">
         <script>
@@ -64,6 +66,29 @@
             <img id="image1" src="./image/loading.gif" image-id='7E25D86A-DA60-477D-BF6F-BC474407267C'/>
         </div>
     </div>
+
+    <div id="shops" style="background-color: #ffffff;">
+            <div v-if="test1">abc</div>
+            <input type="checkbox" v-model="test1"/>
+
+        {{test1}}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#shops',
+            data: {
+                test1: false               
+            },
+            created: function () {
+                console.log('Load Shops');
+            },
+
+            methods: {
+            }
+
+        })
+    </script>
 
 </body>
 </html>

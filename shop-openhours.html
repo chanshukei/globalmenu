@@ -8,14 +8,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/bootstrap-toggle.min.css">
     <title>Login</title>
 </head>
 <body class="container" style="background-color: #ffffff; text-align:center">
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/gm-image.js"></script>
-    <script src="./js/bootstrap-toggle.min.js"></script>
     <script src="./js/openingHours.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
@@ -111,43 +109,43 @@
                     <div class="row">
                         <label>Review opening hours</label>
                     </div>
-                    <div class="row" v:if="monOpen">
+                    <div class="row" :style="[monOpen?{}:{'display':'none'}]">
                         <label>Monday</label>
                         <input id="monOpenTime" v-model="MON_OPEN_TIME" type="time"/>
                         ~
                         <input id="monCloseTime" v-model="MON_CLOSE_TIME" type="time"/>
                     </div>
-                    <div class="row">
+                    <div class="row" :style="[tueOpen?{}:{'display':'none'}]">
                         <label>Tuesday</label>
                         <input id="tueOpenTime" v-model="TUE_OPEN_TIME" type="time"/>
                         ~
                         <input id="tueCloseTime" v-model="TUE_CLOSE_TIME" type="time"/>
                     </div>
-                    <div class="row">
+                    <div class="row" :style="[wedOpen?{}:{'display':'none'}]">
                         <label>Wednesday</label>
                         <input id="wedOpenTime" v-model="WED_OPEN_TIME" type="time"/>
                         ~
                         <input id="wedCloseTime" v-model="WED_CLOSE_TIME" type="time"/>
                     </div>
-                    <div class="row">
+                    <div class="row" :style="[thuOpen?{}:{'display':'none'}]">
                         <label>Thursday</label>
                         <input id="thuOpenTime" v-model="THU_OPEN_TIME" type="time"/>
                         ~
                         <input id="thuCloseTime" v-model="THU_CLOSE_TIME" type="time"/>
                     </div>
-                    <div class="row">
+                    <div class="row" :style="[friOpen?{}:{'display':'none'}]">
                         <label>Friday</label>
                         <input id="friOpenTime" v-model="FRI_OPEN_TIME" type="time"/>
                         ~
                         <input id="friCloseTime" v-model="FRI_CLOSE_TIME" type="time"/>
                     </div>
-                    <div class="row">
+                    <div class="row" :style="[satOpen?{}:{'display':'none'}]">
                         <label>Saturday</label>
                         <input id="satOpenTime" v-model="SAT_OPEN_TIME" type="time"/>
                         ~
                         <input id="satCloseTime" v-model="SAT_CLOSE_TIME" type="time"/>
                     </div>
-                    <div class="row">
+                    <div class="row" :style="[sunOpen?{}:{'display':'none'}]">
                         <label>Sunday</label>
                         <input id="sunOpenTime" v-model="SUN_OPEN_TIME" type="time"/>
                         ~
@@ -157,7 +155,7 @@
                         <button class="btn btn-dark" type="button" onclick="backStep2()">Back</button>
                         <button class="btn btn-success" type="button" onclick="saveOpenHours()">Save</button>
                     </div>       
-                </div>                         
+                </div>                
             </form>
         </div>
         <!-- end form -->
@@ -168,13 +166,13 @@
         var app = new Vue({
             el: '#shops',
             data: {
-                monOpen: true,
-                tueOpen: true,
-                wedOpen: true,
-                thuOpen: true,
-                friOpen: true,
-                satOpen: true,
-                sunOpen: true,
+                monOpen: false,
+                tueOpen: false,
+                wedOpen: false,
+                thuOpen: false,
+                friOpen: false,
+                satOpen: false,
+                sunOpen: false,
                 MON_OPEN_TIME: "",
                 TUE_OPEN_TIME: "",
                 WED_OPEN_TIME: "",
