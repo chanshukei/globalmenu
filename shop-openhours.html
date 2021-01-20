@@ -110,43 +110,43 @@
                         <label>Review opening hours</label>
                     </div>
                     <div class="row" :style="[monOpen?{}:{'display':'none'}]">
-                        <label>Monday</label>
+                        <label>Mon</label>
                         <input id="monOpenTime" v-model="MON_OPEN_TIME" type="time"/>
                         ~
                         <input id="monCloseTime" v-model="MON_CLOSE_TIME" type="time"/>
                     </div>
                     <div class="row" :style="[tueOpen?{}:{'display':'none'}]">
-                        <label>Tuesday</label>
+                        <label>Tue</label>
                         <input id="tueOpenTime" v-model="TUE_OPEN_TIME" type="time"/>
                         ~
                         <input id="tueCloseTime" v-model="TUE_CLOSE_TIME" type="time"/>
                     </div>
                     <div class="row" :style="[wedOpen?{}:{'display':'none'}]">
-                        <label>Wednesday</label>
+                        <label>Wed</label>
                         <input id="wedOpenTime" v-model="WED_OPEN_TIME" type="time"/>
                         ~
                         <input id="wedCloseTime" v-model="WED_CLOSE_TIME" type="time"/>
                     </div>
                     <div class="row" :style="[thuOpen?{}:{'display':'none'}]">
-                        <label>Thursday</label>
+                        <label>Thu</label>
                         <input id="thuOpenTime" v-model="THU_OPEN_TIME" type="time"/>
                         ~
                         <input id="thuCloseTime" v-model="THU_CLOSE_TIME" type="time"/>
                     </div>
                     <div class="row" :style="[friOpen?{}:{'display':'none'}]">
-                        <label>Friday</label>
+                        <label>Fri</label>
                         <input id="friOpenTime" v-model="FRI_OPEN_TIME" type="time"/>
                         ~
                         <input id="friCloseTime" v-model="FRI_CLOSE_TIME" type="time"/>
                     </div>
                     <div class="row" :style="[satOpen?{}:{'display':'none'}]">
-                        <label>Saturday</label>
+                        <label>Sat</label>
                         <input id="satOpenTime" v-model="SAT_OPEN_TIME" type="time"/>
                         ~
                         <input id="satCloseTime" v-model="SAT_CLOSE_TIME" type="time"/>
                     </div>
                     <div class="row" :style="[sunOpen?{}:{'display':'none'}]">
-                        <label>Sunday</label>
+                        <label>Sun</label>
                         <input id="sunOpenTime" v-model="SUN_OPEN_TIME" type="time"/>
                         ~
                         <input id="sunCloseTime" v-model="SUN_CLOSE_TIME" type="time"/>
@@ -198,13 +198,22 @@
                     console.log('addNewShop');
                     console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
-                        "SHOP_NAME": this.SHOP_NAME,
-                        "POSTCODE": this.POSTCODE,
-                        "ADDRESS1": this.ADDRESS1,
-                        "ADDRESS2": this.ADDRESS2,
-                        "ADDRESS3": this.ADDRESS3,
-                        "FOOD_STYLE": this.FOOD_STYLE,
-                        "SESSION_ID": Cookies.get('sessionID')
+                        "MON_OPEN_TIME": this.monOpen?this.MON_OPEN_TIME:"",
+                        "TUE_OPEN_TIME": this.tueOpen?this.TUE_OPEN_TIME:"",
+                        "WED_OPEN_TIME": this.wedOpen?this.WED_OPEN_TIME:"",
+                        "THU_OPEN_TIME": this.thuOpen?this.THU_OPEN_TIME:"",
+                        "FRI_OPEN_TIME": this.friOpen?this.FRI_OPEN_TIME:"",
+                        "SAT_OPEN_TIME": this.satOpen?this.SAT_OPEN_TIME:"",
+                        "SUN_OPEN_TIME": this.sunOpen?this.SUN_OPEN_TIME:"",
+                        "MON_CLOSE_TIME": this.monOpen?this.MON_CLOSE_TIME:"",
+                        "TUE_CLOSE_TIME": this.tueOpen?this.TUE_CLOSE_TIME:"",
+                        "WED_CLOSE_TIME": this.wedOpen?this.WED_CLOSE_TIME:"",
+                        "THU_CLOSE_TIME": this.thuOpen?this.THU_CLOSE_TIME:"",
+                        "FRI_CLOSE_TIME": this.friOpen?this.FRI_CLOSE_TIME:"",
+                        "SAT_CLOSE_TIME": this.satOpen?this.SAT_CLOSE_TIME:"",
+                        "SUN_CLOSE_TIME": this.sunOpen?this.SUN_CLOSE_TIME:"",
+                        "SESSION_ID": Cookies.get('sessionID'),
+                        "SHOP_ID": Cookies.get('shopId')
                     };
                     $.ajax({
                         type: "POST",
