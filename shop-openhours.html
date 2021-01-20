@@ -17,7 +17,8 @@
     <script src="./js/gm-image.js"></script>
     <script src="./js/bootstrap-toggle.min.js"></script>
     <script src="./js/openingHours.js"></script>
-    
+    <script src="./js/js.cookie.min.js"></script>
+    <script src="./js/vue.js"></script>
 
     <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
         <!-- form header -->
@@ -59,43 +60,43 @@
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="monOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="monOpen">
                             Monday
                         </label>
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="tueOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="tueOpen">
                             Tuesday
                         </label>
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="wedOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="wedOpen">
                             Wednesday
                         </label>
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="thuOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="thuOpen">
                             Thursday
                         </label>
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="friOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="friOpen">
                             Friday
                         </label>
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="satOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="satOpen">
                             Saturday
                         </label>
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
-                            <input type="checkbox" checked data-toggle="toggle" name="sunOpen">
+                            <input type="checkbox" data-toggle="toggle" v-model="sunOpen">
                             Sunday
                         </label>
                     </div>
@@ -109,7 +110,7 @@
                     <div class="row">
                         <label>Review opening hours</label>
                     </div>
-                    <div class="row">
+                    <div class="row" v:if="monOpen">
                         <label>Monday</label>
                         <input id="monOpenTime" v-model="MON_OPEN_TIME" type="time"/>
                         ~
@@ -161,5 +162,55 @@
         <!-- end form -->
 
     </div>
+
+    <script>
+        var app = new Vue({
+            el: '#shops',
+            data: {
+                monOpen: true,
+                tueOpen: true,
+                wedOpen: true,
+                thuOpen: true,
+                friOpen: true,
+                satOpen: true,
+                sunOpen: true
+            },
+            created: function () {
+                console.log('Load Shops');
+            },
+
+            methods: {
+                saveOpenHours: function () {
+                    var self = this;
+                    console.log('addNewShop');
+                    console.log('session-id:'+Cookies.get('sessionID'));
+                    var pData = {
+                        "SHOP_NAME": this.SHOP_NAME,
+                        "POSTCODE": this.POSTCODE,
+                        "ADDRESS1": this.ADDRESS1,
+                        "ADDRESS2": this.ADDRESS2,
+                        "ADDRESS3": this.ADDRESS3,
+                        "FOOD_STYLE": this.FOOD_STYLE,
+                        "SESSION_ID": Cookies.get('sessionID')
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/AddNewShop",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                var shop = JSON.parse(jqXHR.responseText);
+                                window.location.href = './shop-image.html?shopId='+shop.shopId;
+                            }
+                        }
+                    });
+                }
+            }
+        })
+    </script>
+
+
 </body>
 </html>
