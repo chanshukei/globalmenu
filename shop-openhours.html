@@ -26,8 +26,8 @@
             <div class="row chatbox">
                 <div style="max-width: 40px;"><img src="./ico/user2.png" /></div>
                 <div>
-                    No shops found.<br />
-                    Let's create your first shop.
+                    The shop logo is uploaded.<br />
+                    Now you can update the opening hours.
                 </div>                    
             </div>
 
@@ -36,20 +36,16 @@
                     <h3 class="col-md-12">Opening Hours</h3>
                 </div>
                 <div class="row">
-                    <label class="col-md-4">Monday</label>
-                    <div class="col-md-6">                
-                        <input type="checkbox" data-toggle="toggle" name="monOpen"/>    
-                        <label>Opens from</label>
-                        <input name="monOpenTime" type="time"/>
-                        <label>to</label>
-                        <input name="monCloseTime" type="time"/>
-                    </div>
+                    <label>Monday</label>
+                    <input type="checkbox" data-toggle="toggle" name="monOpen"/>    
+                    <input name="monOpenTime" type="time"/>
+                    to
+                    <input name="monCloseTime" type="time"/>
                 </div>
                 <div class="row">
-                    <label class="col-md-4">Tuesday</label>
-                    <div class="col-md-6">
+                    <label class="col-md-12">Tuesday</label>
+                    <div class="col-md-12">
                         <input type="checkbox" data-toggle="toggle" name="tueOpen"/>
-                        <label>Opens from</label>
                         <input name="tueOpenTime" type="time"/>
                         <label>to</label>
                         <input name="tueCloseTime" type="time"/>
@@ -106,8 +102,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn btn-success" type="button" onclick="saveOpenHours()">Save</button>
                     <button class="btn btn-dark" type="button" onclick="skipOpenHours()">Skip</button>
+                    <button class="btn btn-success" type="button" onclick="saveOpenHours()">Save</button>
                 </div>                
             </form>
         </div>
