@@ -16,97 +16,119 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/gm-image.js"></script>
     <script src="./js/bootstrap-toggle.min.js"></script>
+    <script src="./js/openingHours.js"></script>
+    
 
-    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block; background-color: #f0f0f0;">
+    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+        <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
-            Shops
+            Update Opening Hours
         </div>
-        <div class="text-center">
-            <div class="row chatbox">
-                <div style="max-width: 40px;"><img src="./ico/user2.png" /></div>
-                <div>
-                    The shop logo is uploaded.<br />
-                    Now you can update the opening hours.
-                </div>                    
-            </div>
 
+        <!-- chatbox -->
+        <div class="row text-center">
+            <div class="chatbox">
+                <img style="float: left;" src="./ico/user2.png" />
+                The shop logo is uploaded.<br />
+                Now you can update the opening hours.                 
+            </div>
+        </div>
+
+        <!-- form -->
+        <div id="shops">
             <form>
-                <div class="row">
-                    <h3 class="col-md-12">Opening Hours</h3>
-                </div>
-                <div class="row">
-                    <label>Monday</label>
-                    <input type="checkbox" data-toggle="toggle" name="monOpen"/>    
-                    <input name="monOpenTime" type="time"/>
-                    to
-                    <input name="monCloseTime" type="time"/>
-                </div>
-                <div class="row">
-                    <label class="col-md-12">Tuesday</label>
-                    <div class="col-md-12">
-                        <input type="checkbox" data-toggle="toggle" name="tueOpen"/>
-                        <input name="tueOpenTime" type="time"/>
-                        <label>to</label>
-                        <input name="tueCloseTime" type="time"/>
+                <div id="step1">
+                    <div class="row">
+                        <label>Opening time</label>
+                        <input class="form-control" name="openTime" type="time"/>                        
                     </div>
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Wednesday</label>
-                    <div class="col-md-6">
-                        <input type="checkbox" data-toggle="toggle" name="wedOpen"/>
-                        <label>Opens from</label>
-                        <input name="wedOpenTime" type="time"/>
-                        <label>to</label>
-                        <input name="wedCloseTime" type="time"/>
+                    <div class="row">
+                        <label>Closing time</label>
+                        <input class="form-control" name="closeTime" type="time"/>
                     </div>
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button" onclick="skipOpenHours()">Skip</button>
+                        <button class="btn btn-success" type="button" onclick="goStep2()">Next</button>
+                    </div> 
                 </div>
-                <div class="row">
-                    <label class="col-md-4">Thursday</label>
-                    <div class="col-md-6">
-                        <input type="checkbox" data-toggle="toggle" name="thuOpen"/>
-                        <label>Opens from</label>
-                        <input name="thuOpenTime" type="time"/>
-                        <label>to</label>
-                        <input name="thuCloseTime" type="time"/>
+
+                <div id="step2" style="display: none;">
+                    <div class="row">
+                        <label>Monday</label>
+                        <input type="checkbox" data-toggle="toggle" name="monOpen"/>    
+                        <input name="monOpenTime" type="time"/>
+                        to
+                        <input name="monCloseTime" type="time"/>
                     </div>
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Friday</label>
-                    <div class="col-md-6">
-                        <input type="checkbox" data-toggle="toggle" name="friOpen"/>
-                        <label>Opens from</label>
-                        <input name="friOpenTime" type="time"/>
-                        <label>to</label>
-                        <input name="friCloseTime" type="time"/>
+                    <div class="row">
+                        <label class="col-md-12">Tuesday</label>
+                        <div class="col-md-12">
+                            <input type="checkbox" data-toggle="toggle" name="tueOpen"/>
+                            <input name="tueOpenTime" type="time"/>
+                            <label>to</label>
+                            <input name="tueCloseTime" type="time"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Saturday</label>
-                    <div class="col-md-6">
-                        <input type="checkbox" data-toggle="toggle" name="satOpen"/>
-                        <label>Opens from</label>
-                        <input name="satOpenTime" type="time"/>
-                        <label>to</label>                    
-                        <input name="satCloseTime" type="time"/>
+                    <div class="row">
+                        <label class="col-md-4">Wednesday</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" data-toggle="toggle" name="wedOpen"/>
+                            <label>Opens from</label>
+                            <input name="wedOpenTime" type="time"/>
+                            <label>to</label>
+                            <input name="wedCloseTime" type="time"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <label class="col-md-4">Sunday</label>
-                    <div class="col-md-6">
-                        <input type="checkbox" data-toggle="toggle" name="sunOpen"/>
-                        <label>Opens from</label>
-                        <input name="sunOpenTime" type="time"/>
-                        <label>to</label>
-                        <input name="sunCloseTime" type="time"/>
+                    <div class="row">
+                        <label class="col-md-4">Thursday</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" data-toggle="toggle" name="thuOpen"/>
+                            <label>Opens from</label>
+                            <input name="thuOpenTime" type="time"/>
+                            <label>to</label>
+                            <input name="thuCloseTime" type="time"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <button class="btn btn-dark" type="button" onclick="skipOpenHours()">Skip</button>
-                    <button class="btn btn-success" type="button" onclick="saveOpenHours()">Save</button>
-                </div>                
+                    <div class="row">
+                        <label class="col-md-4">Friday</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" data-toggle="toggle" name="friOpen"/>
+                            <label>Opens from</label>
+                            <input name="friOpenTime" type="time"/>
+                            <label>to</label>
+                            <input name="friCloseTime" type="time"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">Saturday</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" data-toggle="toggle" name="satOpen"/>
+                            <label>Opens from</label>
+                            <input name="satOpenTime" type="time"/>
+                            <label>to</label>                    
+                            <input name="satCloseTime" type="time"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">Sunday</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" data-toggle="toggle" name="sunOpen"/>
+                            <label>Opens from</label>
+                            <input name="sunOpenTime" type="time"/>
+                            <label>to</label>
+                            <input name="sunCloseTime" type="time"/>
+                        </div>
+                    </div>
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button" onclick="backStep1()">Skip</button>
+                        <button class="btn btn-success" type="button" onclick="saveOpenHours()">Save</button>
+                    </div>       
+                </div>         
             </form>
         </div>
+        <!-- end form -->
+
     </div>
 </body>
 </html>

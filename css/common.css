@@ -114,6 +114,7 @@ h2{
     color: #ffffff;
     border: 5px solid #f0f0f0;
     border-radius: 5px;
+    min-width: 120px;
 }
 
 .btn-success:hover{
@@ -121,6 +122,7 @@ h2{
     color: #ffffff;
     border: 5px solid #2e7a3e;
     border-radius: 5px;
+    min-width: 120px;
 }
 
 .btn-dark{
@@ -129,6 +131,7 @@ h2{
     color: #FFFFFF;
     border: 5px solid #f0f0f0;
     border-radius: 5px;
+    min-width: 120px;
 }
 
 .btn-dark:hover{
@@ -136,6 +139,7 @@ h2{
     color: #ffffff;
     border: 5px solid #000000;
     border-radius: 5px;
+    min-width: 120px;
 }
 
 body{
