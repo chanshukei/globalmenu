@@ -217,14 +217,14 @@
                     };
                     $.ajax({
                         type: "POST",
-                        url: "https://globalmenu-shop.azurewebsites.net/api/AddNewShop",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/UpdateOpenHours",
                         data: JSON.stringify(pData),
                         contentType: "application/json",
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shop = JSON.parse(jqXHR.responseText);
-                                window.location.href = './shop-image.html?shopId='+shop.shopId;
+                                window.location.href = './shops.html';
                             }
                         }
                     });
