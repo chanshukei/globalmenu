@@ -215,6 +215,7 @@
                         "SESSION_ID": Cookies.get('sessionID'),
                         "SHOP_ID": Cookies.get('shopId')
                     };
+                    console.log(JSON.stringify(pData));
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-shop.azurewebsites.net/api/UpdateOpenHours",
