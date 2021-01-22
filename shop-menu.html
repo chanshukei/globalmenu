@@ -83,9 +83,32 @@
             },
             created: function () {
                 console.log('Load Shops');
+                loadShopList();
             },
 
             methods: {
+                loadShopList: function(){
+                    var self = this;
+                    console.log('load shop list');
+                    console.log('session-id:'+Cookies.get('sessionID'));
+                    var pData = {
+                        "SESSION_ID": Cookies.get('sessionID')
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/ShopList",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                var shops = JSON.parse(jqXHR.responseText);
+                                console.log(jqXHR.responseText);
+                            }
+                        }
+                    });
+                },
+
                 addNewShop: function () {
                     var self = this;
                     console.log('addNewShop');
