@@ -34,6 +34,12 @@
         
         <div id='shops'>
             <form>
+                <!-- load shop list -->
+                <button id="btnRefresh" style="display: none;" type="button" 
+                        v-on:click="loadShopList()">Refresh</button>
+                <!-- end -->
+
+                <!-- create shop-->
                 <div class="row">
                     <label>Shop Name</label>
                     <input class="form-control" type="text" v-model="SHOP_NAME" />
@@ -83,7 +89,8 @@
             },
             created: function () {
                 console.log('Load Shops');
-                this.loadShopList();
+                //load shop list
+                $('#btnRefresh').click();
             },
 
             methods: {
