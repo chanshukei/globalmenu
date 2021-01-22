@@ -38,7 +38,6 @@
                     <div class="row" v-for="(item, index) in myShops">
                         <h1>{{item.SHOP_NAME}}</h1>
                         <h2>{{item.POSTCODE}}</h2>
-                        <h2>{{item.FOOD_STYLE}}</h2>
                         <h2>Opening hours</h2>
                         Monday&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}
                         Tuesday&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}
@@ -47,6 +46,9 @@
                         Friday&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}
                         Saturday&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}
                         Sunday&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}
+                        <div id="shopMenuBox">
+                            <img src="./ico/menu.png" />
+                        </div>
                     </div>
                     <button id="btnRefresh" style="display: none;" type="button" 
                             v-on:click="loadShopList()">Refresh</button>
