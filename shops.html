@@ -118,8 +118,8 @@
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
-                                var shops = JSON.parse(jqXHR.responseText);
-                                self.myShops = shops;
+                                var shopRes = JSON.parse(jqXHR.responseText);
+                                self.myShops = shopRes.shops;
                                 if(self.myShops.length>0){
                                     $('#shopCreateForm').hide();
                                     $('#shopList').show();
