@@ -24,11 +24,10 @@
         </div>
 
         <!-- chatbox -->
-        <div class="row text-center">
+        <div class="row text-center" :style="[(messages.Count>0)?{}:{display:none}]">
             <div class="chatbox">
                 <img style="float: left;" src="./ico/user2.png" />
-                No shops found.<br />
-                Let's create your first shop.
+                <span v-for="(item, index) in messages">{{item.MSG_TEXT}}<br /></span>                
             </div>
         </div>
         
@@ -94,7 +93,8 @@
                 ADDRESS2: '',
                 ADDRESS3: '',
                 FOOD_STYLE: '',
-                myShops: Array             
+                myShops: Array,
+                messages: Array
             },
 
             methods: {
@@ -116,9 +116,13 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.myShops = shopRes.shops;
                                 if(self.myShops.length>0){
+                                    self.messages = [];
                                     $('#shopCreateForm').hide();
                                     $('#shopList').show();
                                 }else{
+                                    self.messages = [
+                                        {MSG_TEXT: "No shops found."}, 
+                                        {MSG_TEXT:"Let's create your first shop."}];
                                     $('#shopList').hide();
                                     $('#shopCreateForm').show();
                                 }
