@@ -96,11 +96,6 @@
                 FOOD_STYLE: '',
                 myShops: Array             
             },
-            created: function () {
-                console.log('Load Shops');
-                //load shop list
-                $('#btnRefresh').click();
-            },
 
             methods: {
                 loadShopList: function(){
@@ -162,7 +157,11 @@
                     });
                 }
             }
-        })
+        });
+
+        $(function() {
+            $('#btnRefresh').click();
+        });
     </script>
 
 </body>
