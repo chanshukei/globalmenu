@@ -24,7 +24,7 @@
         </div>
 
         <!-- chatbox -->
-        <div class="row text-center" :style="[(messages.Count>0)?{}:{display:none}]">
+        <div class="row text-center" :style="[(messages.Count>0)?{}:{'display':'none'}]">
             <div class="chatbox">
                 <img style="float: left;" src="./ico/user2.png" />
                 <span v-for="(item, index) in messages">{{item.MSG_TEXT}}<br /></span>                
@@ -37,6 +37,15 @@
                 <div id="shopList" style="display: none;">                    
                     <div class="row" v-for="(item, index) in myShops">
                         <h1>{{item.SHOP_NAME}}</h1>
+                        <h2>{{item.POSTCODE}}</h2>
+                        <h2>Opening hours</h2>
+                        Monday&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}
+                        Tuesday&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}
+                        Wednesday&nbsp;{{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}
+                        Thursday&nbsp;{{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}
+                        Friday&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}
+                        Saturday&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}
+                        Sunday&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}
                         <div id="shopMenuBox">
                             <img src="./ico/menu.png" />
                         </div>
