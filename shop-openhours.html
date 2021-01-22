@@ -197,6 +197,25 @@
             },
 
             methods: {
+                goStep3: function(){
+                    $('#step2').hide();                    
+                    this.MON_OPEN_TIME  = $("#openTime").val();
+                    this.MON_CLOSE_TIME = $("#closeTime").val();
+                    this.TUE_OPEN_TIME = $("#openTime").val();
+                    this.TUE_CLOSE_TIME = $("#closeTime").val();
+                    this.WED_OPEN_TIME = $("#openTime").val();
+                    this.WED_CLOSE_TIME = $("#closeTime").val();
+                    this.THU_OPEN_TIME = $("#openTime").val();
+                    this.THU_CLOSE_TIME = $("#closeTime").val();
+                    this.FRI_OPEN_TIME = $("#openTime").val();
+                    this.FRI_CLOSE_TIME = $("#closeTime").val();
+                    this.SAT_OPEN_TIME = $("#openTime").val();
+                    this.SAT_CLOSE_TIME = $("#closeTime").val();
+                    this.SUN_OPEN_TIME = $("#openTime").val();
+                    this.SUN_CLOSE_TIME = $("#closeTime").val();
+                    $('#step3').show();
+                },
+
                 saveOpenHours: function () {
                     var self = this;
                     console.log('addNewShop');
