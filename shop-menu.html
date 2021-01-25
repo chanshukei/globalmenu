@@ -71,7 +71,7 @@
                     </div>
                     <div class="row">
                         <label>Price</label>
-                        <input class="form-control" type="number"  />
+                        <input class="form-control" type="number" step="0.01" />
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
@@ -97,6 +97,17 @@
                             <img src="./ico/milk.png"/>
                         </label>
                     </div>
+                    <div class="row">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="BEEF">
+                            <img src="./ico/beef.png"/>
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="PORK">
+                            <img src="./ico/pig.png"/>
+                        </label>
+                    </div>
                     <div class="row" style="float: right">
                         <button class="btn btn-dark" type="button" >Cancel</button>
                         <button class="btn btn-success" type="button" >Add</button>
@@ -116,7 +127,9 @@
                 CHILI: 0,
                 VEGAN: false,
                 EGG: false,
-                MILK: false 
+                MILK: false,
+                BEEF: false,
+                PORK: false
             },
 
             methods: {

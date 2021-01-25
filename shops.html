@@ -130,6 +130,7 @@
                                 self.myShops = shopRes.shops;
                                 if(self.myShops.length>0){
                                     self.messages = [];
+                                    Cookies.set('shopId', self.myShops[0].SHOP_ID);
                                     $('#shopCreateForm').hide();
                                     $('#shopList').show();
                                 }else{
