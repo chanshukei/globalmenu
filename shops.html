@@ -15,6 +15,7 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
+    <script src="./js/shop.js"></script>
 
     <div id='shops' style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
         <!-- form header -->
@@ -46,7 +47,7 @@
                         Friday&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}
                         Saturday&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}
                         Sunday&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}
-                        <div id="shopMenuBox">
+                        <div id="shopMenuBox" style="cursor: pointer;" onchange="gotoMenu()">
                             <img src="./ico/menu.png" />
                         </div>
                     </div>
