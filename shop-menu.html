@@ -232,11 +232,12 @@
 
                 addNewItem: function () {
                     var self = this;
+                    var pSessionId = Cookies.get('sessionID');
+                    var pShopId = Cookies.get('shopId');
                     console.log('addNewShop');
-                    console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
-                        "SHOP_ID": Cookies.get('shopId'),
-                        "SESSION_ID": Cookies.get('sessionID'),
+                        "SHOP_ID": pShopId,
+                        "SESSION_ID": pSessionId,
                         "ITEM_NAME": self.ITEM_NAME,
                         "ITEM_DESCRIPTION": self.ITEM_DESCRIPTION,
                         "PRICE": self.PRICE,
