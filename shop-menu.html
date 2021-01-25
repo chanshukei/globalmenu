@@ -15,6 +15,8 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
+    <script src="./js/gm-image.js"></script>
+
 
     <div id='shops' style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
         <!-- form header -->
@@ -51,7 +53,17 @@
                 <div id="itemCreateForm" style="display: none;">
                     <div class="row">
                         <label>Image</label>
-                        <div style="width: 100px; height: 100px;">&nbsp;</div>
+                        <div class="preview-box">                        
+                            <img id="itemImageImg" src="./image/no-photo.png" alt="Item Photo"/>
+                            <button class="btn btn-dark" type="button" onclick="$('#itemImageFile').click();">
+                                Add Photo
+                            </button>
+                            <input
+                                style="display: none;" name="itemImageFile" type="file" 
+                                id="itemImageFile"
+                                onchange="previewImage('itemImageFile', 'itemImageImg')"
+                                accept="image/x-png,image/gif,image/jpeg"/>
+                        </div>
                     </div>
                     <div class="row">
                         <label>Description</label>
@@ -60,6 +72,22 @@
                     <div class="row">
                         <label>Price</label>
                         <input class="form-control" type="number"  />
+                    </div>
+                    <div class="row">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="VEGAN">
+                            <img src="./ico/plant-based.png"/>
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="EGG">
+                            <img src="./ico/boiled-egg.png"/>
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="MILK">
+                            <img src="./ico/milk.png"/>
+                        </label>
                     </div>
                     <div class="row" style="float: right">
                         <button class="btn btn-dark" type="button" >Cancel</button>
@@ -87,7 +115,10 @@
                     console.log('shop-id:'+Cookies.get('shopId'));
                     var pData = {
                         "SESSION_ID": Cookies.get('sessionID'),
-                        "SHOP_ID": Cookies.get('shopId')
+                        "SHOP_ID": Cookies.get('shopId'),
+                        VEGAN: false,
+                        EGG: false,
+                        MILK: false                        
                     };
                     $.ajax({
                         type: "POST",
