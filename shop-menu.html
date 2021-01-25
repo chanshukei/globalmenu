@@ -51,87 +51,103 @@
 
                 <!-- create shop-->
                 <div id="itemCreateForm" style="display: none;">
-                    <div class="row">
-                        <label>Image</label>
-                        <div class="preview-box">                        
-                            <img id="itemImageImg" src="./image/no-photo.png" alt="Item Photo"/>
-                            <button class="btn btn-dark" type="button" onclick="$('#itemImageFile').click();">
-                                Add Photo
-                            </button>
-                            <input
-                                style="display: none;" name="itemImageFile" type="file" 
-                                id="itemImageFile"
-                                onchange="previewImage('itemImageFile', 'itemImageImg')"
-                                accept="image/x-png,image/gif,image/jpeg"/>
+                    <div id="step1">
+                        <div class="row">
+                            <label>Image</label>
+                            <div class="preview-box">                        
+                                <img id="itemImageImg" src="./image/no-photo.png" alt="Item Photo"/>
+                                <button class="btn btn-dark" type="button" onclick="$('#itemImageFile').click();">
+                                    Add Photo
+                                </button>
+                                <input
+                                    style="display: none;" name="itemImageFile" type="file" 
+                                    id="itemImageFile"
+                                    onchange="previewImage('itemImageFile', 'itemImageImg')"
+                                    accept="image/x-png,image/gif,image/jpeg"/>
+                            </div>
+                        </div>
+                        <div class="row" style="float: right">
+                            <button class="btn btn-dark" type="button">Cancel</button>
+                            <button class="btn btn-success" type="button" v:on-click='nextToStep2()'>Next</button>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <label>Name</label>
-                        <input class="form-control" type="text" v-model="ITEM_NAME" maxlength="50"/>                
+                    <div id="step2">
+                        <div class="row">
+                            <label>Name</label>
+                            <input class="form-control" type="text" v-model="ITEM_NAME" maxlength="50"/>                
+                        </div>
+
+                        <div class="row">
+                            <label>Description</label>
+                            <input class="form-control" type="text" v-model="ITEM_DESCRIPTION" maxlength="200" />
+                        </div>
+
+                        <div class="row">
+                            <label>Price</label>
+                            <input  class="form-control" type="number" inputmode="numeric" 
+                                    pattern="[0-9]*" v-model="PRICE" maxlength="6" />
+                        </div>
+
+                        <div class="row">
+                            <label>Available Period</label>
+                            <select class="form-control" v-model="AVAILABLE_PERIOD">
+                                <option value="All Day">All Day</option>
+                            </select>
+                        </div>
+
+                        <div class="row" style="float: right">
+                            <button class="btn btn-dark" type="button" v:on-click='goToStep1()'>Back</button>
+                            <button class="btn btn-success" type="button" v:on-click='goToStep3()'>Next</button>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <label>Description</label>
-                        <input class="form-control" type="text" v-model="ITEM_DESCRIPTION" maxlength="200" />
+                    <div id="step3" style="display: none;">
+                        <div class="row">
+                            <label class="checkbox-inline">
+                                <img src="./ico/chilli.png"/>
+                                <input type="range" v-model="CHILI" min="0" max="3">
+                                {{CHILI}}
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="VEGAN">
+                                <img src="./ico/plant-based.png"/>
+                            </label>
+                            <label class="checkbox-inline" :style='[VEGAN?{"display":"none"}:{}]'>
+                                <input type="checkbox" v-model="BEEF">
+                                <img src="./ico/beef.png"/>
+                            </label>
+                            <label class="checkbox-inline" :style='[VEGAN?{"display":"none"}:{}]'>
+                                <input type="checkbox" v-model="PORK">
+                                <img src="./ico/pig.png"/>
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="EGG">
+                                <img src="./ico/boiled-egg.png"/>
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="MILK">
+                                <img src="./ico/milk.png"/>
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="NUT">
+                                <img src="./ico/nut.png"/>
+                            </label>
+                        </div>
+                        <div class="row" style="float: right">
+                            <button class="btn btn-dark" type="button" v:on-click='backToStep2()'>Back</button>
+                            <button class="btn btn-success" type="button" >Add</button>
+                        </div>
                     </div>
 
-                    <div class="row">
-                        <label>Price</label>
-                        <input  class="form-control" type="number" inputmode="numeric" 
-                                pattern="[0-9]*" v-model="PRICE" maxlength="6" />
-                    </div>
-
-                    <div class="row">
-                        <label>Price</label>
-                        <select class="form-control" v-model="AVAILABLE_PERIOD">
-                            <option value="All Day">All Day</option>
-                        </select>
-                    </div>
-
-                    <div class="row">
-                        <label class="checkbox-inline">
-                            <img src="./ico/chilli.png"/>
-                            <input type="range" v-model="CHILI" min="0" max="3">
-                            {{CHILI}}
-                        </label>
-                    </div>
-
-                    <div class="row">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="VEGAN">
-                            <img src="./ico/plant-based.png"/>
-                        </label>
-                        <label class="checkbox-inline" :style='[VEGAN?{"display":"none"}:{}]'>
-                            <input type="checkbox" v-model="BEEF">
-                            <img src="./ico/beef.png"/>
-                        </label>
-                        <label class="checkbox-inline" :style='[VEGAN?{"display":"none"}:{}]'>
-                            <input type="checkbox" v-model="PORK">
-                            <img src="./ico/pig.png"/>
-                        </label>
-                    </div>
-
-                    <div class="row">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="EGG">
-                            <img src="./ico/boiled-egg.png"/>
-                        </label>
-
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="MILK">
-                            <img src="./ico/milk.png"/>
-                        </label>
-
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="NUT">
-                            <img src="./ico/nut.png"/>
-                        </label>
-                    </div>
-                    <div class="row" style="float: right">
-                        <button class="btn btn-dark" type="button" >Cancel</button>
-                        <button class="btn btn-success" type="button" >Add</button>
-                    </div>            
                 </div>
                 <!-- end create form -->
             </form>
@@ -158,6 +174,26 @@
             },
 
             methods: {
+                goToStep1: function(){
+                    $('#step2').hide();
+                    $('#step1').show();
+                },
+
+                nextToStep2: function(){                    
+                    $('#step1').hide();
+                    $('#step2').show();
+                },
+
+                backToStep2: function(){                    
+                    $('#step3').hide();
+                    $('#step2').show();
+                },
+
+                goToStep3: function(){
+                    $('#step2').hide();
+                    $('#step3').show();
+                },
+
                 loadItemList: function(){
                     var self = this;
                     console.log('load item list');
