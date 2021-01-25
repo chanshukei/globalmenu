@@ -39,7 +39,7 @@
                 <div id="itemList" class="row" style="display: none;">                    
                     <div    class="col-md-4" v-for="(item, index) in myItems" 
                             style="background-color: black;">                        
-                        &nbsp;
+                        {{item.ITEM_NAME}}
                     </div>
                     <div class="col-md-4" style="background-color: white;">
                         <img src="./ico/add.png" />
@@ -106,8 +106,8 @@
                         <div class="row">
                             <label class="checkbox-inline">
                                 <img src="./ico/chilli.png"/>
-                                <input type="range" v-model="CHILI" min="0" max="3">
-                                {{CHILI}}
+                                <input type="range" v-model="SPICY_LEVEL" min="0" max="3">
+                                {{SPICY_LEVEL}}
                             </label>
                         </div>
 
@@ -163,7 +163,7 @@
                 ITEM_NAME: "",
                 ITEM_DESCRIPTION: "",
                 PRICE: 0,
-                CHILI: 0,
+                SPICY_LEVEL: 0,
                 VEGEN: false,
                 EGG_INCLUDE: false,
                 MILK_INCLUDE: false,
@@ -258,6 +258,12 @@
                             if (jqXHR.readyState === 4) {
                                 var shop = JSON.parse(jqXHR.responseText);
                                 console.log("New item added: " + shop.itemId);
+                                console.log("upload image");
+                                uploadImage(pSessionId, 'ITEM_PHOTO', shop.itemId, 'itemImageFile', 
+                                    function(){
+                                        $('#btnRefresh').click();
+                                    }
+                                );
                             }
                         }
                     });
