@@ -15,57 +15,59 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
+    <script src="./js/shop.js"></script>
 
-    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+    <div id='shops' style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
-            Food Menu
+            Menu
         </div>
 
         <!-- chatbox -->
-        <div class="row text-center">
+        <div class="row text-center" :style="[(messages.Count>0)?{}:{'display':'none'}]">
             <div class="chatbox">
                 <img style="float: left;" src="./ico/user2.png" />
-                No menus found.<br />
-                Let's create your first menu.
+                <span v-for="(item, index) in messages">{{item.MSG_TEXT}}<br /></span>                
             </div>
         </div>
         
-        <div id='shops'>
+        <div>
             <form>
-                <div class="row">
-                    <label>Shop Name</label>
-                    <input class="form-control" type="text" v-model="SHOP_NAME" />
+                <!-- load item list -->
+                <div id="itemList" class="row" style="display: none;">                    
+                    <div    class="col-md-4" v-for="(item, index) in myItems" 
+                            style="background-color: black;">                        
+                        &nbsp;
+                    </div>
+                    <div class="col-md-4" style="background-color: white;">
+                        <img src="./ico/add.png" />
+                    </div>
                 </div>
-                <div class="row">
-                    <label>Postcode</label>
-                    <input class="form-control" type="text" v-model="POSTCODE" />                
+                <button id="btnRefresh" style="display: none;" type="button" 
+                        v-on:click="loadShopList()">Refresh</button>
+                <!-- end -->
+
+                <!-- create shop-->
+                <div id="itemCreateForm" style="display: none;">
+                    <div class="row">
+                        <label>Image</label>
+                        <div style="width: 100px; height: 100px;">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <label>Description</label>
+                        <input class="form-control" type="text"  />                
+                    </div>
+                    <div class="row">
+                        <label>Price</label>
+                        <input class="form-control" type="number"  />
+                    </div>
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button" >Cancel</button>
+                        <button class="btn btn-success" type="button" >Add</button>
+                    </div>            
                 </div>
-                <div class="row">
-                    <label>Address 1</label>
-                    <input class="form-control" type="text" v-model="ADDRESS1" />
-                </div>
-                <div class="row">
-                    <label>Address 2</label>
-                    <input class="form-control" type="text" v-model="ADDRESS2" />
-                </div>
-                <div class="row">
-                    <label>Address 3</label>
-                    <input class="form-control" type="text" v-model="ADDRESS3" />
-                </div>
-                <div class="row">
-                    <label>Food Style</label>
-                    <select class="form-control" v-model="FOOD_STYLE">
-                        <option value="american">American</option>
-                        <option value='japanese'>Japanese</option>
-                        <option value="korean">Korean</option>
-                        <option value="others">Others</option>
-                    </select>
-                </div>
-                <div class="row" style="float: right">
-                    <button class="btn btn-success" type="button" v-on:click="addNewShop()">Create</button>
-                </div>            
+                <!-- end create form -->
             </form>
         </div>
     </div>
@@ -74,70 +76,75 @@
         var app = new Vue({
             el: '#shops',
             data: {
-                SHOP_NAME: '',
-                POSTCODE: '',
-                ADDRESS1: '',
-                ADDRESS2: '',
-                ADDRESS3: '',
-                FOOD_STYLE: ''                
-            },
-            created: function () {
-                console.log('Load Shops');
-                loadShopList();
+                myItems: Array,
+                messages: Array
             },
 
             methods: {
-                loadShopList: function(){
+                loadItemList: function(){
                     var self = this;
-                    console.log('load shop list');
+                    console.log('load item list');
                     console.log('session-id:'+Cookies.get('sessionID'));
+                    console.log('shop-id:'+Cookies.get('shopId'));
                     var pData = {
-                        "SESSION_ID": Cookies.get('sessionID')
+                        "SESSION_ID": Cookies.get('sessionID'),
+                        "SHOP_ID": Cookies.get('shopId')
                     };
                     $.ajax({
                         type: "POST",
-                        url: "https://globalmenu-shop.azurewebsites.net/api/ShopList",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/ItemList",
                         data: JSON.stringify(pData),
                         contentType: "application/json",
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
-                                var shops = JSON.parse(jqXHR.responseText);
-                                console.log(jqXHR.responseText);
+                                var shopRes = JSON.parse(jqXHR.responseText);
+                                self.myItems = shopRes.items;
+                                if(self.myItems.length>0){
+                                    self.messages = [];
+                                    $('#itemCreateForm').hide();
+                                    $('#itemList').show();
+                                }else{
+                                    self.messages = [
+                                        {MSG_TEXT: "No items found."}, 
+                                        {MSG_TEXT:"Let's create your first items."}];
+                                    $('#itemList').hide();
+                                    $('#itemCreateForm').show();
+                                }
                             }
                         }
+
                     });
                 },
 
-                addNewShop: function () {
+                addNewItem: function () {
                     var self = this;
                     console.log('addNewShop');
                     console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
-                        "SHOP_NAME": this.SHOP_NAME,
-                        "POSTCODE": this.POSTCODE,
-                        "ADDRESS1": this.ADDRESS1,
-                        "ADDRESS2": this.ADDRESS2,
-                        "ADDRESS3": this.ADDRESS3,
-                        "FOOD_STYLE": this.FOOD_STYLE,
+                        "FOOD_STYLE": Cookies.get('shopId'),
                         "SESSION_ID": Cookies.get('sessionID')
                     };
                     $.ajax({
                         type: "POST",
-                        url: "https://globalmenu-shop.azurewebsites.net/api/AddNewShop",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/AddNewItem",
                         data: JSON.stringify(pData),
                         contentType: "application/json",
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shop = JSON.parse(jqXHR.responseText);
-                                window.location.href = './shop-image.html?shopId='+shop.shopId;
+                                console.log("New item added: " + shop.itemId);
                             }
                         }
                     });
                 }
             }
-        })
+        });
+
+        $(function() {
+            $('#btnRefresh').click();
+        });
     </script>
 
 </body>
