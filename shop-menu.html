@@ -113,38 +113,38 @@
 
                         <div class="row">
                             <label class="checkbox-inline">
-                                <input type="checkbox" v-model="VEGAN">
+                                <input type="checkbox" v-model="VEGEN">
                                 <img src="./ico/plant-based.png"/>
                             </label>
                             <label class="checkbox-inline" :style='[VEGAN?{"display":"none"}:{}]'>
-                                <input type="checkbox" v-model="BEEF">
+                                <input type="checkbox" v-model="BEEF_INCLUDE">
                                 <img src="./ico/beef.png"/>
                             </label>
                             <label class="checkbox-inline" :style='[VEGAN?{"display":"none"}:{}]'>
-                                <input type="checkbox" v-model="PORK">
+                                <input type="checkbox" v-model="PORK_INCLUDE">
                                 <img src="./ico/pig.png"/>
                             </label>
                         </div>
 
                         <div class="row">
                             <label class="checkbox-inline">
-                                <input type="checkbox" v-model="EGG">
+                                <input type="checkbox" v-model="EGG_INCLUDE">
                                 <img src="./ico/boiled-egg.png"/>
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" v-model="MILK">
+                                <input type="checkbox" v-model="MILK_INCLUDE">
                                 <img src="./ico/milk.png"/>
                             </label>
 
                             <label class="checkbox-inline">
-                                <input type="checkbox" v-model="NUT">
+                                <input type="checkbox" v-model="NUT_INCLUDE">
                                 <img src="./ico/nut.png"/>
                             </label>
                         </div>
                         <div class="row" style="float: right">
                             <button class="btn btn-dark" type="button" v-on:click='backToStep2()'>Back</button>
-                            <button class="btn btn-success" type="button" >Add</button>
+                            <button class="btn btn-success" type="button" v-on:click='addNewItem()'>Add</button>
                         </div>
                     </div>
 
@@ -164,12 +164,12 @@
                 ITEM_DESCRIPTION: "",
                 PRICE: 0,
                 CHILI: 0,
-                VEGAN: false,
-                EGG: false,
-                MILK: false,
-                BEEF: false,
-                PORK: false,
-                NUT: false,
+                VEGEN: false,
+                EGG_INCLUDE: false,
+                MILK_INCLUDE: false,
+                BEEF_INCLUDE: false,
+                PORK_INCLUDE: false,
+                NUT_INCLUDE: false,
                 AVAILABLE_PERIOD: "All Day"
             },
 
@@ -235,8 +235,18 @@
                     console.log('addNewShop');
                     console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
-                        "FOOD_STYLE": Cookies.get('shopId'),
-                        "SESSION_ID": Cookies.get('sessionID')
+                        "SHOP_ID": Cookies.get('shopId'),
+                        "SESSION_ID": Cookies.get('sessionID'),
+                        "ITEM_NAME": self.ITEM_NAME,
+                        "ITEM_DESCRIPTION": self.ITEM_DESCRIPTION,
+                        "PRICE": self.PRICE,
+                        "SPICY_LEVEL": self.SPICY_LEVEL,
+                        "VEGEN": self.VEGEN?"Y":"N",
+                        "EGG_INCLUDE": self.EGG_INCLUDE?"Y":"N",
+                        "PORK_INCLUDE": self.PORK_INCLUDE?"Y":"N",
+                        "BEFF_INCLUDE": self.BEEF_INCLUDE?"Y":"N",
+                        "NUT_INCLUDE": self.NUT_INCLUDE?"Y":"N",
+                        "MILK_INCLUDE": self.MILK_INCLUDE?"Y":"N"
                     };
                     $.ajax({
                         type: "POST",
