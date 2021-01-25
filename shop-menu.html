@@ -104,7 +104,10 @@
             el: '#shops',
             data: {
                 myItems: Array,
-                messages: Array
+                messages: Array,
+                VEGAN: false,
+                EGG: false,
+                MILK: false 
             },
 
             methods: {
@@ -115,10 +118,7 @@
                     console.log('shop-id:'+Cookies.get('shopId'));
                     var pData = {
                         "SESSION_ID": Cookies.get('sessionID'),
-                        "SHOP_ID": Cookies.get('shopId'),
-                        "VEGAN": false,
-                        "EGG": false,
-                        "MILK": false                        
+                        "SHOP_ID": Cookies.get('shopId')                      
                     };
                     $.ajax({
                         type: "POST",
