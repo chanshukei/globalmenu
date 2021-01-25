@@ -75,6 +75,14 @@
                     </div>
                     <div class="row">
                         <label class="checkbox-inline">
+                            <img src="./ico/chilli.png"/>
+                            <input type="range" v-model="CHILI" min="0" max="3">
+                        </label>
+
+          
+                    </div>
+                    <div class="row">
+                        <label class="checkbox-inline">
                             <input type="checkbox" v-model="VEGAN">
                             <img src="./ico/plant-based.png"/>
                         </label>
@@ -105,6 +113,7 @@
             data: {
                 myItems: Array,
                 messages: Array,
+                CHILI: 0,
                 VEGAN: false,
                 EGG: false,
                 MILK: false 
