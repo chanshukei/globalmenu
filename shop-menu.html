@@ -41,7 +41,7 @@
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
                         <div class="menu-item-text">{{item.ITEM_NAME}}</div>
                     </div>
-                    <div    class="menu-item-box">                                                
+                    <div    class="menu-item-box" style="cursor: pointer;" v-on:click="startToAddNewItem()">                                                
                         <img class="menu-item-img" src="./ico/add.png">
                         <div class="menu-item-text">Add new item</div>
                     </div>
@@ -193,6 +193,23 @@
                 goToStep3: function(){
                     $('#step2').hide();
                     $('#step3').show();
+                },
+
+                startToAddNewItem: function(){
+                    var self = this;
+                    self.ITEM_NAME = "";
+                    self.ITEM_DESCRIPTION = "";
+                    self.PRICE = 0;
+                    self.SPICY_LEVEL = 0;
+                    self.VEGEN = false;
+                    self.EGG_INCLUDE = false;
+                    self.MILK_INCLUDE = false;
+                    self.BEEF_INCLUDE = false;
+                    self.PORK_INCLUDE = false;
+                    self.NUT_INCLUDE = false;
+                    self.AVAILABLE_PERIOD = "All Day";
+                    $('#itemList').hide();
+                    $('#itemCreateForm').show();
                 },
 
                 loadItemList: function(){
