@@ -37,13 +37,13 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="display: none;">                    
-                    <div    class="menu-item-box" v-for="(item, index) in myItems" 
-                            style="background-color: black;">                                                
+                    <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
                         <div class="menu-item-text">{{item.ITEM_NAME}}</div>
                     </div>
-                    <div class="col-md-4" style="background-color: white;">
-                        <img src="./ico/add.png" />
+                    <div    class="menu-item-box">                                                
+                        <img class="menu-item-img" src="./ico/add.png">
+                        <div class="menu-item-text">Add new item</div>
                     </div>
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
