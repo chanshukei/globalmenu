@@ -37,10 +37,10 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="display: none;">                    
-                    <div    class="col-md-4" v-for="(item, index) in myItems" 
-                            style="background-color: black;">                        
-                        {{item.ITEM_NAME}}
+                    <div    class="menu-item-box" v-for="(item, index) in myItems" 
+                            style="background-color: black;">                                                
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
+                        <div class="menu-item-text">{{item.ITEM_NAME}}</div>
                     </div>
                     <div class="col-md-4" style="background-color: white;">
                         <img src="./ico/add.png" />
