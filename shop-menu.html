@@ -40,7 +40,7 @@
                     <div    class="col-md-4" v-for="(item, index) in myItems" 
                             style="background-color: black;">                        
                         {{item.ITEM_NAME}}
-                        <img :id="'image'+index" src="./image/loading.gif" :image-id="item.IMAGE_ID">
+                        <img :src="item.IMAGE_DATA">
                     </div>
                     <div class="col-md-4" style="background-color: white;">
                         <img src="./ico/add.png" />
@@ -218,7 +218,6 @@
                                     self.messages = [];
                                     $('#itemCreateForm').hide();
                                     $('#itemList').show();
-                                    preloadImage();
                                 }else{
                                     self.messages = [
                                         {MSG_TEXT: "No items found."}, 
