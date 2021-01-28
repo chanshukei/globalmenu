@@ -63,7 +63,7 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
-                                self.shop = shopRes.shop;
+                                self.shop = shopRes.shopDetail;
                             }
                         }
 
