@@ -30,8 +30,8 @@
                         Let's chosse your language.
                     </div>                    
                 </div>
-                <button class="btn btn-success" onclick="gotoMenu()" type="button">ENGLISH</button>
-                <button class="btn btn-success" onclick="gotoMenu()" type="button">繁體中文</button>
+                <button class="btn btn-success" onclick="goToFoodMenu('EN')" type="button">ENGLISH</button>
+                <button class="btn btn-success" onclick="goToFoodMenu('TC')" type="button">繁體中文</button>
                 <button id="btnRefresh" style="display: none;" v-on:click="loadShop()" type="button">Refresh</button>
             </form>
         </div>
@@ -64,6 +64,7 @@
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.shop = shopRes.shopDetail;
+                                Cookies.set('shopId', self.shop.SHOP_ID);
                             }
                         }
 

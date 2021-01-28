@@ -12,3 +12,7 @@ function getUrlParameter(sParam) {
         }
     }
 };
+
+function goToFoodMenu(pLang){
+    window.location.href = "./foodmenu.html?lang="+pLang;
+}
