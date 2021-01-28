@@ -41,9 +41,9 @@
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
                         <div class="menu-item-text">{{item.ITEM_NAME}}</div>
                     </div>
-                    <div    class="menu-item-box" style="cursor: pointer;" v-on:click="startToAddNewItem()">                                                
-                        <img class="menu-item-img" src="./ico/add.png">
-                        <div class="menu-item-text">Add new item</div>
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button">Home</button>
+                        <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Add Item</button>
                     </div>
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
