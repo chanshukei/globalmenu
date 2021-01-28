@@ -14,6 +14,7 @@
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
+    <script src="./js/common.js"></script>
 
     <div id="shops" style="max-width: 400px; width: 98%; padding: 10px; display:inline-block">
         <div class="text-center">
@@ -46,10 +47,11 @@
             methods: {
                 loadShop: function(){
                     var self = this;
+                    var pShopId = getUrlParameter("shopId");
                     console.log('load shop');
-                    console.log('shop-id:'+Cookies.get('shopId'));
+                    console.log('shop-id:' + pShopId);
                     var pData = {
-                        "SHOP_ID": Cookies.get('shopId')
+                        "SHOP_ID": pShopId
                     };
                     $.ajax({
                         type: "POST",
