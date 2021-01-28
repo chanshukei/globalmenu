@@ -63,7 +63,7 @@
                     var domainSite = "https://mango-flower-0d9e3ab10.azurestaticapps.net";
                     console.log('REFRESH QR CODE');
                     var pData = {
-                        "URL": domainSite + "/welcome.html?shopId=" + Cookies.get('shopId')
+                        "QRURL": domainSite + "/welcome.html?shopId=" + Cookies.get('shopId')
                     };
                     $.ajax({
                         type: "POST",
@@ -74,7 +74,7 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
-                                $('#shopImageImg').attr('src', shopRes.IMAGE_DATA);
+                                $('#shopImageImg').attr('src', shopRes.imageData);
                             }
                         }
                     });
