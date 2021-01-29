@@ -47,13 +47,17 @@
                             </div>
                         </div>
                         <div class="item-button-bar" :style='[(item.COUNT>0)?{"display":"none"}:{}]'>
-                            <button class="btn btn-dark item-btn" v-on:click="addItem('{item.ITEM_ID}')">Add</button>
+                            <button class="btn btn-dark item-btn" 
+                                    type="button"
+                                    v-on:click="addItem('{item.ITEM_ID}')">Add</button>
                         </div>
                         <div class="item-button-bar" :style='[(item.COUNT>0)?{}:{"display":"none"}]'></div>
                             <button class="btn btn-dark item-btn" style="width: 35%;"
+                                    type="button"
                                     v-on:click="addItem('{item.ITEM_ID}')">+</button>
                             <div style="width: 30%; margin: 0; padding: 0; display: inline;">{{item.COUNT}}</div>
                             <button class="btn btn-dark item-btn" style="width: 35%;"
+                                    type="button"
                                     v-on:click="removeItem('{item.ITEM_ID}')">-</button>
                         </div>
                     </div>
@@ -119,6 +123,9 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.myItems = shopRes.items;
                                 self.messages = [];
+                                for(i=0; i<myItems.length; i++){
+                                    myItems[i].COUNT = 0;
+                                }
                             }
                         }
 
