@@ -46,11 +46,15 @@
                                 £{{item.PRICE}}
                             </div>
                         </div>
-                        <div class="row"><button class="btn btn-dark">Add</button></div>
-                        <div class="row">
-                            <button class="btn btn-dark">+</button>
-                            {{item.COUNT}}
-                            <button class="btn btn-dark">-</button>
+                        <div class="item-button-bar" :style='[(item.COUNT>0)?{"display":"none"}:{}]'>
+                            <button class="btn btn-dark item-btn" v-on:click="addItem('{item.ITEM_ID}')">Add</button>
+                        </div>
+                        <div class="item-button-bar" :style='[(item.COUNT>0)?{}:{"display":"none"}]'></div>
+                            <button class="btn btn-dark item-btn" style="width: 35%;"
+                                    v-on:click="addItem('{item.ITEM_ID}')">+</button>
+                            <div style="width: 30%; margin: 0; padding: 0; display: inline;">{{item.COUNT}}</div>
+                            <button class="btn btn-dark item-btn" style="width: 35%;"
+                                    v-on:click="removeItem('{item.ITEM_ID}')">-</button>
                         </div>
                     </div>
                     <div class="row" style="float: right">
@@ -75,6 +79,25 @@
             },
 
             methods: {
+                addItem: function(pItemId){
+                    for(i=0; i<myItems.length; i++){
+                        if(myItems[i].ITEM_ID==pItemId){
+                            myItems[i].COUNT++;
+                            break;
+                        }
+                    }
+                },
+
+                removeItem: function(pItemId){
+                    for(i=0; i<myItems.length; i++){
+                        if(myItems[i].ITEM_ID==pItemId){
+                            if(myItems[i].COUNT>0){
+                                myItems[i].COUNT--;
+                            }
+                            break;
+                        }
+                    }
+                },
 
                 loadItemList: function(){
                     var self = this;
@@ -95,9 +118,7 @@
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.myItems = shopRes.items;
-                                if(self.myItems.length>0){
-                                    self.messages = [];
-                                }
+                                self.messages = [];
                             }
                         }
 
