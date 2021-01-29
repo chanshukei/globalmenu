@@ -49,16 +49,16 @@
                         <div class="item-button-bar" :style='[(item.COUNT>0)?{"display":"none"}:{}]'>
                             <button class="btn btn-dark item-btn" 
                                     type="button"
-                                    v-on:click="addItem('item.ITEM_ID')">Add</button>
+                                    v-on:click="addItem(item.ITEM_ID)">Add</button>
                         </div>
                         <div class="item-button-bar" :style='[(item.COUNT>0)?{}:{"display":"none"}]'></div>
                             <button class="btn btn-dark item-btn" style="width: 35%;"
                                     type="button"
-                                    v-on:click="addItem('item.ITEM_ID')">+</button>
+                                    v-on:click="addItem(item.ITEM_ID)">+</button>
                             <div style="width: 30%; margin: 0; padding: 0; display: inline;">{{item.COUNT}}</div>
                             <button class="btn btn-dark item-btn" style="width: 35%;"
                                     type="button"
-                                    v-on:click="removeItem('item.ITEM_ID')">-</button>
+                                    v-on:click="removeItem(item.ITEM_ID)">-</button>
                         </div>
                     </div>
                     <div class="row" style="float: right">
