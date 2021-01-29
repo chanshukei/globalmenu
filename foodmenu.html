@@ -123,7 +123,7 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.myItems = shopRes.items;
                                 self.messages = [];
-                                for(i=0; i<myItems.length; i++){
+                                for(i=0; i<self.myItems.length; i++){
                                     self.myItems[i].COUNT = 0;
                                 }
                             }
