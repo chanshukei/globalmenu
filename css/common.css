@@ -229,6 +229,6 @@ input[type=number]::-webkit-outer-spin-button {
     border: 0;
     padding: 0;
     margin: 0;
-    min-width: auto;
+    min-width: auto !important;
     width: 100%;
 }

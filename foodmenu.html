@@ -84,10 +84,11 @@
 
             methods: {
                 addItem: function(pItemId){
+                    var self = this;
                     console.log(pItemId);
-                    for(i=0; i<myItems.length; i++){
-                        if(myItems[i].ITEM_ID==pItemId){
-                            myItems[i].COUNT++;
+                    for(i=0; i<self.myItems.length; i++){
+                        if(self.myItems[i].ITEM_ID==pItemId){
+                            self.myItems[i].COUNT++;
                             break;
                         }
                     }
@@ -95,10 +96,10 @@
 
                 removeItem: function(pItemId){
                     console.log(pItemId);
-                    for(i=0; i<myItems.length; i++){
-                        if(myItems[i].ITEM_ID==pItemId){
-                            if(myItems[i].COUNT>0){
-                                myItems[i].COUNT--;
+                    for(i=0; i<self.myItems.length; i++){
+                        if(self.myItems[i].ITEM_ID==pItemId){
+                            if(self.myItems[i].COUNT>0){
+                                self.myItems[i].COUNT--;
                             }
                             break;
                         }
