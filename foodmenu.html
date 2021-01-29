@@ -38,14 +38,16 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
-                    <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
-                        <img class="menu-item-img" :src="item.IMAGE_DATA">
-                        <div class="menu-item-text">
-                            {{item.ITEM_NAME}}&nbsp;
-                            £{{item.PRICE}}
+                    <div style="width: 50%;" v-for="(item, index) in myItems">                                                
+                        <div class="menu-item-box">
+                            <img class="menu-item-img" :src="item.IMAGE_DATA">
+                            <div class="menu-item-text">
+                                {{item.ITEM_NAME}}&nbsp;
+                                £{{item.PRICE}}
+                            </div>
                         </div>
-                        <div><button class="btn btn-dark">Add</button></div>
-                        <div>
+                        <div class="row"><button class="btn btn-dark">Add</button></div>
+                        <div class="row">
                             <button class="btn btn-dark">+</button>
                             {{item.COUNT}}
                             <button class="btn btn-dark">-</button>
