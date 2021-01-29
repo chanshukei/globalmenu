@@ -40,7 +40,16 @@
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
                     <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
-                        <div class="menu-item-text">{{item.ITEM_NAME}}</div>
+                        <div class="menu-item-text">
+                            {{item.ITEM_NAME}}&nbsp;
+                            £{{item.PRICE}}
+                        </div>
+                        <div><button class="btn btn-dark">Add</button></div>
+                        <div>
+                            <button class="btn btn-dark">+</button>
+                            {{item.COUNT}}
+                            <button class="btn btn-dark">-</button>
+                        </div>
                     </div>
                     <div class="row" style="float: right">
                         <button class="btn btn-dark" type="button">Back</button>
