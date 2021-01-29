@@ -84,6 +84,7 @@
 
             methods: {
                 addItem: function(pItemId){
+                    console.log(pItemId);
                     for(i=0; i<myItems.length; i++){
                         if(myItems[i].ITEM_ID==pItemId){
                             myItems[i].COUNT++;
@@ -93,6 +94,7 @@
                 },
 
                 removeItem: function(pItemId){
+                    console.log(pItemId);
                     for(i=0; i<myItems.length; i++){
                         if(myItems[i].ITEM_ID==pItemId){
                             if(myItems[i].COUNT>0){
