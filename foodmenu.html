@@ -63,7 +63,10 @@
                                     v-on:click="removeItem(item.ITEM_ID)">-</button>
                         </div>
                     </div>
-                    <div class="row" style="float: right">
+                    <div class="row" style="text-align: right;">
+                        Total: {{totalAmount}}
+                    </div>
+                    <div class="row" style="text-align: right;">
                         <button class="btn btn-dark" type="button">Back</button>
                         <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Order</button>
                     </div>
@@ -81,10 +84,22 @@
             el: '#shops',
             data: {
                 myItems: Array,
-                messages: Array
+                messages: Array,
+                totalAmount: 0
             },
 
             methods: {
+                updateTotalAmount: function(){
+                    var t = 0;
+                    var self = this;
+                    for(i=0; i<self.myItems.length; i++){
+                        if(self.myItems[i].COUNT>0){
+                            t += self.myItems[i].COUNT * self.myItems[i].PRICE;
+                        }
+                    }
+                    self.totalAmount = t;
+                },
+
                 addItem: function(pItemId){
                     var self = this;
                     console.log('s: '+pItemId);
@@ -96,6 +111,7 @@
                             break;
                         }
                     }
+                    self.updateTotalAmount();
                 },
 
                 removeItem: function(pItemId){
@@ -109,6 +125,7 @@
                             break;
                         }
                     }
+                    self.updateTotalAmount();
                 },
 
                 loadItemList: function(){
