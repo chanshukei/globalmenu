@@ -89,7 +89,7 @@
                     for(i=0; i<self.myItems.length; i++){
                         console.log('d: '+self.myItems[i].ITEM_ID);
                         if(self.myItems[i].ITEM_ID==pItemId){
-                            self.myItems[i].COUNT+=1;
+                            self.myItems[i].COUNT += 1;
                             console.log(pItemId + self.myItems[i].COUNT);
                             break;
                         }
@@ -126,11 +126,8 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
-                                self.myItems = shopRes.items;
                                 self.messages = [];
-                                for(i=0; i<self.myItems.length; i++){
-                                    self.myItems[i].COUNT = 0;
-                                }
+                                self.myItems = shopRes.items;
                             }
                         }
 
