@@ -46,12 +46,12 @@
                                 £{{item.PRICE}}
                             </div>
                         </div>
-                        <div class="item-button-bar" :style='[item.COUNT==0?{"display":"none"}:{}]'>
+                        <div class="item-button-bar" :style='[item.COUNT==0?{}:{"display":"none"}]'>
                             <button class="btn btn-dark item-btn" 
                                     type="button"
                                     v-on:click="addItem(item.ITEM_ID)">Add</button>
                         </div>
-                        <div class="item-button-bar" :style='[item.COUNT==0?{}:{"display":"none"}]'></div>
+                        <div class="item-button-bar" :style='[item.COUNT==0?{"display":"none"}:{}]'></div>
                             <button class="btn btn-dark item-btn" style="width: 35%;"
                                     type="button"
                                     v-on:click="addItem(item.ITEM_ID)">+</button>
@@ -99,12 +99,13 @@
                 },
 
                 removeItem: function(pItemId){
-                    console.log(pItemId);
+                    var self = this;
+                    console.log('s: '+pItemId);
                     for(i=0; i<self.myItems.length; i++){
+                        console.log('d: '+self.myItems[i].ITEM_ID);
                         if(self.myItems[i].ITEM_ID==pItemId){
-                            if(self.myItems[i].COUNT>0){
-                                self.myItems[i].COUNT--;
-                            }
+                            self.myItems[i].COUNT -= 1;
+                            console.log(pItemId + self.myItems[i].COUNT);
                             break;
                         }
                     }
