@@ -63,12 +63,12 @@
                                     v-on:click="removeItem(item.ITEM_ID)">-</button>
                         </div>
                     </div>
-                    <div class="row" style="text-align: right;">
+                    <div class="row" style="text-align: right; display: inline; width: 100%;">
                         Total: {{totalAmount}}
                     </div>
-                    <div class="row" style="text-align: right;">
+                    <div class="row" style="text-align: right; display: inline; width: 100%;">
                         <button class="btn btn-dark" type="button">Back</button>
-                        <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Order</button>
+                        <button class="btn btn-success" type="button" v-on:click='placeOrder()'>Order</button>
                     </div>
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
@@ -89,6 +89,20 @@
             },
 
             methods: {
+                placeOrder: function(){
+                    var self = this;
+                    var pAccountId = Cookies.get("accountId");
+                    if(pAccountId=='' || pAccountId==undefined){
+                        console.log("tempOrder: " + JSON.stringify(self.myItems));
+                        Cookies.set("tempOrder", JSON.stringify(self.myItems));
+                        window.location.href = 'order_signin.html';
+                    }else{
+                        console.log("tempOrder: " + JSON.stringify(self.myItems));
+                        Cookies.set("tempOrder", JSON.stringify(self.myItems));
+                        window.location.href = 'order_checkout.html';
+                    }
+                },
+
                 updateTotalAmount: function(){
                     var t = 0;
                     var self = this;
