@@ -32,6 +32,7 @@ function backFromSignin(){
 //google login
 function onGoogleSignInSuccess(googleUser) {
         // Useful data for your client-side scripts:
+        /*
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log('Full Name: ' + profile.getName());
@@ -39,10 +40,31 @@ function onGoogleSignInSuccess(googleUser) {
         console.log('Family Name: ' + profile.getFamilyName());
         console.log("Image URL: " + profile.getImageUrl());
         console.log("Email: " + profile.getEmail());
+        */
 
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+
+        //
+        var pData = {
+            "idToken": id_token
+        };
+        $.ajax({
+            type: "POST",
+            url: "https://globalmenu-login.azurewebsites.net/api/GoogleSignin",
+            data: JSON.stringify(pData),
+            contentType: "application/json",
+            dataType: "json",
+            complete: function (jqXHR) {
+                if (jqXHR.readyState === 4) {
+                    var signInSession = JSON.parse(jqXHR.responseText);
+                    Cookies.set('sessionID', signInSession.signInSessionID);
+                    window.location.href = './shop-checkout.html';
+                }
+            }
+        });
+        
 }
 function onGoogleSignInFailure(error) {
     console.log(error);
