@@ -79,9 +79,7 @@
                     var t = 0;
                     var self = this;
                     for(i=0; i<self.myOrders.length; i++){
-                        if(self.myOrders[i]!=null){
-                            t += self.myOrders[i].PRICE;
-                        }
+                        t += self.myOrders[i].PRICE;
                     }
                     self.totalAmount = t;
                 },
@@ -103,6 +101,7 @@
                     for(i=0; i<self.myOrders.length; i++){
                         console.log(i + ": " + self.myOrders[i]);
                     }
+                    updateTotalAmount();
                 }
 
 
