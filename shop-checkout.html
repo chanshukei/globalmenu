@@ -47,7 +47,7 @@
                         <div class="item-button-bar">
                             <button class="btn btn-dark item-btn" 
                                     type="button"
-                                    v-on:click="removeItem(item.SEQ)">Remove</button>
+                                    v-on:click="removeOrder(item.SEQ)"><img src="./ico/trash.png"></button>
                         </div>
                     </div>
                     <div class="row" style="text-align: right; display: inline; width: 100%;">
@@ -92,7 +92,11 @@
 
                 removeOrder: function(pOrderSeq){
                     var self = this;
-                    self.myOrders[i] = null;                      
+                    for(i=0; i<self.myOrders.length; i++){
+                        if(self.myOrders[i].SEQ==pOrderSeq){
+                            self.myOrders.splice(i, 1);
+                        }
+                    }
                     self.updateTotalAmount();
                 },
 
