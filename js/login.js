@@ -60,7 +60,8 @@ function onGoogleSignInSuccess(googleUser) {
                 if (jqXHR.readyState === 4) {
                     var signInSession = JSON.parse(jqXHR.responseText);
                     Cookies.set('orderSessionID', signInSession.signInSessionID);
-                    //window.location.href = './shop-checkout.html';
+                    console.log('order session id:'+ signInSession.signInSessionID);
+                    window.location.href = './shop-checkout.html';
                 }
             }
         });
