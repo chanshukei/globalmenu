@@ -93,8 +93,16 @@
                 placeOrder: function(){
                     var self = this;
                     var pAccountId = Cookies.get("orderSessionID");
-                    console.log("tempOrder: " + JSON.stringify(self.myOrders));
-                    Cookies.set("tempOrder", JSON.stringify(self.myOrders));
+                    var aOrder = [];
+                    for(i=0; i<self.myOrders.length; i++){
+                        if(self.myOrders[i]!=null){
+                            var seq = aOrder.length;
+                            aOrder[seq] = self.myOrders[i];
+                            aOrder[seq].SEQ = seq;
+                        }
+                    }
+                    self.myOrders = aOrder;
+                    Cookies.set("tempOrder", self.myOrders);
                     if(pAccountId=='' || pAccountId==undefined){
                         window.location.href = 'order_signin.html';
                     }else{
@@ -123,13 +131,13 @@
                             self.myOrders[self.myOrders.length] = {
                                 ITEM_ID: self.myItems[i].ITEM_ID,
                                 ITEM_NAME: self.myItems[i].ITEM_NAME,
-                                PRICE: self.myItems[i].PRICE
+                                PRICE: self.myItems[i].PRICE,
+                                IMAGE_DATA: self.myItems[i].IMAGE_DATA
                             };
                             break;
                         }
                     }
                     self.updateTotalAmount();
-                    console.log("tempOrder: " + JSON.stringify(self.myOrders));
                 },
 
                 removeItem: function(pItemId){
@@ -149,7 +157,6 @@
                         }
                     }
                     self.updateTotalAmount();
-                    console.log("tempOrder: " + JSON.stringify(self.myOrders));
                 },
 
                 loadItemList: function(){

@@ -15,7 +15,6 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
-    <script src="./js/gm-image.js"></script>
     <script src="./js/common.js"></script>
 
 
@@ -38,7 +37,7 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
-                    <div style="width: 50%;" v-for="(item, index) in myItems">                                                
+                    <div style="width: 50%;" v-for="(item, index) in myOrders">                                                
                         <div class="menu-item-box">
                             <img class="menu-item-img" :src="item.IMAGE_DATA">
                             <div class="menu-item-text">
@@ -46,21 +45,10 @@
                                 £{{item.PRICE}}
                             </div>
                         </div>
-                        <div class="item-button-bar" :style='[item.COUNT==0?{}:{"display":"none"}]'>
+                        <div class="item-button-bar">
                             <button class="btn btn-dark item-btn" 
                                     type="button"
-                                    v-on:click="addItem(item.ITEM_ID)">Add</button>
-                        </div>
-                        <div class="item-button-bar" :style='[item.COUNT==0?{"display":"none"}:{}]'>
-                            <button class="btn btn-dark item-btn" style="width: 35%;"
-                                    type="button"
-                                    v-on:click="addItem(item.ITEM_ID)">+</button>
-                            <div
-                                style="width: 25%; margin: 0; padding: 0; display: inline-block; text-align: center;"
-                                >{{item.COUNT}}</div>
-                            <button class="btn btn-dark item-btn" style="width: 35%;"
-                                    type="button"
-                                    v-on:click="removeItem(item.ITEM_ID)">-</button>
+                                    v-on:click="removeItem(item.SEQ)">Remove</button>
                         </div>
                     </div>
                     <div class="row" style="text-align: right; display: inline; width: 100%;">
@@ -68,11 +56,11 @@
                     </div>
                     <div class="row" style="text-align: right; display: inline; width: 100%;">
                         <button class="btn btn-dark" type="button">Back</button>
-                        <button class="btn btn-success" type="button" v-on:click='placeOrder()'>Order</button>
+                        <button class="btn btn-success" type="button" v-on:click='pay()'>Pay</button>
                     </div>
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
-                        v-on:click="loadItemList()">Refresh</button>
+                        v-on:click="loadOrderList()">Refresh</button>
                 <!-- end -->
 
             </form>
@@ -83,54 +71,35 @@
         var app = new Vue({
             el: '#shops',
             data: {
-                myItems: Array,
+                myOrders: Array,
                 messages: Array,
                 totalAmount: 0
             },
 
             methods: {
-                placeOrder: function(){
-                    var self = this;
-                    var pAccountId = Cookies.get("orderSessionID");
-                    if(pAccountId=='' || pAccountId==undefined){
-                        console.log("tempOrder: " + JSON.stringify(self.myItems));
-                        Cookies.set("tempOrder", JSON.stringify(self.myItems));
-                        window.location.href = 'order_signin.html';
-                    }else{
-                        console.log("tempOrder: " + JSON.stringify(self.myItems));
-                        Cookies.set("tempOrder", JSON.stringify(self.myItems));
-                        window.location.href = 'shop-checkout.html';
-                    }
+                pay: function(){
                 },
 
                 updateTotalAmount: function(){
                     var t = 0;
                     var self = this;
-                    for(i=0; i<self.myItems.length; i++){
-                        if(self.myItems[i].COUNT>0){
-                            t += self.myItems[i].COUNT * self.myItems[i].PRICE;
+                    for(i=0; i<self.myOrders.length; i++){
+                        if(self.myOrders[i]!=null){
+                            t += self.myOrders[i].PRICE;
                         }
                     }
                     self.totalAmount = t;
                 },
 
-                removeItem: function(pItemId){
+                removeOrder: function(pOrderSeq){
                     var self = this;
-                    console.log('s: '+pItemId);
-                    for(i=0; i<self.myItems.length; i++){
-                        console.log('d: '+self.myItems[i].ITEM_ID);
-                        if(self.myItems[i].ITEM_ID==pItemId){
-                            self.myItems[i].COUNT -= 1;
-                            console.log(pItemId + self.myItems[i].COUNT);
-                            break;
-                        }
-                    }
+                    self.myOrders[i] = null;                      
                     self.updateTotalAmount();
                 },
 
-                loadItemList: function(){
+                loadOrderList: function(){
                     var self = this;                    
-                    self.myItems = Cookies.get("tempOrder");
+                    self.myOrders = Cookies.get("tempOrder");
                 }
 
 
