@@ -37,16 +37,14 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
-                    <div style="width: 50%;" v-for="(item, index) in myOrders">                                                
-                        <div class="menu-item-box">
-                            <div class="menu-item-text">
-                                {{item.ITEM_NAME}}&nbsp;
-                                £{{item.PRICE}}
-                            </div>
+                    <div class="row" v-for="(item, index) in myOrders">                                                
+                        <div class="col col-md-3"><img style="max-width: 100px;" :src="item.IMAGE_DATA"></div>
+                        <div class="col col-md-6">
+                            {{item.ITEM_NAME}}&nbsp;
+                            £{{item.PRICE}}
                         </div>
-                        <div class="item-button-bar">
-                            <button class="btn btn-dark item-btn" 
-                                    type="button"
+                        <div class="col col-md-2">
+                            <button type="button"
                                     v-on:click="removeOrder(item.SEQ)"><img src="./ico/trash.png"></button>
                         </div>
                     </div>
