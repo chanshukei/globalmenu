@@ -102,7 +102,7 @@
                         }
                     }
                     self.myOrders = aOrder;
-                    Cookies.set("tempOrder", self.myOrders);
+                    Cookies.set("tempOrder",  JSON.stringify(self.myOrders));
                     if(pAccountId=='' || pAccountId==undefined){
                         window.location.href = 'order_signin.html';
                     }else{
