@@ -67,7 +67,7 @@
                         Total: {{totalAmount}}
                     </div>
                     <div class="row" style="text-align: right; display: inline; width: 100%;">
-                        <button class="btn btn-dark" type="button">Back</button>
+                        <button class="btn btn-dark" type="button" v-on:click='clearOrder()'>Clear</button>
                         <button class="btn btn-success" type="button" v-on:click='placeOrder()'>Order</button>
                     </div>
                 </div>
@@ -90,6 +90,15 @@
             },
 
             methods: {
+                clearOrder: function(){
+                    var self = this;
+                    self.myOrders = [];
+                    for(i=0; i<self.myItems.length; i++){
+                        self.myItems[i].COUNT = 0;
+                    }
+                    totalAmount = 0;
+                },
+
                 placeOrder: function(){
                     var self = this;
                     var pAccountId = Cookies.get("orderSessionID");
@@ -162,8 +171,6 @@
                 loadItemList: function(){
                     var self = this;
                     var pLang = getUrlParameter("lang");
-                    console.log('load item list');
-                    console.log('shop-id:'+Cookies.get('shopId'));
                     var pData = {
                         "SHOP_ID": Cookies.get('shopId'),
                         "LANG": pLang,                      
@@ -180,6 +187,22 @@
                                 self.messages = [];
                                 self.myItems = shopRes.items;
                                 self.myOrders = [];
+
+                                //load temp order
+                                var o2 = Cookies.get("tempOrder");
+                                if(o2!=null && o2!=''){
+                                    var tempOrder = JSON.parse(o2);
+                                    self.myOrders = tempOrder.myOrders;
+                                    for(i=0; i<self.myOrders.length; i++){
+                                        for(j=0; j<self.myItems.length; j++){
+                                            if(self.myOrders[i].ITEM_ID==self.myItems[j].ITEM_ID){
+                                                self.myItems[j].COUNT += 1;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    self.updateTotalAmount();
+                                }
                             }
                         }
 
