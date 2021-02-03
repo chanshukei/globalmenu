@@ -38,14 +38,12 @@
                 <!-- load item list -->
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
                     <div class="row" v-for="(item, index) in myOrders">                                                
-                        <div class="col col-md-3"><img style="max-width: 100px;" :src="item.IMAGE_DATA"></div>
-                        <div class="col col-md-6">
-                            {{item.ITEM_NAME}}&nbsp;
-                            £{{item.PRICE}}
-                        </div>
+                        <div class="col col-md-6">{{item.ITEM_NAME}}</div>
+                        <div class="col col-md-3" style="text-align: right;">£{{item.PRICE}}</div>
                         <div class="col col-md-2">
-                            <button type="button"
-                                    v-on:click="removeOrder(item.SEQ)"><img src="./ico/trash.png"></button>
+                            <button style="border: 0;" 
+                                type="button"
+                                v-on:click="removeOrder(item.SEQ)"><img src="./ico/trash.png"></button>
                         </div>
                     </div>
                     <div class="row" style="text-align: right; display: inline; width: 100%;">
