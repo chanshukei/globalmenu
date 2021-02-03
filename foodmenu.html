@@ -85,20 +85,19 @@
             data: {
                 myItems: Array,
                 messages: Array,
-                totalAmount: 0
+                totalAmount: 0,
+                myOrders: Array,
             },
 
             methods: {
                 placeOrder: function(){
                     var self = this;
                     var pAccountId = Cookies.get("orderSessionID");
+                    console.log("tempOrder: " + JSON.stringify(self.myOrders));
+                    Cookies.set("tempOrder", JSON.stringify(self.myOrders));
                     if(pAccountId=='' || pAccountId==undefined){
-                        console.log("tempOrder: " + JSON.stringify(self.myItems));
-                        Cookies.set("tempOrder", JSON.stringify(self.myItems));
                         window.location.href = 'order_signin.html';
                     }else{
-                        console.log("tempOrder: " + JSON.stringify(self.myItems));
-                        Cookies.set("tempOrder", JSON.stringify(self.myItems));
                         window.location.href = 'shop-checkout.html';
                     }
                 },
@@ -121,11 +120,16 @@
                         console.log('d: '+self.myItems[i].ITEM_ID);
                         if(self.myItems[i].ITEM_ID==pItemId){
                             self.myItems[i].COUNT += 1;
-                            console.log(pItemId + self.myItems[i].COUNT);
+                            self.myOrders[self.myOrders.length] = {
+                                ITEM_ID: self.myItems[i].ITEM_ID,
+                                ITEM_NAME: self.myItems[i].ITEM_NAME,
+                                PRICE: self.myItems[i].PRICE
+                            };
                             break;
                         }
                     }
                     self.updateTotalAmount();
+                    console.log("tempOrder: " + JSON.stringify(self.myOrders));
                 },
 
                 removeItem: function(pItemId){
@@ -134,12 +138,18 @@
                     for(i=0; i<self.myItems.length; i++){
                         console.log('d: '+self.myItems[i].ITEM_ID);
                         if(self.myItems[i].ITEM_ID==pItemId){
+                            for(j=self.myOrders.length-1; j>=0; j--){
+                                if(self.myOrders[j].ITEM_ID==pItemId){
+                                    self.myOrders[j] = null;
+                                    break;
+                                }
+                            }
                             self.myItems[i].COUNT -= 1;
-                            console.log(pItemId + self.myItems[i].COUNT);
                             break;
                         }
                     }
                     self.updateTotalAmount();
+                    console.log("tempOrder: " + JSON.stringify(self.myOrders));
                 },
 
                 loadItemList: function(){
@@ -162,6 +172,7 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.messages = [];
                                 self.myItems = shopRes.items;
+                                self.myOrders = [];
                             }
                         }
 
