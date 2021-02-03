@@ -39,7 +39,6 @@
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
                     <div style="width: 50%;" v-for="(item, index) in myOrders">                                                
                         <div class="menu-item-box">
-                            <img class="menu-item-img" :src="item.IMAGE_DATA">
                             <div class="menu-item-text">
                                 {{item.ITEM_NAME}}&nbsp;
                                 £{{item.PRICE}}
@@ -100,7 +99,9 @@
                 loadOrderList: function(){
                     var self = this;                    
                     self.myOrders = Cookies.get("tempOrder");
-                    console.log("tempOrder: "+Cookies.get("tempOrder"));
+                    for(i=0; i<self.myOrders.length; i++){
+                        console.log(i + ": " + self.myOrders[i]);
+                    }
                 }
 
 
