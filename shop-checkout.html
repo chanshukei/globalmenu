@@ -97,8 +97,9 @@
                 },
 
                 loadOrderList: function(){
-                    var self = this;                    
-                    self.myOrders = Cookies.get("tempOrder");
+                    var self = this;
+                    var tempOrder = JSON.parse(Cookies.get("tempOrder"));                    
+                    self.myOrders = tempOrder.myOrders;
                     for(i=0; i<self.myOrders.length; i++){
                         console.log(i + ": " + self.myOrders[i]);
                     }
