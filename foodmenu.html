@@ -91,7 +91,7 @@
             methods: {
                 placeOrder: function(){
                     var self = this;
-                    var pAccountId = Cookies.get("accountId");
+                    var pAccountId = Cookies.get("orderSessionID");
                     if(pAccountId=='' || pAccountId==undefined){
                         console.log("tempOrder: " + JSON.stringify(self.myItems));
                         Cookies.set("tempOrder", JSON.stringify(self.myItems));
