@@ -139,7 +139,7 @@
                         console.log('d: '+self.myItems[i].ITEM_ID);
                         if(self.myItems[i].ITEM_ID==pItemId){
                             for(j=self.myOrders.length-1; j>=0; j--){
-                                if(self.myOrders[j].ITEM_ID==pItemId){
+                                if(self.myOrders[j]!=null && self.myOrders[j].ITEM_ID==pItemId){
                                     self.myOrders[j] = null;
                                     break;
                                 }
