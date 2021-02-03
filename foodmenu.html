@@ -110,8 +110,7 @@
                             aOrder[seq].SEQ = seq;
                         }
                     }
-                    self.myOrders = aOrder;
-                    console.log(JSON.stringify({"myOrders": self.myOrders}));
+                    self.myOrders = aOrder;                    
                     Cookies.set("tempOrder", JSON.stringify({"myOrders": self.myOrders}));
                     if(pAccountId=='' || pAccountId==undefined){
                         window.location.href = 'order_signin.html';
