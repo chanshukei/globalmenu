@@ -25,7 +25,7 @@
         </div>
 
         <!-- chatbox -->
-        <div class="row text-center" :style="[(messages.Count>0)?{}:{'display':'none'}]">
+        <div class="row text-center" :style="[(messages.length>0)?{}:{'display':'none'}]">
             <div class="chatbox">
                 <img style="float: left;" src="./ico/user2.png" />
                 <span v-for="(item, index) in messages">{{item.MSG_TEXT}}<br /></span>                
