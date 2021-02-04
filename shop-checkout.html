@@ -24,6 +24,9 @@
     <script src="./js/googlepay.js"></script>
 
     <div id='shops' style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+        <!-- variables -->
+        <button id="paySuccessCallbackButton" v-on:click="completedPayment()" style="display: none;">Completed Payment</button>
+
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
@@ -55,10 +58,11 @@
                     </div>
                     <div class="row" style="text-align: right; display: inline; width: 100%;">
                         Total: {{totalAmount}}
+                        <input type="text" v-model="totalAmount" />
                     </div>
-                    <div class="row" style="text-align: right; display: inline; width: 100%;">
+                    <div class="row" id="googlePayButtonContainer"></div>
+                    <div class="row">
                         <button class="btn btn-dark" type="button" v-on:click='backToMenu()'>Back</button>
-                        <button class="btn btn-success" type="button" v-on:click='pay()'>Pay</button>
                     </div>
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
@@ -79,7 +83,8 @@
             },
 
             methods: {
-                pay: function(){
+                completedPayment: function(){
+                    window.location.href = "./foodMenu.html";
                 },
 
                 backToMenu: function(){

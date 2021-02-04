@@ -58,7 +58,7 @@ const button =
                 paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
                 paymentDataRequest.transactionInfo = {
                     totalPriceStatus: 'FINAL',
-                    totalPrice: '1.99',
+                    totalPrice: $('#totalPrice').val(),
                     currencyCode: 'USD',
                     countryCode: 'US'
                 };
@@ -69,10 +69,9 @@ const button =
 
                 paymentsClient.loadPaymentData(paymentDataRequest)
                 .then(function(paymentData){
-                    // if using gateway tokenization, pass this token without modification
                     paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+                    $('#paySuccessCallbackButton').click();
                 }).catch(function(err){
-                    // show error in developer console for debugging
                     console.error(err);
                 });
             } 
