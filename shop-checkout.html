@@ -79,8 +79,29 @@
             },
 
             methods: {
-                completedPayment: function(){
-                    window.location.href = "./foodMenu.html";
+                completedPayment: function(){                
+                    var self = this;
+                    var pAccountId = Cookies.get("orderSessionID");
+                    var pData = {
+                        "SHOP_ID": Cookies.get('shopId'),
+                        "SESSION_ID": pAccountId,
+                        "ORDERS": self.myOrders,
+                        "TOTAL_PRICE": self.totalAmount
+                    };
+                    console.log("place order: "+JSON.stringify(pData));
+                    $.ajax({
+                        type: "POST",
+                        url: "https://tomsix.azurewebsites.net/api/PlaceOrder",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                window.location.href = "./foodmenu.html";
+                            }
+                        }
+
+                    });
                 },
 
                 backToMenu: function(){
