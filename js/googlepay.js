@@ -66,6 +66,15 @@ const button =
                     merchantName: 'Example Merchant'
                     //merchantId: '12345678901234567890'
                 };
+
+                paymentsClient.loadPaymentData(paymentDataRequest)
+                .then(function(paymentData){
+                    // if using gateway tokenization, pass this token without modification
+                    paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+                }).catch(function(err){
+                    // show error in developer console for debugging
+                    console.error(err);
+                });
             } 
         }
     );
