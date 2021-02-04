@@ -54,6 +54,18 @@ const button =
         {
             onClick: function(){
                 console.log('click google pay');
+                const paymentDataRequest = Object.assign({}, baseRequest);
+                paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
+                paymentDataRequest.transactionInfo = {
+                    totalPriceStatus: 'FINAL',
+                    totalPrice: '1.99',
+                    currencyCode: 'USD',
+                    countryCode: 'US'
+                };
+                paymentDataRequest.merchantInfo = {
+                    merchantName: 'Example Merchant'
+                    //merchantId: '12345678901234567890'
+                };
             } 
         }
     );
