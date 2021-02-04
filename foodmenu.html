@@ -112,15 +112,13 @@
                     }
                     self.myOrders = aOrder;    
                     var s = JSON.stringify({"myOrders": self.myOrders});
-                    console.log(s);                
+                    //console.log(s);                
                     Cookies.set("tempOrder", s);
-                    /*
                     if(pAccountId=='' || pAccountId==undefined){
                         window.location.href = 'order_signin.html';
                     }else{
                         window.location.href = 'shop-checkout.html';
                     }
-                    */
                 },
 
                 updateTotalAmount: function(){
