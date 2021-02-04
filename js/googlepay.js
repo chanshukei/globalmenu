@@ -1,5 +1,6 @@
 const baseRequest = {
     apiVersion: 2,
+    
     apiVersionMinor: 0
 };
 
@@ -47,3 +48,16 @@ paymentsClient.isReadyToPay(isReadyToPayRequest)
         console.error(err);
     }
 );
+
+const button =
+    paymentsClient.createButton(
+        {
+            onClick: function(){
+                console.log('click google pay');
+            } 
+        }
+    );
+
+$(function() {
+    document.getElementById('googlePayButtonContainer').appendChild(button);
+});
