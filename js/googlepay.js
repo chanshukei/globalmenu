@@ -53,12 +53,13 @@ const button =
     paymentsClient.createButton(
         {
             onClick: function(){
-                console.log('click google pay');
+                const aTotalPrice = $('#totalPrice').val();
+                console.log('click google pay: '+totalPrice);
                 const paymentDataRequest = Object.assign({}, baseRequest);
                 paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
                 paymentDataRequest.transactionInfo = {
                     totalPriceStatus: 'FINAL',
-                    totalPrice: $('#totalPrice').val(),
+                    totalPrice: aTotalPrice,
                     currencyCode: 'USD',
                     countryCode: 'US'
                 };
