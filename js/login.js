@@ -1,4 +1,28 @@
 // JavaScript source code
+function validateSessionId(pSessionId, successCallback, failCallback) {
+    console.log('called signIn');
+    var pData = {
+        "sessionId": pSessionId,
+    };
+    $.ajax({
+        type: "POST",
+        url: "https://globalmenu-login.azurewebsites.net/api/ValidateSession",
+        data: JSON.stringify(pData),
+        contentType: "application/json",
+        dataType: "json",
+        complete: function (jqXHR) {
+            if (jqXHR.readyState === 4) {
+                var signInSession = JSON.parse(jqXHR.responseText);
+                if(signInSession.isValid=='Y'){
+                    successCallback();
+                    return;
+                }
+            }
+            failCallback();
+        }
+    });
+}
+
 function signIn() {
     console.log('called signIn');
     var pData = {
