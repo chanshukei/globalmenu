@@ -42,14 +42,14 @@
                 <!-- load shop list -->
                 <div id="shopList" style="display: none;">                    
                     <div class="row shopBox" v-for="(item, index) in myShops">
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <h1>{{item.SHOP_NAME}}</h1>
                             <h2>{{item.POSTCODE}}</h2>
                         </div>
-                        <dov class="col col-md-4">
+                        <dov class="col-4">
                             <h2>Opening hours</h2>
                             <div class="shopOpeningHour">MON&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
                             <div class="shopOpeningHour">TUE&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
@@ -59,7 +59,7 @@
                             <div class="shopOpeningHour">SAT&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
                             <div class="shopOpeningHour">SUN&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
                         </dov>
-                        <div class="col col-md-12">
+                        <div class="col-12">
                             <div id="shopMenuBox" style="cursor: pointer;" onclick="goToMenu()">
                                 <img src="./ico/menu.png" />
                             </div>
