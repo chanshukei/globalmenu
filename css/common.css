@@ -256,7 +256,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .mainPage{
-    max-width: 400px; 
+    min-width: 400px; 
     width: 98%; 
     padding: 10px; 
     display: block;
@@ -271,7 +271,6 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
     padding: 0;
     margin: 0;
-    display: block;
 }
 
 .shopMenuBox{
