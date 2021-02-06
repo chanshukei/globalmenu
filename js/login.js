@@ -24,6 +24,7 @@ function validateSessionId(pSessionId, successCallback, failCallback) {
 }
 
 function signIn() {
+    startLoading();
     console.log('called signIn');
     var pData = {
         "usernameEmail": $('#usernameEmail').val(),
