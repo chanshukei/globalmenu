@@ -18,5 +18,9 @@ function goToFoodMenu(pLang){
 }
 
 function startLoading(){
-    
+    $('#loadingPage').show();
+}
+
+function stopLoading(){
+    $('#loadingPage').hide();
 }

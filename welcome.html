@@ -17,8 +17,9 @@
     <script src="./js/vue.js"></script>
     <script src="./js/common.js"></script>
 
-    <div style="width: 100%; height: 100%; padding: 0; margin: 0; z-index: 10; background-color: yellow;">
+    <div id="loadingPage" class="loadingPage">
         &nbsp;
+        <img src="./image/loading2.gif" class="loadingIcon"/>        
     </div>
 
     <div id="shops" style="max-width: 400px; width: 98%; padding: 10px; display:inline-block">
@@ -54,6 +55,7 @@
 
             methods: {
                 loadShop: function(){
+                    startLoading();
                     var self = this;
                     var pShopId = getUrlParameter("shopId");
                     console.log('load shop');
@@ -72,6 +74,7 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.shop = shopRes.shopDetail;
                                 Cookies.set('shopId', self.shop.SHOP_ID);
+                                stopLoading();
                             }
                         }
 
@@ -82,6 +85,7 @@
         });
 
         $(function() {
+            startLoading();
             $('#btnRefresh').click();
         });
     </script>

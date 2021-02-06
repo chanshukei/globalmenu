@@ -232,3 +232,21 @@ input[type=number]::-webkit-outer-spin-button {
     min-width: auto !important;
     width: 100%;
 }
+
+.loadingPage{
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    padding: 0; 
+    margin: 0; 
+    z-index: 10; 
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+}
+
+.loadingIcon{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
