@@ -46,15 +46,13 @@
                         <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
                         <h2>{{item.POSTCODE}}</h2>
                         <h2>Opening hours</h2>
-                        <div class="row" :style="[item.MON_OPEN_TIME==''?{'display:'none'}:{}]">Monday&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
-                        <!--
-                            <div class="row" :style="[item.TUE_OPEN_TIME==''?{'display:'none'}:{}]">Tuesday&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
-                            <div class="row" :style="[item.WED_OPEN_TIME==''?{'display:'none'}:{}]">Wednesday&nbsp;{{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}</div>
-                            <div class="row" :style="[item.THU_OPEN_TIME==''?{'display:'none'}:{}]">Thursday&nbsp;{{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}</div>
-                            <div class="row" :style="[item.FRI_OPEN_TIME==''?{'display:'none'}:{}]">Friday&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
-                            <div class="row" :style="[item.SAT_OPEN_TIME==''?{'display:'none'}:{}]">Saturday&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
-                            <div class="row" :style="[item.SUN_OPEN_TIME==''?{'display:'none'}:{}]">Sunday&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
-                        -->
+                        <div class="row">Monday&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
+                        <div class="row">Tuesday&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
+                        <div class="row">Wednesday&nbsp;{{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}</div>
+                        <div class="row">Thursday&nbsp;{{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}</div>
+                        <div class="row">Friday&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
+                        <div class="row">Saturday&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
+                        <div class="row">Sunday&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
                         <div id="shopMenuBox" style="cursor: pointer;" onclick="goToMenu()">
                             <img src="./ico/menu.png" />
                         </div>
