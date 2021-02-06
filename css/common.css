@@ -266,12 +266,19 @@ input[type=number]::-webkit-outer-spin-button {
 
 .shopLogo{
     display: block;
+    border: 2px solid lightgrey;
+    border-radius: 100%;
+    width: 150px;
+    margin: auto;
 }
 
 .shopBox{
     width: 100%;
-    padding: 0;
+    padding: 5px;
     margin: 0;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid #F0F0F0;
 }
 
 .shopMenuBox{
