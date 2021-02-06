@@ -120,6 +120,7 @@
 
             methods: {
                 loadShopList: function(){
+                    startLoading();
                     var self = this;
                     console.log('load shop list');
                     console.log('session-id:'+Cookies.get('sessionID'));
@@ -148,6 +149,7 @@
                                     $('#shopList').hide();
                                     $('#shopCreateForm').show();
                                 }
+                                stopLoading();
                             }
                         }
 
@@ -155,6 +157,7 @@
                 },
 
                 addNewShop: function () {
+                    startLoading();
                     var self = this;
                     console.log('addNewShop');
                     console.log('session-id:'+Cookies.get('sessionID'));
@@ -178,7 +181,9 @@
                                 var shop = JSON.parse(jqXHR.responseText);
                                 Cookies.set('shopId', shop.shopId);
                                 window.location.href = './shop-image.html';
-                            }
+                            }else{
+                                stopLoading();
+                            }                            
                         }
                     });
                 }
@@ -186,6 +191,7 @@
         });
 
         $(function() {
+            startLoading();
             $('#btnRefresh').click();
         });
     </script>
