@@ -17,8 +17,7 @@
     <script src="./js/login.js"></script>
     <script src="./js/common.js"></script>
 
-    <div id="loadingPage" class="loadingPage">
-        &nbsp;
+    <div id="loadingPage" class="loadingPage">        
         <img src="./image/loading2.gif" class="loadingIcon"/>        
     </div>
 
@@ -35,14 +34,19 @@
                 </div>                    
             </div>
             <form>
-                <input class="form-control" 
-                        id="usernameEmail"
-                        name="usernameEmail" type="text"
-                        placeholder="Username or email address" />
-                <input class="form-control" 
-                        id="password"
-                        name="password" type="password"
-                        placeholder="Password" />
+                <div class="row">
+                    <label>Username or email address</label>
+                    <input  class="form-control" 
+                            id="usernameEmail"
+                            name="usernameEmail" type="text"/>
+                </div>
+                <div class="row">
+                    <label>Password</label>
+                    <input  class="form-control" 
+                            id="password"
+                            name="password" type="password"
+                            placeholder="Password" />
+                </div>
                 <button class="btn btn-success" style="width:100%" onclick="signIn()" type="button">Sign in</button>
                 <button class="btn btn-dark" style="width:100%" onclick="backFromSignin()" type="button">Back</button>
             </form>

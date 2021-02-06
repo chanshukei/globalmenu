@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/common.css">
-    <title>Login</title>
+    <title>Shops</title>
 </head>
 <body class="container">
     <script src="./js/jquery-3.5.1.min.js"></script>
@@ -16,8 +16,13 @@
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/shop.js"></script>
+    <script src="./js/common.js"></script>
 
-    <div id='shops' style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+    <div id="loadingPage" class="loadingPage">
+        <img src="./image/loading2.gif" class="loadingIcon"/>        
+    </div>
+
+    <div id='shops' class="mainPage">
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
