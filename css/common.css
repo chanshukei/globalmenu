@@ -266,3 +266,14 @@ input[type=number]::-webkit-outer-spin-button {
 .shopLogo{
     display: block;
 }
+
+.shopBox{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.shopMenuBox{
+    display: inline-block;
+}
