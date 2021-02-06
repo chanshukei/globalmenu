@@ -41,23 +41,31 @@
             <form>
                 <!-- load shop list -->
                 <div id="shopList" style="display: none;">                    
-                    <div class="shopBox" v-for="(item, index) in myShops">
-                        <h1>{{item.SHOP_NAME}}</h1>
-                        <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
-                        <h2>{{item.POSTCODE}}</h2>
-                        <h2>Opening hours</h2>
-                        <div class="shopOpeningHour">MON&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
-                        <div class="shopOpeningHour">TUE&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
-                        <div class="shopOpeningHour">WED&nbsp;{{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}</div>
-                        <div class="shopOpeningHour">THU&nbsp;{{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}</div>
-                        <div class="shopOpeningHour">FRI&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
-                        <div class="shopOpeningHour">SAT&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
-                        <div class="shopOpeningHour">SUN&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
-                        <div id="shopMenuBox" style="cursor: pointer;" onclick="goToMenu()">
-                            <img src="./ico/menu.png" />
+                    <div class="row shopBox" v-for="(item, index) in myShops">
+                        <div class="col-md-4">
+                            <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
                         </div>
-                        <div id="shopQrCodeBox" style="cursor: pointer;" onclick="goToQrCode()">
-                            <img src="./ico/qr-code.png" />
+                        <div class="col-md-4">
+                            <h1>{{item.SHOP_NAME}}</h1>
+                            <h2>{{item.POSTCODE}}</h2>
+                        </div>
+                        <dov class="col col-md-4">
+                            <h2>Opening hours</h2>
+                            <div class="shopOpeningHour">MON&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">TUE&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">WED&nbsp;{{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">THU&nbsp;{{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">FRI&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">SAT&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">SUN&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
+                        </dov>
+                        <div class="col col-md-12">
+                            <div id="shopMenuBox" style="cursor: pointer;" onclick="goToMenu()">
+                                <img src="./ico/menu.png" />
+                            </div>
+                            <div id="shopQrCodeBox" style="cursor: pointer;" onclick="goToQrCode()">
+                                <img src="./ico/qr-code.png" />
+                            </div>
                         </div>
                     </div>
                     <button id="btnRefresh" style="display: none;" type="button" 
