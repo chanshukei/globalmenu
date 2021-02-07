@@ -13,6 +13,10 @@ function getUrlParameter(sParam) {
     }
 };
 
+function gotoHome(){
+    window.location.href = "./shops.html";    
+}
+
 function goToFoodMenu(pLang){
     window.location.href = "./foodmenu.html?lang="+pLang;
 }

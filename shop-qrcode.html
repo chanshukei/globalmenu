@@ -39,15 +39,15 @@
         
         <div id='shops'>
             <form>
-                <div class="row" style="display: inline-block">
+                <div class="row" style="display: inline-block; width: 100%;">
                     <label>Menu QR Code</label>
                     <div class="preview-box">                        
                         <img id="shopImageImg" src="./image/no-photo.png" alt="Shop QR Code"/>
                     </div>
                 </div>
-                <div class="row" style="display: inline-block;">
-                    <button class="btn btn-dark" type="button" v-on:click="goToHome()">Back</button>
-                    <button id="btnRefresh" class="btn btn-success" type="button" v-on:click="refreshShopLogo()">Refresh</button>
+                <div class="row" style="display: inline-block; width: 100%;">
+                    <button class="btn btn-dark" style="float: right;" type="button" onclick="goToHome()">Back</button>
+                    <button id="btnRefresh" style="float: right;" class="btn btn-success" type="button" v-on:click="refreshShopLogo()">Refresh</button>
                 </div>            
             </form>
         </div>
@@ -85,10 +85,6 @@
                             stopLoading();
                         }
                     });
-                },
-
-                backToHome: function () {
-                    window.location.href = './shop.html';
                 }
             }
         })
