@@ -44,7 +44,7 @@
                     <div class="row shopBox" v-for="(item, index) in myShops">
                         <div class="col-md-4">
                             <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
-                            <button class="btn btn-outline-info btn-sm" style="float: right;" type="button">Change Logo</button>
+                            <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Change Logo</button>
                         </div>
                         <div class="col-md-4">
                             <h2>{{item.SHOP_NAME}}</h2>
@@ -52,7 +52,7 @@
                             <h2>{{item.ADDRESS1}}</h2>
                             <h2>{{item.ADDRESS2}}</h2>
                             <h2>{{item.ADDRESS3}}</h2>
-                            <button class="btn btn-outline-info btn-sm" style="float: right;" type="button">Edit Profile</button>
+                            <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Edit Profile</button>
                         </div>
                         <dov class="col-md-4">
                             <h2>Opening hours</h2>
@@ -63,7 +63,7 @@
                             <div class="shopOpeningHour">FRI&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
                             <div class="shopOpeningHour">SAT&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
                             <div class="shopOpeningHour">SUN&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
-                            <button class="btn btn-outline-info btn-sm" style="float: right;" type="button">Edit Openings</button>
+                            <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Edit Opening Hours</button>
                         </dov>
                         <div class="col-12">
                             <h2>Functions</h2>

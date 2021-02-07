@@ -303,3 +303,9 @@ input[type=number]::-webkit-outer-spin-button {
     text-transform: uppercase;
     width: auto;
 }
+
+.shopProfileButton{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
