@@ -295,3 +295,11 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     padding-right: 20px;
 }
+
+.btn-sm{
+    border: 0;
+    text-decoration: underline;
+    font-size: 10pt;
+    text-transform: uppercase;
+    width: auto;
+}
