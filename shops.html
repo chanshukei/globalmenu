@@ -44,7 +44,7 @@
                     <div class="row shopBox" v-for="(item, index) in myShops">
                         <div class="col-md-4">
                             <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
-                            <button class="btn btn-dark" type="button">Change Shop Logo</button>
+                            <button class="btn btn-outline-info btn-sm" type="button">Change Shop Logo</button>
                         </div>
                         <div class="col-md-4">
                             <h2>{{item.SHOP_NAME}}</h2>
@@ -65,11 +65,11 @@
                         </dov>
                         <div class="col-12">
                             <h2>Functions</h2>
-                            <div id="shopMenuBox" style="cursor: pointer;" onclick="goToMenu()">
+                            <div id="shopMenuBox" class="shopFunctionBox" onclick="goToMenu()">
                                 <img src="./ico/menu.png" />
                                 Manage Menu
                             </div>
-                            <div id="shopQrCodeBox" style="cursor: pointer;" onclick="goToQrCode()">
+                            <div id="shopQrCodeBox" class="shopFunctionBox" onclick="goToQrCode()">
                                 <img src="./ico/qr-code.png" />
                                 View QR Code
                             </div>
