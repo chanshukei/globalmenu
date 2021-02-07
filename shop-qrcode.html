@@ -16,8 +16,13 @@
     <script src="./js/gm-image.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
+    <script src="./js/common.js"></script>
 
-    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+    <div id="loadingPage" class="loadingPage">
+        <img src="./image/loading2.gif" class="loadingIcon"/>        
+    </div>
+
+    <div class="mainPage">
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
@@ -35,9 +40,9 @@
         <div id='shops'>
             <form>
                 <div class="row">
-                    <label>QR Code</label>
+                    <label>Menu QR Code</label>
                     <div class="preview-box">                        
-                        <img id="shopImageImg" src="./image/loading.gif" alt="Shop QR Code"/>
+                        <img id="shopImageImg" src="./image/no-photo.png" alt="Shop QR Code"/>
                     </div>
                 </div>
                 <div class="row" style="float: right">
@@ -59,6 +64,7 @@
 
             methods: {
                 refreshShopLogo: function () {
+                    startLoading();
                     var self = this;
                     var domainSite = "https://mango-flower-0d9e3ab10.azurestaticapps.net";
                     console.log('REFRESH QR CODE');
@@ -76,6 +82,7 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 $('#shopImageImg').attr('src', shopRes.imageData);
                             }
+                            stopLoading();
                         }
                     });
                 },
@@ -87,6 +94,7 @@
         })
 
         $(function() {
+            startLoading();
             $('#btnRefresh').click();
         });
     </script>

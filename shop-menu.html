@@ -15,10 +15,14 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
+    <script src="./js/common.js"></script>
     <script src="./js/gm-image.js"></script>
 
+    <div id="loadingPage" class="loadingPage">
+        <img src="./image/loading2.gif" class="loadingIcon"/>        
+    </div>
 
-    <div id='shops' style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+    <div id='shops' class="mainPage">
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
@@ -196,6 +200,7 @@
                 },
 
                 startToAddNewItem: function(){
+                    startLoading();
                     var self = this;
                     self.ITEM_NAME = "";
                     self.ITEM_DESCRIPTION = "";
@@ -210,9 +215,11 @@
                     self.AVAILABLE_PERIOD = "All Day";
                     $('#itemList').hide();
                     $('#itemCreateForm').show();
+                    stopLoading();
                 },
 
                 loadItemList: function(){
+                    startLoading();
                     var self = this;
                     console.log('load item list');
                     console.log('session-id:'+Cookies.get('sessionID'));
@@ -243,12 +250,14 @@
                                     $('#itemCreateForm').show();
                                 }
                             }
+                            stopLoading();
                         }
 
                     });
                 },
 
                 addNewItem: function () {
+                    startLoading();
                     var self = this;
                     var pSessionId = Cookies.get('sessionID');
                     var pShopId = Cookies.get('shopId');
@@ -284,6 +293,7 @@
                                     }
                                 );
                             }
+                            stopLoading();
                         }
                     });
                 }
@@ -291,6 +301,7 @@
         });
 
         $(function() {
+            startLoading();
             $('#btnRefresh').click();
         });
     </script>
