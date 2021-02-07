@@ -48,21 +48,25 @@
                         </div>
                         <div class="col-md-4">
                             <h2>{{item.SHOP_NAME}}</h2>
-                            <h2>{{item.POSTCODE}}</h2>
-                            <h2>{{item.ADDRESS1}}</h2>
-                            <h2>{{item.ADDRESS2}}</h2>
-                            <h2>{{item.ADDRESS3}}</h2>
+                            <h2>Address:</h2>
+                            <h2 style="text-indent: 10px;">
+                                {{item.ADDRESS1}}<br />
+                                {{item.ADDRESS2}}<br />
+                                {{item.ADDRESS3}}
+                            </h2>
+                            <h2 style="text-indent: 10px;">({{item.POSTCODE}})</h2>
                             <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Edit Profile</button>
                         </div>
                         <dov class="col-md-4">
-                            <h2>Opening hours</h2>
-                            <div class="shopOpeningHour">MON&nbsp;{{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
-                            <div class="shopOpeningHour">TUE&nbsp;{{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
-                            <div class="shopOpeningHour">WED&nbsp;{{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}</div>
-                            <div class="shopOpeningHour">THU&nbsp;{{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}</div>
-                            <div class="shopOpeningHour">FRI&nbsp;{{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
-                            <div class="shopOpeningHour">SAT&nbsp;{{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
-                            <div class="shopOpeningHour">SUN&nbsp;{{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
+                            <h2>Opening hours:</h2>
+                            <div class="shopOpeningHour">MON: {{item.MON_OPEN_TIME}} ~ {{item.MON_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">TUE: {{item.TUE_OPEN_TIME}} ~ {{item.TUE_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">WED: {{item.WED_OPEN_TIME}} ~ {{item.WED_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">THU: {{item.THU_OPEN_TIME}} ~ {{item.THU_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">FRI: {{item.FRI_OPEN_TIME}} ~ {{item.FRI_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">SAT: {{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">SUN: {{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
+                            <div class="shopOpeningHour">&nbsp;</div>
                             <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Edit Opening Hours</button>
                         </dov>
                         <div class="col-12">
