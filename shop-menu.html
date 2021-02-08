@@ -41,14 +41,29 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="display: none; margin: 0; padding: 0;">
-                    <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
-                        <img class="menu-item-img" :src="item.IMAGE_DATA">
-                        <div class="menu-item-text">{{item.ITEM_NAME}}</div>
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">+</a>
+                        </li>
+                    </ul>
+
+                    <div id="allItemsPage">
+                        <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
+                            <img class="menu-item-img" :src="item.IMAGE_DATA">
+                            <div class="menu-item-text">{{item.ITEM_NAME}}</div>
+                        </div>
+                        <div class="row" style="float: right">
+                            <button class="btn btn-dark" type="button">Home</button>
+                            <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Add Item</button>
+                        </div>
                     </div>
-                    <div class="row" style="float: right">
-                        <button class="btn btn-dark" type="button">Home</button>
-                        <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Add Item</button>
-                    </div>
+
+
+
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
                         v-on:click="loadItemList()">Refresh</button>
