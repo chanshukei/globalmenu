@@ -55,6 +55,7 @@
                 <button id="btnRefresh" style="display: none;" type="button" 
                         v-on:click="loadShopLogo()">Refresh</button>
             </div>            
+            <input type="hidden" id="successCallbackUrl" value=""/>
         </form>
     </div>
 
@@ -70,7 +71,7 @@
                     var pShopId = Cookies.get('shopId');
                     uploadImage(pSessionId, 'SHOP_LOGO', pShopId, 'shopImageFile', 
                         function(){
-                            window.location.href = './shop-openhours.html';
+                            window.location.href = './' + $('#sucessCallbackUrl').val() + '.html';
                         }
                     );
                 },
@@ -112,6 +113,7 @@
 
         $(function() {
             startLoading();
+            $('successCallbackUrl').val(getUrlParameter('successCallbackUrl'));            
             $('#btnRefresh').click();
         });
     </script>

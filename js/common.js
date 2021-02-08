@@ -17,8 +17,8 @@ function editOpeningHours(){
     window.location.href = "./shop-openhours.html";
 }
 
-function editShopLogo(){
-    window.location.href = "./shop-image.html";    
+function editShopLogo(successCallbackUrl){
+    window.location.href = "./shop-image.html?successCallbackUrl="+successCallbackUrl;    
 }
 
 function gotoHome(){

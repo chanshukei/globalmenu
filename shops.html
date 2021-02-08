@@ -46,7 +46,7 @@
                             <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
                             <button class="btn btn-outline-info btn-sm shopProfileButton" 
                                     type="button"
-                                    onclick="editShopLogo()">Change Logo</button>
+                                    onclick="editShopLogo('shops')">Change Logo</button>
                         </div>
                         <div class="col-md-4">
                             <h2>{{item.SHOP_NAME}}</h2>
@@ -205,7 +205,7 @@
                             if (jqXHR.readyState === 4) {
                                 var shop = JSON.parse(jqXHR.responseText);
                                 Cookies.set('shopId', shop.shopId);
-                                window.location.href = './shop-image.html';
+                                window.location.href = './shop-image.html?successCallbackUrl=shop-openhours';
                             }else{
                                 stopLoading();
                             }                            
