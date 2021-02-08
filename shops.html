@@ -44,7 +44,9 @@
                     <div class="row shopBox" v-for="(item, index) in myShops">
                         <div class="col-md-4">
                             <div class="shopLogo"><img :src="item.SHOP_LOGO" /></div>
-                            <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Change Logo</button>
+                            <button class="btn btn-outline-info btn-sm shopProfileButton" 
+                                    type="button"
+                                    onchange="editShopLogo()">Change Logo</button>
                         </div>
                         <div class="col-md-4">
                             <h2>{{item.SHOP_NAME}}</h2>
@@ -67,7 +69,9 @@
                             <div class="shopOpeningHour">SAT: {{item.SAT_OPEN_TIME}} ~ {{item.SAT_CLOSE_TIME}}</div>
                             <div class="shopOpeningHour">SUN: {{item.SUN_OPEN_TIME}} ~ {{item.SUN_CLOSE_TIME}}</div>
                             <div class="shopOpeningHour">&nbsp;</div>
-                            <button class="btn btn-outline-info btn-sm shopProfileButton" type="button">Edit Opening Hours</button>
+                            <button class="btn btn-outline-info btn-sm shopProfileButton" 
+                                    onclick="editOpeningHours()"
+                                    type="button">Edit Opening Hours</button>
                         </dov>
                         <div class="col-12">
                             <h2>Functions</h2>

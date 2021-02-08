@@ -13,6 +13,14 @@ function getUrlParameter(sParam) {
     }
 };
 
+function editOpeningHours(){
+    window.location.href = "./shop-openhours.html";
+}
+
+function editShopLogo(){
+    window.location.href = "./shop-image.html";    
+}
+
 function gotoHome(){
     window.location.href = "./shops.html";    
 }
