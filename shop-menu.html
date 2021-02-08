@@ -47,7 +47,7 @@
                         </li>
                     </ul>
                     <div>
-                        <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
+                        <div class="menu-item-box" v-for="(item, index) in myItems">                                                
                             <img class="menu-item-img" :src="item.IMAGE_DATA">
                             <div class="menu-item-text">{{item.ITEM_NAME}}</div>
                         </div>
@@ -244,7 +244,7 @@
                     };
                     $.ajax({
                         type: "POST",
-                        url: "https://globalmenu-shop.azurewebsites.net/api/ItemTabList",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/ItemTagList",
                         data: JSON.stringify(pData),
                         contentType: "application/json",
                         dataType: "json",
