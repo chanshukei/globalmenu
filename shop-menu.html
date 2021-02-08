@@ -42,20 +42,11 @@
                 <!-- load item list -->
                 <div id="itemList" style="display: none; margin: 0; padding: 0; width: 100%;">
                     <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">All</a>
-                        </li>
-                        <li class="nav-item" id="addNewBox">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-                                <input type="text" id="newTab"/>
-                            </a>
-                        </li>
-                        <li class="nav-item" id="newTab">
-                            <a class="nav-link" href="#" v-on:click="addNewTab()">+</a>
+                        <li class="nav-item" v-for="(item, index) in myTabs">
+                            <a class="nav-link active" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
                         </li>
                     </ul>
-
-                    <div id="allItemsPage">
+                    <div>
                         <div    class="menu-item-box" v-for="(item, index) in myItems">                                                
                             <img class="menu-item-img" :src="item.IMAGE_DATA">
                             <div class="menu-item-text">{{item.ITEM_NAME}}</div>
@@ -65,12 +56,9 @@
                             <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Add Item</button>
                         </div>
                     </div>
-
-
-
                 </div>
                 <button id="btnRefresh" style="display: none;" type="button" 
-                        v-on:click="loadItemList()">Refresh</button>
+                        v-on:click="loadTabList()">Refresh</button>
                 <!-- end -->
 
                 <!-- create shop-->
@@ -183,6 +171,8 @@
             el: '#shops',
             data: {
                 myItems: Array,
+                myTabs: Array,
+                activeTabId: "",
                 messages: Array,
                 ITEM_NAME: "",
                 ITEM_DESCRIPTION: "",
@@ -242,7 +232,7 @@
                     stopLoading();
                 },
 
-                loadItemList: function(){
+                loadTabList: function(){
                     startLoading();
                     var self = this;
                     console.log('load item list');
@@ -251,6 +241,47 @@
                     var pData = {
                         "SESSION_ID": Cookies.get('sessionID'),
                         "SHOP_ID": Cookies.get('shopId')                      
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/ItemTabList",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                var shopRes = JSON.parse(jqXHR.responseText);
+                                self.myTabs = shopRes.tabs;
+                                if(self.myTabs.length>0){
+                                    self.messages = [];
+                                    self.activeTabId = self.myTabs[0].PAGE_ID;
+                                    loadItemList();
+                                    $('#itemCreateForm').hide();
+                                    $('#itemList').show();
+                                }else{
+                                    self.messages = [
+                                        {MSG_TEXT: "No items found."}, 
+                                        {MSG_TEXT:"Let's create your first items."}];
+                                    $('#itemList').hide();
+                                    $('#itemCreateForm').show();
+                                }
+                            }
+                            stopLoading();
+                        }
+
+                    });
+                },
+
+                loadItemList: function(){
+                    startLoading();
+                    var self = this;
+                    console.log('load item list');
+                    console.log('session-id:'+Cookies.get('sessionID'));
+                    console.log('shop-id:'+Cookies.get('shopId'));
+                    var pData = {
+                        "SESSION_ID": Cookies.get('sessionID'),
+                        "SHOP_ID": Cookies.get('shopId'),
+                        "PAGE_ID": self.activeTabId
                     };
                     $.ajax({
                         type: "POST",
