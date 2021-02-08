@@ -40,14 +40,18 @@
         <div>
             <form>
                 <!-- load item list -->
-                <div id="itemList" class="row" style="display: none; margin: 0; padding: 0;">
-
+                <div id="itemList" style="display: none; margin: 0; padding: 0; width: 100%;">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">All</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">+</a>
+                        <li class="nav-item" id="addNewBox">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+                                <input type="text" id="newTab"/>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="newTab">
+                            <a class="nav-link" href="#" v-on:click="addNewTab()">+</a>
                         </li>
                     </ul>
 
@@ -194,6 +198,11 @@
             },
 
             methods: {
+                addNewTab: function(){
+                    $('$newTab').hide();
+                    $('#addNewBox').show();                    
+                },
+
                 goToStep1: function(){
                     $('#step2').hide();
                     $('#step1').show();
