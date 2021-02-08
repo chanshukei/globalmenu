@@ -50,12 +50,12 @@
                 </div>
             </div>
             <div class="row" style="display: inline;">
+                <button class="btn btn-success" style="float: right;"
+                        type="button" v-on:click="saveShopLogo()">Save</button>
                 <button id="btnBack" style="float: right;" class="btn btn-dark" 
                         type="button" v-on:click="btnBackClicked()">Back</button>
                 <button id="btnSkip" style="float: right;" class="btn btn-dark" 
                         type="button" v-on:click="skipShopLogo()">Skip</button>
-                <button class="btn btn-success" style="float: right;"
-                        type="button" v-on:click="saveShopLogo()">Save</button>
                 <button id="btnRefresh" style="display: none;" type="button" 
                         v-on:click="loadShopLogo()">Refresh</button>
             </div>            
@@ -71,11 +71,13 @@
 
             methods: {
                 saveShopLogo: function () {
+                    startLoading();
                     var pSessionId = Cookies.get('sessionID');
                     var pShopId = Cookies.get('shopId');
                     uploadImage(pSessionId, 'SHOP_LOGO', pShopId, 'shopImageFile', 
                         function(){
-                            window.location.href = './' + $('#sucessCallbackUrl').val() + '.html';
+                            window.location.href = './' + $('#successCallbackUrl').val() + '.html';
+                            stopLoading();
                         }
                     );
                 },
