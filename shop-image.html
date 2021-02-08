@@ -16,8 +16,9 @@
     <script src="./js/gm-image.js"></script>
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
+    <script src="./js/common.js"></script>
 
-    <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
+    <div id="shop" class="mainPage">
         <!-- form header -->
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
@@ -25,7 +26,7 @@
         </div>
 
         <!-- chatbox -->
-        <div class="row text-center">
+        <div id="chatbox" class="row text-center">
             <div class="chatbox">
                 <img style="float: left;" src="./ico/user2.png" />
                 You shop is created.
@@ -33,28 +34,28 @@
             </div>
         </div>
         
-        <div id='shops'>
-            <form>
-                <div class="row">
-                    <label>Shop Logo</label>
-                    <div class="preview-box">                        
-                        <img id="shopImageImg" src="./image/no-photo.png" alt="Shop Image"/>
-                        <button class="btn btn-dark" type="button" onclick="$('#shopImageFile').click();">
-                            Add Shop Logo
-                        </button>
-                        <input
-                            style="display: none;" name="shopImageFile" type="file" 
-                            id="shopImageFile"
-                            onchange="previewImage('shopImageFile', 'shopImageImg')"
-                            accept="image/x-png,image/gif,image/jpeg"/>
-                    </div>
+        <form>
+            <div class="row">
+                <label>Shop Logo</label>
+                <div class="preview-box">                        
+                    <img id="shopImageImg" src="./image/no-photo.png" alt="Shop Image"/>
+                    <button class="btn btn-dark" type="button" onclick="$('#shopImageFile').click();">
+                        Upload
+                    </button>
+                    <input
+                        style="display: none;" name="shopImageFile" type="file" 
+                        id="shopImageFile"
+                        onchange="previewImage('shopImageFile', 'shopImageImg')"
+                        accept="image/x-png,image/gif,image/jpeg"/>
                 </div>
-                <div class="row" style="float: right">
-                    <button class="btn btn-dark" type="button" v-on:click="skipShopLogo()">Skip</button>
-                    <button class="btn btn-success" type="button" v-on:click="saveShopLogo()">Save</button>
-                </div>            
-            </form>
-        </div>
+            </div>
+            <div class="row" style="float: right">
+                <button class="btn btn-dark" type="button" v-on:click="skipShopLogo()">Skip</button>
+                <button class="btn btn-success" type="button" v-on:click="saveShopLogo()">Save</button>
+                <button id="btnRefresh" style="display: none;" type="button" 
+                        v-on:click="loadShopLogo()">Refresh</button>
+            </div>            
+        </form>
     </div>
 
     <script>
@@ -80,9 +81,42 @@
                 skipShopLogo: function () {
                     console.log('skipShopLogo');
                     window.location.href = './shop-openhours.html';
+                },
+
+                loadShopLogo: function(){
+                    startLoading();
+                    var self = this;
+                    console.log('load shop list');
+                    console.log('session-id:'+Cookies.get('sessionID'));
+                    var pData = {
+                        "SESSION_ID": Cookies.get('sessionID')
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/ShopList",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                var shopRes = JSON.parse(jqXHR.responseText);
+                                if(shopRes.shops.length>0){
+                                    $('#chatbox').hide();
+                                    $('#shopImageImg').attr('src', shopRes.shops[0].IMAGE_DATA);
+                                }
+                            }
+                            stopLoading();
+                        }
+
+                    });
                 }
             }
         })
+
+        $(function() {
+            startLoading();
+            $('#btnRefresh').click();
+        });
     </script>
 
 </body>
