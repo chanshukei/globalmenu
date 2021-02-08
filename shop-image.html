@@ -49,9 +49,13 @@
                         accept="image/x-png,image/gif,image/jpeg"/>
                 </div>
             </div>
-            <div class="row" style="float: right">
-                <button class="btn btn-dark" type="button" v-on:click="skipShopLogo()">Skip</button>
-                <button class="btn btn-success" type="button" v-on:click="saveShopLogo()">Save</button>
+            <div class="row" style="display: inline;">
+                <button id="btnBack" style="float: right;" class="btn btn-dark" 
+                        type="button" v-on:click="btnBackClicked()">Back</button>
+                <button id="btnSkip" style="float: right;" class="btn btn-dark" 
+                        type="button" v-on:click="skipShopLogo()">Skip</button>
+                <button class="btn btn-success" style="float: right;"
+                        type="button" v-on:click="saveShopLogo()">Save</button>
                 <button id="btnRefresh" style="display: none;" type="button" 
                         v-on:click="loadShopLogo()">Refresh</button>
             </div>            
@@ -113,7 +117,13 @@
 
         $(function() {
             startLoading();
-            $('successCallbackUrl').val(getUrlParameter('successCallbackUrl'));            
+            var sUrl = getUrlParameter('successCallbackUrl');
+            $('successCallbackUrl').val(sUrl);
+            if(sUrl=='shops'){
+                $('btnSkip').hide();
+            }else{
+                $('btnBack').hide();
+            }
             $('#btnRefresh').click();
         });
     </script>
