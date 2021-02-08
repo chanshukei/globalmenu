@@ -99,7 +99,7 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 if(shopRes.shops.length>0){
                                     $('#chatbox').hide();
-                                    $('#shopImageImg').attr('src', shopRes.shops[0].IMAGE_DATA);
+                                    $('#shopImageImg').attr('src', shopRes.shops[0].SHOP_LOGO);
                                 }
                             }
                             stopLoading();
