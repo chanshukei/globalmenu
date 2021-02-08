@@ -45,6 +45,11 @@
                         <li class="nav-item" v-for="(item, index) in myTabs">
                             <a class="nav-link active" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
                         </li>
+                        <li class="nav-item">
+                            <button type="btn btn-info btn-sm">Edit Tab Name</button>
+                            <button type="btn btn-info btn-sm">Add New Tab</button>
+                            <button type="btn btn-info btn-sm">Delete Tab</button>
+                        </li>
                     </ul>
                     <div>
                         <div class="menu-item-box" v-for="(item, index) in myItems">                                                
@@ -264,9 +269,11 @@
                                         {MSG_TEXT:"Let's create your first items."}];
                                     $('#itemList').hide();
                                     $('#itemCreateForm').show();
+                                    stopLoading();
                                 }
-                            }
-                            stopLoading();
+                            }else{
+                                stopLoading();
+                            }                            
                         }
 
                     });
