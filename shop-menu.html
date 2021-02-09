@@ -78,7 +78,7 @@
                     <label>New Tab Name</label>
                     <input class="form-control" type="text" id="newTabName"/>
                 </div>
-                <div class="row" style="display: block;">
+                <div class="row" style="display: block; width: 100%;">
                     <button style="float: right;" class="btn btn-success" 
                             type="button" v-on:click="saveEditTabName()">Save</button>
                     <button style="float: right" class="btn btn-dark" 
@@ -99,7 +99,7 @@
                         </option>
                     </select>
                 </div>
-                <div class="row" style="display: block;">
+                <div class="row" style="display: block; width: 100%;">
                     <button style="float: right;" class="btn btn-success" 
                             type="button" v-on:click="saveNewTab()">Save</button>
                     <button style="float: right" class="btn btn-dark" 
@@ -327,6 +327,7 @@
                         "PAGE_ID": self.activeTabId,
                         "PAGE_NAME": $('#newTabName').val()
                     };
+                    console.log(JSON.stringify(pData));
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-shop.azurewebsites.net/api/UpdatePageName",
