@@ -39,6 +39,7 @@ function signIn() {
         complete: function (jqXHR) {
             if (jqXHR.readyState === 4) {
                 var signInSession = JSON.parse(jqXHR.responseText);
+                Cookies.remove('sessionID');
                 Cookies.set('sessionID', signInSession.signInSessionID);
                 window.location.href = './shops.html';
             }

@@ -262,12 +262,13 @@
                     self.messages = [];
                     var pSessionId = Cookies.get('sessionID');
                     var pShopId = Cookies.get('shopId');
-                    console.log('saveNewTab');
                     var pData = {
                         "SHOP_ID": pShopId,
                         "SESSION_ID": pSessionId,
                         "PAGE_NAME": $('#newTabName').val()
                     };
+                    console.log(JSON.stringify(pData));
+                    
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-shop.azurewebsites.net/api/InsertItemPage",
@@ -279,7 +280,7 @@
                                 self.messages = [
                                     {MSG_TEXT:"The new tab is created successfully."}
                                 ];
-                                console.log("Created new tab.");                                
+                                $('#btnRefresh').click();
                             }
                             $('#newTabPage').hide();
                             $('#itemList').show();
@@ -320,14 +321,12 @@
                     self.messages = [];
                     var pSessionId = Cookies.get('sessionID');
                     var pShopId = Cookies.get('shopId');
-                    console.log('addNewShop');
                     var pData = {
                         "SHOP_ID": pShopId,
                         "SESSION_ID": pSessionId,
                         "PAGE_ID": self.activeTabId,
                         "PAGE_NAME": $('#newTabName').val()
                     };
-                    console.log(JSON.stringify(pData));
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-shop.azurewebsites.net/api/UpdatePageName",
@@ -339,7 +338,7 @@
                                 self.messages = [
                                     {MSG_TEXT:"The tab name is saved successfully."}
                                 ];
-                                console.log("Update tab name.");                                
+                                $('#btnRefresh').click();
                             }
                             $('#editTabNamePage').hide();
                             $('#itemList').show();
