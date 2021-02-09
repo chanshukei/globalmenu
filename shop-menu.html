@@ -45,9 +45,12 @@
                         <a class="nav-link active" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-outline-info btn-sm" v-on:click="startToEditTabName()">Edit Tab Name</button>
-                        <button type="button" class="btn btn-outline-info btn-sm">Add New Tab</button>
-                        <button type="button" class="btn btn-outline-info btn-sm">Delete Tab</button>
+                        <button type="button" class="btn btn-outline-info btn-sm" 
+                                v-on:click="startToEditTabName()">Edit Tab Name</button>
+                        <button type="button" class="btn btn-outline-info btn-sm"
+                                v-on:click="startToAddNewTab()">Add New Tab</button>
+                        <button :style="[myItems.length==0?{}:{'display':'none'}]" 
+                                type="button" class="btn btn-outline-info btn-sm">Delete Tab</button>
                     </li>
                 </ul>
                 <div>
@@ -69,11 +72,13 @@
 
             <!-- edit tab name -->
             <div id="editTabNamePage" class="row" style="display: none;">
-                <label>Current Tab Name</label>
-                <input class="form-control" type="text" disabled v-model="activePageName"/>
-                <label>New Tab Name</label>
-                <input class="form-control" type="text" id="newTabName"/>
-                <div style="display: block;">
+                <div class="row">
+                    <label>Current Tab Name</label>
+                    <input class="form-control" type="text" disabled v-model="activePageName"/>
+                    <label>New Tab Name</label>
+                    <input class="form-control" type="text" id="newTabName"/>
+                </div>
+                <div class="row" style="display: block;">
                     <button style="float: right;" class="btn btn-success" 
                             type="button" v-on:click="saveEditTabName()">Save</button>
                     <button style="float: right" class="btn btn-dark" 
@@ -81,6 +86,21 @@
                 </div>
             </div>
             <!-- end edit -->
+
+            <!-- new tab name -->
+            <div id="newTabPage" class="row" style="display: none;">
+                <div class="row">
+                    <label>New Tab Name</label>
+                    <input class="form-control" type="text" id="newTabName"/>
+                </div>
+                <div class="row" style="display: block;">
+                    <button style="float: right;" class="btn btn-success" 
+                            type="button" v-on:click="saveNewTab()">Save</button>
+                    <button style="float: right" class="btn btn-dark" 
+                            type="button" v-on:click="cancelNewTab()">Cancel</button>
+                </div>
+            </div>
+            <!-- end new -->
 
             <!-- create shop-->
             <div id="itemCreateForm" style="display: none;">
@@ -211,6 +231,57 @@
             },
 
             methods: {
+                startToAddNewTab: function(){
+                    startLoading();
+                    var self = this;
+                    self.messages = [
+                        {MSG_TEXT:"Now you can add the new tab."}
+                    ];
+                    $('#itemList').hide();
+                    $('#newTabPage').show();
+                    stopLoading();
+                },
+
+                cancelNewTab: function(){
+                    startLoading();
+                    var self = this;
+                    $('#newTabPage').hide();
+                    $('#itemList').show();
+                    stopLoading();
+                },
+
+                saveNewTab: function(){
+                    startLoading();
+                    var self = this;
+                    self.messages = [];
+                    var pSessionId = Cookies.get('sessionID');
+                    var pShopId = Cookies.get('shopId');
+                    console.log('saveNewTab');
+                    var pData = {
+                        "SHOP_ID": pShopId,
+                        "SESSION_ID": pSessionId,
+                        "PAGE_NAME": $('#newTabName').val()
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/InsertItemPage",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                self.messages = [
+                                    {MSG_TEXT:"The new tab is created successfully."}
+                                ];
+                                console.log("Created new tab.");                                
+                            }
+                            $('#newTabPage').hide();
+                            $('#itemList').show();
+                            stopLoading();
+                        }
+                    });
+                },
+
                 startToEditTabName: function(){
                     startLoading();
                     var self = this;
@@ -220,6 +291,9 @@
                             break;
                         }
                     }
+                    self.messages = [
+                        {MSG_TEXT:"Now you can edit the tab name."}
+                    ];
                     $('#itemList').hide();
                     $('#editTabNamePage').show();
                     stopLoading();
@@ -227,6 +301,8 @@
 
                 cancelEditTabName: function(){
                     startLoading();
+                    var self = this;
+                    self.messages = [];
                     $('#editTabNamePage').hide();
                     $('#itemList').show();
                     stopLoading();
@@ -235,7 +311,7 @@
                 saveEditTabName: function(){
                     startLoading();
                     var self = this;
-
+                    self.messages = [];
                     var pSessionId = Cookies.get('sessionID');
                     var pShopId = Cookies.get('shopId');
                     console.log('addNewShop');
@@ -253,6 +329,9 @@
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
+                                self.messages = [
+                                    {MSG_TEXT:"The tab name is saved successfully."}
+                                ];
                                 console.log("Update tab name.");                                
                             }
                             $('#editTabNamePage').hide();
@@ -260,13 +339,6 @@
                             stopLoading();
                         }
                     });
-
-
-                },
-
-                addNewTab: function(){
-                    $('$newTab').hide();
-                    $('#addNewBox').show();                    
                 },
 
                 goToStep1: function(){
