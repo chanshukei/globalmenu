@@ -42,7 +42,8 @@
             <div id="itemList" style="display: none; margin: 0; padding: 0; width: 100%;">
                 <ul class="nav nav-tabs">
                     <li class="nav-item" v-for="(item, index) in myTabs">
-                        <a :class="[item.PAGE_ID==activeTabId?'nav-link active':'nav-link']" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
+                        <a :class="[item.PAGE_ID==activeTabId?'nav-link active':'nav-link']" 
+                            aria-current="page" href="#" v-on:click="changeTab(item.PAGE_ID)">{{item.PAGE_NAME}}</a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-outline-info btn-sm" 
@@ -238,6 +239,13 @@
             },
 
             methods: {
+                changeTab: function(t){
+                    console.log('changeTab:'+t);
+                    var self = this;
+                    self.activeTabId = t;
+                    self.loadItemList();
+                },
+
                 startToAddNewTab: function(){
                     startLoading();
                     var self = this;
