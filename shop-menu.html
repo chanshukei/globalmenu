@@ -45,7 +45,7 @@
                         <a class="nav-link active" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-outline-info btn-sm">Edit Tab Name</button>
+                        <button type="button" class="btn btn-outline-info btn-sm" v-on:click="startToEditTabName()">Edit Tab Name</button>
                         <button type="button" class="btn btn-outline-info btn-sm">Add New Tab</button>
                         <button type="button" class="btn btn-outline-info btn-sm">Delete Tab</button>
                     </li>
@@ -68,14 +68,16 @@
             <!-- end -->
 
             <!-- edit tab name -->
-            <div class="row">
+            <div id="editTabNamePage" class="row" style="display: none;">
                 <label>Current Tab Name</label>
-                <input class="form-control" type="text" disabled value=""/>
+                <input class="form-control" type="text" disabled v-model="activePageName"/>
                 <label>New Tab Name</label>
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" id="newTabName"/>
                 <div style="display: block;">
-                    <button type="button">Save</button>
-                    <button type="button">Cancel</button>
+                    <button style="float: right;" class="btn btn-success" 
+                            type="button" v-on:click="saveEditTabName()">Save</button>
+                    <button style="float: right" class="btn btn-dark" 
+                            type="button" v-on:click="cancelEditTabName()">Cancel</button>
                 </div>
             </div>
             <!-- end edit -->
@@ -193,6 +195,7 @@
                 myItems: Array,
                 myTabs: Array,
                 activeTabId: "",
+                activeTabPage: "",
                 messages: Array,
                 ITEM_NAME: "",
                 ITEM_DESCRIPTION: "",
@@ -208,6 +211,59 @@
             },
 
             methods: {
+                startToEditTabName: function(){
+                    startLoading();
+                    var self = this;
+                    for(i=0; i<self.myTabs.length; i++){
+                        if(self.activeTabId==self.myTabs[i].PAGE_ID){
+                            self.activeTabPage = self.myTabs[i].PAGE_NAME;
+                            break;
+                        }
+                    }
+                    $('#itemList').hide();
+                    $('#editTabNamePage').show();
+                    stopLoading();
+                },
+
+                cancelEditTabName: function(){
+                    startLoading();
+                    $('#editTabNamePage').hide();
+                    $('#itemList').show();
+                    stopLoading();
+                },
+
+                saveEditTabName: function(){
+                    startLoading();
+                    var self = this;
+
+                    var pSessionId = Cookies.get('sessionID');
+                    var pShopId = Cookies.get('shopId');
+                    console.log('addNewShop');
+                    var pData = {
+                        "SHOP_ID": pShopId,
+                        "SESSION_ID": pSessionId,
+                        "PAGE_ID": self.activeTabId,
+                        "PAGE_NAME": $('#newTabName').val()
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/UpdatePageName",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                console.log("Update tab name.");                                
+                            }
+                            $('#editTabNamePage').hide();
+                            $('#itemList').show();
+                            stopLoading();
+                        }
+                    });
+
+
+                },
+
                 addNewTab: function(){
                     $('$newTab').hide();
                     $('#addNewBox').show();                    
