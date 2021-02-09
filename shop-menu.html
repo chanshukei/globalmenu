@@ -195,7 +195,7 @@
                 myItems: Array,
                 myTabs: Array,
                 activeTabId: "",
-                activeTabPage: "",
+                activePageName: "",
                 messages: Array,
                 ITEM_NAME: "",
                 ITEM_DESCRIPTION: "",
@@ -216,7 +216,7 @@
                     var self = this;
                     for(i=0; i<self.myTabs.length; i++){
                         if(self.activeTabId==self.myTabs[i].PAGE_ID){
-                            self.activeTabPage = self.myTabs[i].PAGE_NAME;
+                            self.activePageName = self.myTabs[i].PAGE_NAME;
                             break;
                         }
                     }
