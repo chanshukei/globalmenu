@@ -37,138 +37,153 @@
             </div>
         </div>
         
-        <div>
-            <form>
-                <!-- load item list -->
-                <div id="itemList" style="display: none; margin: 0; padding: 0; width: 100%;">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item" v-for="(item, index) in myTabs">
-                            <a class="nav-link active" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-outline-info btn-sm">Edit Tab Name</button>
-                            <button type="button" class="btn btn-outline-info btn-sm">Add New Tab</button>
-                            <button type="button" class="btn btn-outline-info btn-sm">Delete Tab</button>
-                        </li>
-                    </ul>
-                    <div>
-                        <div class="menu-item-box" v-for="(item, index) in myItems">                                                
-                            <img class="menu-item-img" :src="item.IMAGE_DATA">
-                            <div class="menu-item-text">{{item.ITEM_NAME}}</div>
-                        </div>
-                        <div class="row" style="float: right">
-                            <button class="btn btn-dark" type="button">Home</button>
-                            <button class="btn btn-success" type="button" v-on:click='startToAddNewItem()'>Add Item</button>
-                        </div>
+        <div><form>
+            <!-- load item list -->
+            <div id="itemList" style="display: none; margin: 0; padding: 0; width: 100%;">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item" v-for="(item, index) in myTabs">
+                        <a class="nav-link active" aria-current="page" href="#">{{item.PAGE_NAME}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-info btn-sm">Edit Tab Name</button>
+                        <button type="button" class="btn btn-outline-info btn-sm">Add New Tab</button>
+                        <button type="button" class="btn btn-outline-info btn-sm">Delete Tab</button>
+                    </li>
+                </ul>
+                <div>
+                    <div class="menu-item-box" v-for="(item, index) in myItems">                                                
+                        <img class="menu-item-img" :src="item.IMAGE_DATA">
+                        <div class="menu-item-text">{{item.ITEM_NAME}}</div>
+                    </div>
+                    <div class="row" style="display: block;">
+                        <button class="btn btn-success" style="float: right;" type="button" 
+                                v-on:click='startToAddNewItem()'>Add Item</button>
+                        <button class="btn btn-dark" style="float: right;" type="button"
+                                onclick="gotoHome()">Home</button>                            
                     </div>
                 </div>
-                <button id="btnRefresh" style="display: none;" type="button" 
-                        v-on:click="loadTabList()">Refresh</button>
-                <!-- end -->
+            </div>
+            <button id="btnRefresh" style="display: none;" type="button" 
+                    v-on:click="loadTabList()">Refresh</button>
+            <!-- end -->
 
-                <!-- create shop-->
-                <div id="itemCreateForm" style="display: none;">
-                    <div id="step1">
-                        <div class="row">
-                            <label>Image</label>
-                            <div class="preview-box">                        
-                                <img id="itemImageImg" src="./image/no-photo.png" alt="Item Photo"/>
-                                <button class="btn btn-dark" type="button" onclick="$('#itemImageFile').click();">
-                                    Add Photo
-                                </button>
-                                <input
-                                    style="display: none;" name="itemImageFile" type="file" 
-                                    id="itemImageFile"
-                                    onchange="previewImage('itemImageFile', 'itemImageImg')"
-                                    accept="image/x-png,image/gif,image/jpeg"/>
-                            </div>
-                        </div>
-                        <div class="row" style="float: right">
-                            <button class="btn btn-dark" type="button">Cancel</button>
-                            <button class="btn btn-success" type="button" v-on:click='nextToStep2()'>Next</button>
-                        </div>
-                    </div>
-
-                    <div id="step2" style="display: none;">
-                        <div class="row">
-                            <label>Name</label>
-                            <input class="form-control" type="text" v-model="ITEM_NAME" maxlength="50"/>                
-                        </div>
-
-                        <div class="row">
-                            <label>Description</label>
-                            <input class="form-control" type="text" v-model="ITEM_DESCRIPTION" maxlength="200" />
-                        </div>
-
-                        <div class="row">
-                            <label>Price</label>
-                            <input  class="form-control" type="number" inputmode="numeric" 
-                                    pattern="[0-9]*" v-model="PRICE" maxlength="6" />
-                        </div>
-
-                        <div class="row">
-                            <label>Available Period</label>
-                            <select class="form-control" v-model="AVAILABLE_PERIOD">
-                                <option value="All Day">All Day</option>
-                            </select>
-                        </div>
-
-                        <div class="row" style="float: right">
-                            <button class="btn btn-dark" type="button" v-on:click='goToStep1()'>Back</button>
-                            <button class="btn btn-success" type="button" v-on:click='goToStep3()'>Next</button>
-                        </div>
-                    </div>
-
-                    <div id="step3" style="display: none;">
-                        <div class="row">
-                            <label class="checkbox-inline">
-                                <img src="./ico/chilli.png"/>
-                                <input type="range" v-model="SPICY_LEVEL" min="0" max="3">
-                                {{SPICY_LEVEL}}
-                            </label>
-                        </div>
-
-                        <div class="row">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" v-model="VEGEN">
-                                <img src="./ico/plant-based.png"/>
-                            </label>
-                            <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
-                                <input type="checkbox" v-model="BEEF_INCLUDE">
-                                <img src="./ico/beef.png"/>
-                            </label>
-                            <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
-                                <input type="checkbox" v-model="PORK_INCLUDE">
-                                <img src="./ico/pig.png"/>
-                            </label>
-                        </div>
-
-                        <div class="row">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" v-model="EGG_INCLUDE">
-                                <img src="./ico/boiled-egg.png"/>
-                            </label>
-
-                            <label class="checkbox-inline">
-                                <input type="checkbox" v-model="MILK_INCLUDE">
-                                <img src="./ico/milk.png"/>
-                            </label>
-
-                            <label class="checkbox-inline">
-                                <input type="checkbox" v-model="NUT_INCLUDE">
-                                <img src="./ico/nut.png"/>
-                            </label>
-                        </div>
-                        <div class="row" style="float: right">
-                            <button class="btn btn-dark" type="button" v-on:click='backToStep2()'>Back</button>
-                            <button class="btn btn-success" type="button" v-on:click='addNewItem()'>Add</button>
-                        </div>
-                    </div>
-
+            <!-- edit tab name -->
+            <div class="row">
+                <label>Current Tab Name</label>
+                <input class="form-control" type="text" disabled value=""/>
+                <label>New Tab Name</label>
+                <input class="form-control" type="text" />
+                <div style="display: block;">
+                    <button type="button">Save</button>
+                    <button type="button">Cancel</button>
                 </div>
-                <!-- end create form -->
-            </form>
-        </div>
+            </div>
+            <!-- end edit -->
+
+            <!-- create shop-->
+            <div id="itemCreateForm" style="display: none;">
+                <div id="step1">
+                    <div class="row">
+                        <label>Image</label>
+                        <div class="preview-box">                        
+                            <img id="itemImageImg" src="./image/no-photo.png" alt="Item Photo"/>
+                            <button class="btn btn-dark" type="button" onclick="$('#itemImageFile').click();">
+                                Add Photo
+                            </button>
+                            <input
+                                style="display: none;" name="itemImageFile" type="file" 
+                                id="itemImageFile"
+                                onchange="previewImage('itemImageFile', 'itemImageImg')"
+                                accept="image/x-png,image/gif,image/jpeg"/>
+                        </div>
+                    </div>
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button">Cancel</button>
+                        <button class="btn btn-success" type="button" v-on:click='nextToStep2()'>Next</button>
+                    </div>
+                </div>
+
+                <div id="step2" style="display: none;">
+                    <div class="row">
+                        <label>Name</label>
+                        <input class="form-control" type="text" v-model="ITEM_NAME" maxlength="50"/>                
+                    </div>
+
+                    <div class="row">
+                        <label>Description</label>
+                        <input class="form-control" type="text" v-model="ITEM_DESCRIPTION" maxlength="200" />
+                    </div>
+
+                    <div class="row">
+                        <label>Price</label>
+                        <input  class="form-control" type="number" inputmode="numeric" 
+                                pattern="[0-9]*" v-model="PRICE" maxlength="6" />
+                    </div>
+
+                    <div class="row">
+                        <label>Available Period</label>
+                        <select class="form-control" v-model="AVAILABLE_PERIOD">
+                            <option value="All Day">All Day</option>
+                        </select>
+                    </div>
+
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button" v-on:click='goToStep1()'>Back</button>
+                        <button class="btn btn-success" type="button" v-on:click='goToStep3()'>Next</button>
+                    </div>
+                </div>
+
+                <div id="step3" style="display: none;">
+                    <div class="row">
+                        <label class="checkbox-inline">
+                            <img src="./ico/chilli.png"/>
+                            <input type="range" v-model="SPICY_LEVEL" min="0" max="3">
+                            {{SPICY_LEVEL}}
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="VEGEN">
+                            <img src="./ico/plant-based.png"/>
+                        </label>
+                        <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
+                            <input type="checkbox" v-model="BEEF_INCLUDE">
+                            <img src="./ico/beef.png"/>
+                        </label>
+                        <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
+                            <input type="checkbox" v-model="PORK_INCLUDE">
+                            <img src="./ico/pig.png"/>
+                        </label>
+                    </div>
+
+                    <div class="row">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="EGG_INCLUDE">
+                            <img src="./ico/boiled-egg.png"/>
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="MILK_INCLUDE">
+                            <img src="./ico/milk.png"/>
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" v-model="NUT_INCLUDE">
+                            <img src="./ico/nut.png"/>
+                        </label>
+                    </div>
+                    <div class="row" style="float: right">
+                        <button class="btn btn-dark" type="button" v-on:click='backToStep2()'>Back</button>
+                        <button class="btn btn-success" type="button" v-on:click='addNewItem()'>Add</button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end create form -->
+        </form></div>
+        <!-- form -->
+
     </div>
 
     <script>
