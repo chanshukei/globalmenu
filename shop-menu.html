@@ -91,9 +91,10 @@
             <div id="newTabPage" class="row" style="display: none;">
                 <div class="row">
                     <label>New Tab Name</label>
-                    <input class="form-control" type="text" id="newTabName"/>
+                    <input class="form-control" type="text" id="newTabName2"/>
                     <label>Position</label>
                     <select id="newTabPosition">
+                        <option value="">At the begins</option>
                         <option :value="item.PAGE_ID" v-for="(item, index) in myTabs">
                             After "{{item.PAGE_NAME}}"
                         </option>
@@ -265,10 +266,10 @@
                     var pData = {
                         "SHOP_ID": pShopId,
                         "SESSION_ID": pSessionId,
-                        "PAGE_NAME": $('#newTabName').val()
+                        "PAGE_NAME": $('#newTabName2').val()
                     };
                     console.log(JSON.stringify(pData));
-                    
+
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-shop.azurewebsites.net/api/InsertItemPage",
