@@ -145,35 +145,37 @@
                         <h2>Step 2 of 3: Update the basic information of the item</h2>
                     </div>
                     <div class="row">
-                        <label>Item Tab</label>
-                        <select class="form-control" v-model="ITEM_PAGE">
-                            <option :value="item.PAGE_ID" v-for="(item, index) in myTabs">
-                                {{item.PAGE_NAME}}
-                            </option>
-                        </select>
-                    </div>
+                        <div class="col-6">
+                            <label>Item Tab</label>
+                            <select class="form-control" v-model="ITEM_PAGE">
+                                <option :value="item.PAGE_ID" v-for="(item, index) in myTabs">
+                                    {{item.PAGE_NAME}}
+                                </option>
+                            </select>
+                        </div>
 
-                    <div class="row">
-                        <label>Name</label>
-                        <input class="form-control" type="text" v-model="ITEM_NAME" maxlength="50"/>                
-                    </div>
+                        <div class="col-6">
+                            <label>Name</label>
+                            <input class="form-control" type="text" v-model="ITEM_NAME" maxlength="50"/>                
+                        </div>
 
-                    <div class="row">
-                        <label>Description</label>
-                        <input class="form-control" type="text" v-model="ITEM_DESCRIPTION" maxlength="200" />
-                    </div>
+                        <div class="col-6">
+                            <label>Description</label>
+                            <input class="form-control" type="text" v-model="ITEM_DESCRIPTION" maxlength="200" />
+                        </div>
 
-                    <div class="row">
-                        <label>Price</label>
-                        <input  class="form-control" type="number" inputmode="numeric" 
-                                pattern="[0-9]*" v-model="PRICE" maxlength="6" />
-                    </div>
+                        <div class="col-6">
+                            <label>Price</label>
+                            <input  class="form-control" type="number" inputmode="numeric" 
+                                    pattern="[0-9]*" v-model="PRICE" maxlength="6" />
+                        </div>
 
-                    <div class="row">
-                        <label>Available Period</label>
-                        <select class="form-control" v-model="AVAILABLE_PERIOD">
-                            <option value="All Day">All Day</option>
-                        </select>
+                        <div class="col-6">
+                            <label>Available Period</label>
+                            <select class="form-control" v-model="AVAILABLE_PERIOD">
+                                <option value="All Day">All Day</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row" style="display: block;">
@@ -197,36 +199,47 @@
                     </div>
 
                     <div class="row">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="VEGEN">
-                            <img src="./ico/plant-based.png"/>
-                        </label>
-                        <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
-                            <input type="checkbox" v-model="BEEF_INCLUDE">
-                            <img src="./ico/beef.png"/>
-                        </label>
-                        <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
-                            <input type="checkbox" v-model="PORK_INCLUDE">
-                            <img src="./ico/pig.png"/>
-                        </label>
+                        <div class="col-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="VEGEN">
+                                <img src="./ico/plant-based.png"/>
+                            </label>
+                        </div>
+                        <div class="col-4">
+                            <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
+                                <input type="checkbox" v-model="BEEF_INCLUDE">
+                                <img src="./ico/beef.png"/>
+                            </label>
+                        </div>
+                        <div class="col-4">
+                            <label class="checkbox-inline" :style='[VEGEN?{"display":"none"}:{}]'>
+                                <input type="checkbox" v-model="PORK_INCLUDE">
+                                <img src="./ico/pig.png"/>
+                            </label>
+                        </div>
+
+                        <div class="col-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="EGG_INCLUDE">
+                                <img src="./ico/boiled-egg.png"/>
+                            </label>
+                        </div>
+
+                        <div class="col-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="MILK_INCLUDE">
+                                <img src="./ico/milk.png"/>
+                            </label>
+                        </div>
+
+                        <div class="col-4">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" v-model="NUT_INCLUDE">
+                                <img src="./ico/nut.png"/>
+                            </label>
+                        </div>
                     </div>
-
-                    <div class="row">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="EGG_INCLUDE">
-                            <img src="./ico/boiled-egg.png"/>
-                        </label>
-
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="MILK_INCLUDE">
-                            <img src="./ico/milk.png"/>
-                        </label>
-
-                        <label class="checkbox-inline">
-                            <input type="checkbox" v-model="NUT_INCLUDE">
-                            <img src="./ico/nut.png"/>
-                        </label>
-                    </div>
+                    
                     <div class="row" style="display: block;">
                         <button class="btn btn-dark" type="button" style="float: right;"
                                 v-on:click='backToStep2()'>Back</button>
