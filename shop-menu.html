@@ -133,11 +133,11 @@
                         </div>
                     </div>
                     <div class="row" style="display: block">
-                        <button class="btn btn-dark" type="button" style="float: right;"
-                                v-on:click="cancelAddItem()">Cancel</button>
                         <button class="btn btn-success" type="button" style="float: right;" 
                                 v-on:click='nextToStep2()'>Next</button>
-                    </div>
+                        <button class="btn btn-dark" type="button" style="float: right;"
+                                v-on:click="cancelAddItem()">Cancel</button>
+                        </div>
                 </div>
 
                 <div id="step2" style="display: none;">
@@ -179,11 +179,12 @@
                     </div>
 
                     <div class="row" style="display: block;">
-                        <button class="btn btn-dark" type="button" style="float: right;"
-                                v-on:click='goToStep1()'>Back</button>
                         <button class="btn btn-success" type="button" style="float: right;"
                                 v-on:click='goToStep3()'>Next</button>
-                    </div>
+                        <button class="btn btn-dark" type="button" style="float: right;"
+                                v-on:click='goToStep1()'>Back</button>
+
+                            </div>
                 </div>
 
                 <div id="step3" style="display: none;">
@@ -239,12 +240,12 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="row" style="display: block;">
-                        <button class="btn btn-dark" type="button" style="float: right;"
-                                v-on:click='backToStep2()'>Back</button>
                         <button class="btn btn-success" type="button" style="float: right;"
                                 v-on:click='addNewItem()'>Add</button>
+                        <button class="btn btn-dark" type="button" style="float: right;"
+                                v-on:click='backToStep2()'>Back</button>
                     </div>
                 </div>
 
@@ -558,15 +559,15 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shop = JSON.parse(jqXHR.responseText);
-                                console.log("New item added: " + shop.itemId);
-                                console.log("upload image");
                                 uploadImage(pSessionId, 'ITEM_PHOTO', shop.itemId, 'itemImageFile', 
                                     function(){
                                         $('#btnRefresh').click();
+                                        stopLoading();
                                     }
                                 );
-                            }
-                            stopLoading();
+                            }else{
+                                stopLoading();
+                            }                            
                         }
                     });
                 }
