@@ -114,10 +114,15 @@
             <div id="itemCreateForm" style="display: none;">
                 <div id="step1">
                     <div class="row">
-                        <label>Image</label>
+                        <h2>Step 1 of 3: Upload the photo of the item</h2>
+                    </div>
+                    <div class="row">
+                        <label>Item Photo</label>
                         <div class="preview-box">                        
                             <img id="itemImageImg" src="./image/no-photo.png" alt="Item Photo"/>
-                            <button class="btn btn-dark" type="button" onclick="$('#itemImageFile').click();">
+                            <button class="btn btn-dark" type="button" 
+                                    onclick="$('#itemImageFile').click();"
+                                    style="max-width: none;">
                                 Add Photo
                             </button>
                             <input
@@ -136,6 +141,9 @@
                 </div>
 
                 <div id="step2" style="display: none;">
+                    <div class="row">
+                        <h2>Step 2 of 3: Update the basic information of the item</h2>
+                    </div>
                     <div class="row">
                         <label>Item Tab</label>
                         <select class="form-control" v-model="ITEM_PAGE">
@@ -175,6 +183,9 @@
                 </div>
 
                 <div id="step3" style="display: none;">
+                    <div class="row">
+                        <h2>Step 3 of 3: Update the favours of the item</h2>
+                    </div>
                     <div class="row">
                         <label class="checkbox-inline">
                             <img src="./ico/chilli.png"/>
