@@ -329,3 +329,13 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 14pt;
     font-weight: bold;
 }
+
+.footer{
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #3e3e3e;
+    color: #fafafa;
+    padding: 10px;
+}
