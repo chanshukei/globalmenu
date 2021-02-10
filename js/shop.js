@@ -6,6 +6,6 @@ function goToQrCode(){
     window.location.href = "./shop-qrcode.html";
 }
 
-function goToQrCode(){
+function goToOrder(){
     window.location.href = "./shop-orderlist.html";
 }
