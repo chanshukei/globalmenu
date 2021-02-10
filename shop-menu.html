@@ -151,6 +151,14 @@
                     </div>
 
                     <div class="row">
+                        <select class="form-control" v-model="ITEM_PAGE">
+                            <option :value="item.PAGE_ID" v-for="(item, index) in myTabs">
+                                {{item.PAGE_NAME}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="row">
                         <label>Available Period</label>
                         <select class="form-control" v-model="AVAILABLE_PERIOD">
                             <option value="All Day">All Day</option>
@@ -379,6 +387,9 @@
                 startToAddNewItem: function(){
                     startLoading();
                     var self = this;
+                    self.messages = [
+                        {MSG_TEXT:"Now you can create the new item."}
+                    ];
                     self.ITEM_NAME = "";
                     self.ITEM_DESCRIPTION = "";
                     self.PRICE = 0;
@@ -389,7 +400,8 @@
                     self.BEEF_INCLUDE = false;
                     self.PORK_INCLUDE = false;
                     self.NUT_INCLUDE = false;
-                    self.AVAILABLE_PERIOD = "All Day";
+                    self.AVAILABLE_PERIOD = "All Day";                    
+                    self.ITEM_PAGE = self.activeTabId;
                     $('#itemList').hide();
                     $('#itemCreateForm').show();
                     stopLoading();
