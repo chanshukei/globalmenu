@@ -105,24 +105,27 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
-                                console.log(shopRes.items);
                                 self.myPendingOrders = [];
                                 var tempOrderId = '';                                
                                 for(i=0; i<shopRes.items.length; i++){
                                     if(tempOrderId!=shopRes.items[i].ORDER_ID){
+                                        tempOrderId = shopRes.items[i].ORDER_ID;
+                                        console.log('init new object:'+i);
                                         var tempOrder = shopRes.items[i];
                                         tempOrder.lines = [shopRes.items[i]];
                                         for(j=i+1; j<shopRes.items.length; j++){
-                                            if(tempOrder.ORDER_ID==shopRes.items[j].ORDER_ID){
+                                            if(tempOrderId==shopRes.items[j].ORDER_ID){
                                                 tempOrder.lines[tempOrder.lines.length] = shopRes.items[j];
                                             }else{
                                                 i = j;
                                                 break;
                                             }
                                         }
+                                        console.log('added order:'+tempOrder.ORDER_ID);
                                         self.myPendingOrders[self.myPendingOrders.length] = tempOrder;
                                     }
                                 }
+                                console.log(self.myPendingOrders);
                                 //message
                                 if(self.myPendingOrders.length>0){
                                     self.messages = [];
