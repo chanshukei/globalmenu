@@ -107,13 +107,13 @@
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 self.myPendingOrders = [];
                                 var tempOrderId = '';                                
-                                for(i=0; i<shopRes.orders.length; i++){
-                                    if(tempOrderId!=shopRes.orders[i].ORDER_ID){
-                                        var tempOrder = shopRes.orders[i];
-                                        tempOrder.lines = [shopRes.orders[i]];
-                                        for(j=i+1; j<shopRes.orders.length; j++){
-                                            if(tempOrder.ORDER_ID==shopRes.orders[j].ORDER_ID){
-                                                tempOrder.lines[tempOrder.lines.length] = shopRes.orders[j];
+                                for(i=0; i<shopRes.items.length; i++){
+                                    if(tempOrderId!=shopRes.items[i].ORDER_ID){
+                                        var tempOrder = shopRes.items[i];
+                                        tempOrder.lines = [shopRes.items[i]];
+                                        for(j=i+1; j<shopRes.items.length; j++){
+                                            if(tempOrder.ORDER_ID==shopRes.items[j].ORDER_ID){
+                                                tempOrder.lines[tempOrder.lines.length] = shopRes.items[j];
                                             }else{
                                                 i = j;
                                                 break;
