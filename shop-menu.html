@@ -176,9 +176,11 @@
                         </select>
                     </div>
 
-                    <div class="row" style="float: right">
-                        <button class="btn btn-dark" type="button" v-on:click='goToStep1()'>Back</button>
-                        <button class="btn btn-success" type="button" v-on:click='goToStep3()'>Next</button>
+                    <div class="row" style="display: block;">
+                        <button class="btn btn-dark" type="button" style="float: right;"
+                                v-on:click='goToStep1()'>Back</button>
+                        <button class="btn btn-success" type="button" style="float: right;"
+                                v-on:click='goToStep3()'>Next</button>
                     </div>
                 </div>
 
@@ -225,9 +227,11 @@
                             <img src="./ico/nut.png"/>
                         </label>
                     </div>
-                    <div class="row" style="float: right">
-                        <button class="btn btn-dark" type="button" v-on:click='backToStep2()'>Back</button>
-                        <button class="btn btn-success" type="button" v-on:click='addNewItem()'>Add</button>
+                    <div class="row" style="display: block;">
+                        <button class="btn btn-dark" type="button" style="float: right;"
+                                v-on:click='backToStep2()'>Back</button>
+                        <button class="btn btn-success" type="button" style="float: right;"
+                                v-on:click='addNewItem()'>Add</button>
                     </div>
                 </div>
 
@@ -419,6 +423,8 @@
                     self.messages = [
                         {MSG_TEXT:"Now you can create the new item."}
                     ];
+                    $('#itemImageFile').val("");
+                    $('#itemImageImg').attr("src", "./image/no-photo.png");
                     self.ITEM_NAME = "";
                     self.ITEM_DESCRIPTION = "";
                     self.PRICE = 0;
@@ -431,8 +437,6 @@
                     self.NUT_INCLUDE = false;
                     self.AVAILABLE_PERIOD = "All Day";                    
                     self.ITEM_PAGE = self.activeTabId;
-                    $('#itemImageFile').val("");
-                    $('#itemImageImg').attr("src", "./image/no-photo.png");
                     $('#itemList').hide();
                     $('#itemCreateForm').show();
                     stopLoading();
