@@ -16,7 +16,6 @@
     <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/common.js"></script>
-    <script src="./js/gm-image.js"></script>
 
     <div id="loadingPage" class="loadingPage">
         <img src="./image/loading2.gif" class="loadingIcon"/>        
@@ -38,8 +37,7 @@
         </div>
         
         <div><form>
-            <!-- load item list -->
-            <div id="itemList" style="display: none; margin: 0; padding: 0; width: 100%;">
+            <div id="itemList" style="margin: 0; padding: 0; width: 100%;">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#" >Pending</a>
@@ -131,7 +129,6 @@
                                         tempPendingOrders[tempPendingOrders.length] = tempOrder;
                                     }
                                 }
-                                console.log(tempPendingOrders);
                                 self.myPendingOrders = tempPendingOrders;
                                 //message
                                 if(self.myPendingOrders.length>0){
