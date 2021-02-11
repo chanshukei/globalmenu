@@ -114,7 +114,8 @@
                                             "ORDER_ID": shopRes.items[i].ORDER_ID,
                                             "SHOP_ID": shopRes.items[i].SHOP_ID,
                                             "TOTAL_PRICE": shopRes.items[i].TOTAL_PRICE,
-                                            "CREATE_DT": shopRes.items[i].CREATE_DT
+                                            "CREATE_DT": shopRes.items[i].CREATE_DT,
+                                            "lines": Array
                                         };
                                         tempOrder.lines = [shopRes.items[i]];
                                         for(j=i+1; j<shopRes.items.length; j++){
