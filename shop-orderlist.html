@@ -52,10 +52,12 @@
                     <div class="col-4 order-item-box" v-for="(item, index) in myPendingOrders">
                         <div class="row">{{item.ORDER_ID}}</div>
                         <div class="row">{{item.CREATE_DT}}</div>
-                        <div class="row order-item-line" v-for="(item2, index2) in item.lines">
-                            <div class="col-6">{{item2.ITEM_NAME}}</div>
-                            <div class="col-6">£{{item2.ITEM_PRICE}}</div>
-                        </div>
+                        <!--
+                            <div class="row order-item-line" v-for="(item2, index2) in item.lines">
+                                <div class="col-6">{{item2.ITEM_NAME}}</div>
+                                <div class="col-6">£{{item2.ITEM_PRICE}}</div>
+                            </div>
+                        -->
                         <div class="row">Total: £{{item.TOTAL_PRICE}}</div>
                     </div>
                     <div class="row" style="display: block;">
