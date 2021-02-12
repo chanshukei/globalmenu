@@ -341,3 +341,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: #fafafa;
     padding: 10px;
 }
+
+.order-item-box{
+    border: 1px solid #000000;
+}

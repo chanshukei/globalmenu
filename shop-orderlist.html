@@ -48,7 +48,7 @@
                 </ul>
                 <div class="row">
                     <div class="col-4 order-item-box" v-for="(item, index) in myPendingOrders">
-                        <div class="row">{{item.ORDER_ID}}</div>
+                        <div class="row">{{item.DATE_ORDER_NO}}</div>
                         <div class="row">{{item.CREATE_DT}}</div>
                         <div class="row order-item-line" v-for="(item2, index2) in item.lines">
                             <div class="col-6">{{item2.ITEM_NAME}}</div>
@@ -92,7 +92,7 @@
                     var pData = {
                         "SESSION_ID": Cookies.get('sessionID'),
                         "SHOP_ID": Cookies.get('shopId'),
-                        "STATUS": "pending"
+                        "STATUS_CODE": "pending"
                     };
                     $.ajax({
                         type: "POST",
