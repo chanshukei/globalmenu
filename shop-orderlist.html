@@ -40,10 +40,14 @@
             <div id="itemList" style="margin: 0; padding: 0; width: 100%;">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" >Pending ({{myPendingOrders.length}})</a>
+                        <a :class="[statusCode=='pending'?'nav-link active':'nav-link']" 
+                        aria-current="page" href="#" v-on:click="changeTab('pending')"
+                        >Pending</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#" >Completed</a>
+                        <a :class="[statusCode=='complete'?'nav-link active':'nav-link']" 
+                        aria-current="page" href="#" v-on:click="changeTab('complete')"
+                        >Completed</a>
                     </li>
                 </ul>
                 <div class="row">
@@ -88,7 +92,8 @@
             el: '#shops',
             data: {
                 myPendingOrders: Array,
-                messages: Array
+                messages: Array,
+                statusCode: "pending",
             },
 
             methods: {
@@ -117,13 +122,20 @@
                     });
                 },
 
+                changeTab: function(statusCode2){
+                    startLoading();
+                    var self = this;
+                    self.statusCode = statusCode2;
+                    loadOrderList();
+                },
+
                 loadOrderList: function(){
                     startLoading();
                     var self = this;
                     var pData = {
                         "SESSION_ID": Cookies.get('sessionID'),
                         "SHOP_ID": Cookies.get('shopId'),
-                        "STATUS_CODE": "pending"
+                        "STATUS_CODE": self.statusCode
                     };
                     $.ajax({
                         type: "POST",
