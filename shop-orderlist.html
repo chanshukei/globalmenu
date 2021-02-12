@@ -61,9 +61,13 @@
                             <span>{{item.CREATE_DT}}</span>
                             <span style="float: right;">Total: £{{item.TOTAL_PRICE}}</span>
                         </div>
-                        <div class="row" style="display: block;">
+                        <div class="row button-bar" :style="[statusCode=='pending'?{}:{'display': 'none'}]">
                             <button type="button" class="btn btn-dark" style="max-width: none;"
                             v-on:click="completeOrder(item.ORDER_ID)">Complete</button>
+                        </div>
+                        <div class="row button-bar" :style="[statusCode=='complete'?{}:{'display': 'none'}]">
+                            <button type="button" class="btn btn-dark" style="max-width: none;"
+                            v-on:click="closeOrder(item.ORDER_ID)">Close</button>
                         </div>
                     </div>
                 </div>
