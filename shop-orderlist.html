@@ -40,7 +40,7 @@
             <div id="itemList" style="margin: 0; padding: 0; width: 100%;">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" >Pending</a>
+                        <a class="nav-link active" aria-current="page" href="#" >Pending ({{myPendingOrders.length}})</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#" >Completed</a>
@@ -56,6 +56,10 @@
                         <div class="row order-footer">
                             <span>{{item.CREATE_DT}}</span>
                             <span style="float: right;">Total: £{{item.TOTAL_PRICE}}</span>
+                        </div>
+                        <div class="row" style="display: block;">
+                            <button type="button" class="btn btn-dark" style="max-width: none;"
+                            v-on:click="completeOrder(item.ORDER_ID)">Complete</button>
                         </div>
                     </div>
                 </div>
@@ -88,6 +92,31 @@
             },
 
             methods: {
+                completeOrder: function(orderId){
+                    startLoading();
+                    var self = this;
+                    var pData = {
+                        "SESSION_ID": Cookies.get('sessionID'),
+                        "SHOP_ID": Cookies.get('shopId'),
+                        "ORDER_ID": orderId,
+                        "STATUS_CODE": "complete"
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/UpdateOrderStatus",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                $('#btnRefresh').click();
+                            }else{
+                                stopLoading();
+                            }
+                        }
+                    });
+                },
+
                 loadOrderList: function(){
                     startLoading();
                     var self = this;
