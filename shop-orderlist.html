@@ -51,7 +51,7 @@
                     </li>
                 </ul>
                 <div class="row">
-                    <div class="col-4 order-item-box" v-for="(item, index) in myPendingOrders">
+                    <div class="col-4 order-item-box" v-for="(item, index) in myOrders">
                         <div class="row order-number">{{item.DATE_ORDER_NO}}</div>
                         <div class="row order-item-line" v-for="(item2, index2) in item.lines">
                             <div class="col-10">{{item2.ITEM_NAME}}</div>
@@ -91,7 +91,7 @@
         var app = new Vue({
             el: '#shops',
             data: {
-                myPendingOrders: Array,
+                myOrders: Array,
                 messages: Array,
                 statusCode: "pending",
             },
@@ -126,7 +126,7 @@
                     startLoading();
                     var self = this;
                     self.statusCode = statusCode2;
-                    loadOrderList();
+                    self.loadOrderList();
                 },
 
                 loadOrderList: function(){
@@ -171,13 +171,8 @@
                                         tempPendingOrders[tempPendingOrders.length] = tempOrder;
                                     }
                                 }
-                                self.myPendingOrders = tempPendingOrders;
-                                //message
-                                if(self.myPendingOrders.length>0){
-                                    self.messages = [];
-                                }else{
-                                    self.messages = [{MSG_TEXT: "All orders are completed."}];
-                                }
+                                self.myOrders = tempPendingOrders;                                
+                                self.messages = [];                                
                             }
                             stopLoading();                            
                         }
