@@ -101,6 +101,31 @@
             },
 
             methods: {
+                closeOrder: function(orderId){
+                    startLoading();
+                    var self = this;
+                    var pData = {
+                        "SESSION_ID": Cookies.get('sessionID'),
+                        "SHOP_ID": Cookies.get('shopId'),
+                        "ORDER_ID": orderId,
+                        "STATUS_CODE": "closed"
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/UpdateOrderStatus",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                $('#btnRefresh').click();
+                            }else{
+                                stopLoading();
+                            }
+                        }
+                    });
+                },
+
                 completeOrder: function(orderId){
                     startLoading();
                     var self = this;
