@@ -48,18 +48,22 @@
                 </ul>
                 <div class="row">
                     <div class="col-4 order-item-box" v-for="(item, index) in myPendingOrders">
-                        <div class="row">{{item.DATE_ORDER_NO}}</div>
-                        <div class="row">{{item.CREATE_DT}}</div>
+                        <div class="row" 
+                        style="font-size: 14pt; text-align: center; display: block; width: 100%;"
+                        >{{item.DATE_ORDER_NO}}</div>
                         <div class="row order-item-line" v-for="(item2, index2) in item.lines">
                             <div class="col-6">{{item2.ITEM_NAME}}</div>
                             <div class="col-6">£{{item2.ITEM_PRICE}}</div>
                         </div>
-                        <div class="row">Total: £{{item.TOTAL_PRICE}}</div>
+                        <div class="row" style="display: block; width: 100%;">
+                            <span>{{item.CREATE_DT}}</span>
+                            <span style="float: right;">Total: £{{item.TOTAL_PRICE}}</span>
+                        </div>
                     </div>
-                    <div class="row" style="display: block;">
-                        <button class="btn btn-dark" style="float: right;" type="button"
-                                onclick="gotoHome()">Home</button>                            
-                    </div>
+                </div>
+                <div class="row" style="display: block;">
+                    <button class="btn btn-dark" style="float: right;" type="button"
+                            onclick="gotoHome()">Home</button>                            
                 </div>
             </div>
             <button id="btnRefresh" style="display: none;" type="button" 
