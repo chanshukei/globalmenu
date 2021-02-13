@@ -98,7 +98,7 @@
                     var errors = []
                     $('input[required]').each(function(index) {
                         if($(this).val()==''){
-                            var labelText = $('label[for="'+$(this).attr('id')+'"]');
+                            var labelText = $('label[for="'+$(this).attr('id')+'"]').text();
                             errors[errors.length] = {'MSG_TEXT': labelText + ' is required.'};
                         }
                     });
@@ -107,7 +107,7 @@
                         if(aEmail!=''){
                             var re = /\S+@\S+\.\S+/;
                             if(!re.test(aEmail)){
-                                var labelText = $('label[for="'+$(this).attr('id')+'"]');
+                                var labelText = $('label[for="'+$(this).attr('id')+'"]').text();
                                 errors[errors.length] = {'MSG_TEXT': labelText + ' is not in Email address format.'};
                             }
                         }
