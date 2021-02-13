@@ -122,6 +122,11 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shopRes = JSON.parse(jqXHR.responseText);
+                                if(shopRes.errorCode==1){
+                                    self.messages = [{"MSG_TEXT":"The email is already used by other users."}];
+                                }else{
+                                    console.log("activationCode: "+shopRes.activationCode);
+                                }
                                 //window.location.href = "./foodmenu.html";
                                 console.log(jqXHR.responseText);
                             }
