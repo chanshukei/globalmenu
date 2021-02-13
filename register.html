@@ -37,32 +37,32 @@
 
         <div><form>
             <div class="row">
-                <label>Email address</label>
-                <input class="form-control" v-model="email" type="email"/>
+                <label for="email">Email address</label>
+                <input class="form-control" id="email" v-model="email" type="email" required/>
             </div>
             <div class="row">
-                <label>Fisrt Name</label>
-                <input class="form-control" v-model="firstName" type="text"/>
+                <label for="firstName">First Name</label>
+                <input class="form-control" id="firstName" v-model="firstName" type="text"/>
             </div>
             <div class="row">
-                <label>Last Name</label>
-                <input class="form-control" v-model="lastName" type="text"/>
+                <label for="lastName">Last Name</label>
+                <input class="form-control" id="lastName" v-model="lastName" type="text"/>
             </div>
             <div class="row">
-                <label>Company</label>
-                <input class="form-control" v-model="company" type="text"/>
+                <label for="company">Company</label>
+                <input class="form-control" id="company" v-model="company" type="text" required/>
             </div>
             <div class="row">
-                <label>Contact Number</label>
-                <input class="form-control" v-model="contactNumber" type="number"/>
+                <label for="contactNumber">Contact Number</label>
+                <input class="form-control" id="contactNumber" v-model="contactNumber" type="number" required/>
             </div>
             <div class="row">
-                <label>Password</label>
-                <input class="form-control" v-model="password" type="password"/>
+                <label for="password">Password</label>
+                <input class="form-control" id="password" v-model="password" type="password" required/>
             </div>
             <div class="row">
-                <label>Confirm Password</label>
-                <input class="form-control" v-model="confirmPassword" type="password"/>
+                <label for="confirmPassword">Confirm Password</label>
+                <input class="form-control" id="confirmPassword" v-model="confirmPassword" type="password" required/>
             </div>
             <div class="row" style="display: block;">
                 <button class="btn btn-success" style="float: right;" 
@@ -94,11 +94,26 @@
             },
 
             methods: {
+                checkForm: function(){
+                    var errors = []
+                    $('input[required]').each(function(index) {
+                        if($(this).val()==''){
+                            errors[errors.length] = {'MSG_TEXT': $(this).attr('id') + ' is required.'};
+                        }
+                    });
+                    this.messages = errors;
+                    return errors.length==0;
+                },
+
                 cancelCreate: function(){
                     window.location.href = "./index.html";
                 },
 
-                createAccount: function(){                
+                createAccount: function(){        
+                    if(!this.checkForm()){
+                        return;
+                    }
+                    
                     var self = this;
                     var pData = {
                         "email": self.email,
