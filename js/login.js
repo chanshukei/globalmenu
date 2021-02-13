@@ -47,6 +47,10 @@ function signIn() {
     });
 }
 
+function gotoRegister(){
+    window.location.href = './register.html';
+}
+
 function gotoSignIn(){
     window.location.href = './signin.html';
 }
