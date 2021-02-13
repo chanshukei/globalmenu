@@ -94,34 +94,13 @@
             },
 
             methods: {
-                checkForm: function(){
-                    var errors = []
-                    $('input[required]').each(function(index) {
-                        if($(this).val()==''){
-                            var labelText = $('label[for="'+$(this).attr('id')+'"]').text();
-                            errors[errors.length] = {'MSG_TEXT': labelText + ' is required.'};
-                        }
-                    });
-                    $('input[type="email"]').each(function(index) {
-                        var aEmail = $(this).val();
-                        if(aEmail!=''){
-                            var re = /\S+@\S+\.\S+/;
-                            if(!re.test(aEmail)){
-                                var labelText = $('label[for="'+$(this).attr('id')+'"]').text();
-                                errors[errors.length] = {'MSG_TEXT': labelText + ' is not in Email address format.'};
-                            }
-                        }
-                    });
-                    this.messages = errors;
-                    return errors.length==0;
-                },
-
                 cancelCreate: function(){
                     window.location.href = "./index.html";
                 },
 
                 createAccount: function(){        
-                    if(!this.checkForm()){
+                    var errors = checkForm();
+                    if(errors.length>0){
                         return;
                     }
                     

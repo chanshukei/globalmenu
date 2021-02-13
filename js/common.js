@@ -36,3 +36,24 @@ function startLoading(){
 function stopLoading(){
     $('#loadingPage').hide();
 }
+
+function checkForm(){
+    var errors = []
+    $('input[required]').each(function(index) {
+        if($(this).val()==''){
+            var labelText = $('label[for="'+$(this).attr('id')+'"]').text();
+            errors[errors.length] = {'MSG_TEXT': labelText + ' is required.'};
+        }
+    });
+    $('input[type="email"]').each(function(index) {
+        var aEmail = $(this).val();
+        if(aEmail!=''){
+            var re = /\S+@\S+\.\S+/;
+            if(!re.test(aEmail)){
+                var labelText = $('label[for="'+$(this).attr('id')+'"]').text();
+                errors[errors.length] = {'MSG_TEXT': labelText + ' is not in Email address format.'};
+            }
+        }
+    });
+    return errors;
+}
