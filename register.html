@@ -14,43 +14,63 @@
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/js.cookie.min.js"></script>
-    <script src="./js/login.js"></script>
     <script src="./js/common.js"></script>
+    <script src="./js/vue.js"></script>
 
     <div id="loadingPage" class="loadingPage">        
         <img src="./image/loading2.gif" class="loadingIcon"/>        
     </div>
 
-    <div class="mainPage" style="width: 400px;">
+    <div id="shops" class="mainPage">
         <div style="text-align: left; font-size: 16pt; background-color: #f0f0f0;">
             <img style="padding: 2px; width: 48px;" src="./ico/tomsix.png" />
             Register New Account
         </div>
-        <div class="text-center">
-            <div class="row chatbox" style="display: none;">
-                <div style="max-width: 40px;"><img src="./ico/user2.png" /></div>
-                <div>
-                    Please input ...
-                </div>                    
+
+        <!-- chatbox -->
+        <div class="row text-center" :style="[(messages.length>0)?{}:{'display':'none'}]">
+            <div class="chatbox">
+                <img style="float: left;" src="./ico/user2.png" />
+                <span v-for="(item, index) in messages">{{item.MSG_TEXT}}<br /></span>                
             </div>
-            <form>
-                <div class="row">
-                    <label>Email address</label>
-                    <input  class="form-control" 
-                            id="usernameEmail"
-                            name="usernameEmail" type="text"/>
-                </div>
-                <div class="row">
-                    <label>Password</label>
-                    <input  class="form-control" 
-                            id="password"
-                            name="password" type="password"
-                            placeholder="Password" />
-                </div>
-                <button class="btn btn-success" style="width:100%" onclick="signIn()" type="button">Sign in</button>
-                <button class="btn btn-dark" style="width:100%" onclick="backFromSignin()" type="button">Back</button>
-            </form>
         </div>
+
+        <div><form>
+            <div class="row">
+                <label>Email address</label>
+                <input class="form-control" v-model="email" type="email"/>
+            </div>
+            <div class="row">
+                <label>Fisrt Name</label>
+                <input class="form-control" v-model="firstName" type="text"/>
+            </div>
+            <div class="row">
+                <label>Last Name</label>
+                <input class="form-control" v-model="lastName" type="text"/>
+            </div>
+            <div class="row">
+                <label>Company</label>
+                <input class="form-control" v-model="company" type="text"/>
+            </div>
+            <div class="row">
+                <label>Contact Number</label>
+                <input class="form-control" v-model="contactNumber" type="text"/>
+            </div>
+            <div class="row">
+                <label>Password</label>
+                <input class="form-control" v-model="password" type="password"/>
+            </div>
+            <div class="row">
+                <label>Confirm Password</label>
+                <input class="form-control" v-model="confirmPassword" type="password"/>
+            </div>
+            <div class="row" style="display: block;">
+                <button class="btn btn-success" style="width:100%" 
+                        v-on:click="createAccount()" type="button">Create Account</button>
+                <button class="btn btn-dark" style="width:100%" 
+                        v-on:click="cancelCreate()" type="button">Cancel</button>
+            </form>
+        </form></div>
     </div>
 
     <footer class="footer">
@@ -58,5 +78,56 @@
             <span>Copyright ©2021 Edward Chan</span>
         </div>
     </footer>
+
+    <script>
+        var app = new Vue({
+            el: '#shops',
+            data: {
+                email: "",
+                firstName: "",
+                lastName: "",
+                company: "",
+                contactNumber: "",
+                password: "",
+                confirmPassword: "",
+                messages: []
+            },
+
+            methods: {
+                cancelCreate: function(){
+                    window.location.href = "./index.html";
+                },
+
+                createAccount: function(){                
+                    var self = this;
+                    var pData = {
+                        "email": self.email,
+                        "firstName": self.firstName,
+                        "lastName": self.lastName,
+                        "contactNumber": self.contactNumber,
+                        "company": self.company,
+                        "password": self.password
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://globalmenu-login.azurewebsites.net/api/CreateAccount",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                var shopRes = JSON.parse(jqXHR.responseText);
+                                //window.location.href = "./foodmenu.html";
+                            }
+                        }
+
+                    });
+                }
+
+            }
+        });
+
+
+    </script>
 </body>
 </html>
