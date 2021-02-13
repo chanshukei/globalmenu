@@ -190,9 +190,7 @@ label{
 }
 
 .row{
-    padding-left: 20px;
-    padding-bottom: 20px;
-    padding-top: 0px;
+    padding-left: 10px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
