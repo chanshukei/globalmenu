@@ -43,6 +43,13 @@
             <form>
                 <!-- load item list -->
                 <div id="itemList" class="row" style="margin: 0; padding: 0;">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item" v-for="(item, index) in myTabs">
+                            <a :class="[item.PAGE_ID==activeTabId?'nav-link active':'nav-link']" 
+                                aria-current="page" href="#" v-on:click="changeTab(item.PAGE_ID)">{{item.PAGE_NAME}}</a>
+                        </li>
+                    </ul>
+
                     <div style="width: 50%;" v-for="(item, index) in myItems">                                                
                         <div class="menu-item-box">
                             <img class="menu-item-img" :src="item.IMAGE_DATA">
@@ -89,9 +96,11 @@
             el: '#shops',
             data: {
                 myItems: Array,
+                myTabs: Array,
                 messages: Array,
                 totalAmount: 0,
                 myOrders: Array,
+                activeTabId: ""
             },
 
             methods: {
@@ -102,6 +111,34 @@
                         self.myItems[i].COUNT = 0;
                     }
                     totalAmount = 0;
+                },
+
+                loadTabList: function(){
+                    startLoading();
+                    var self = this;
+                    var pData = {
+                        "SHOP_ID": Cookies.get('shopId')                     
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "https://tomsix.azurewebsites.net/api/MenuTab",
+                        data: JSON.stringify(pData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        complete: function (jqXHR) {
+                            if (jqXHR.readyState === 4) {
+                                var shopRes = JSON.parse(jqXHR.responseText);
+                                self.myTabs = shopRes.tabs;
+                                if(self.myTabs.length>0){
+                                    self.messages = [];
+                                    self.activeTabId = self.myTabs[0].PAGE_ID;
+                                    self.loadItemList();
+                                }
+                            }
+                            stopLoading();                            
+                        }
+
+                    });
                 },
 
                 placeOrder: function(){
