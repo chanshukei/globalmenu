@@ -50,13 +50,11 @@
                         </li>
                     </ul>
 
-                    <div style="width: 50%;" v-for="(item, index) in myItems">                                                
-                        <div class="menu-item-box">
-                            <img class="menu-item-img" :src="item.IMAGE_DATA">
-                            <div class="menu-item-text">
-                                {{item.ITEM_NAME}}&nbsp;
-                                £{{item.PRICE}}
-                            </div>
+                    <div class="menu-item-box" v-for="(item, index) in myItems">
+                        <img class="menu-item-img" :src="item.IMAGE_DATA">
+                        <div class="menu-item-text">
+                            {{item.ITEM_NAME}}&nbsp;
+                            £{{item.PRICE}}
                         </div>
                         <div class="item-button-bar" :style='[item.COUNT==0?{}:{"display":"none"}]'>
                             <button class="btn btn-dark item-btn" 
