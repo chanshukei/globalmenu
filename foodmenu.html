@@ -50,9 +50,9 @@
                         </li>
                     </ul>
                     <div class="row" style="display: block; padding: 0; margin: 0;">
-                        <div class="menu-item-box" v-for="(item, index) in myItems">
+                        <div class="menu-item-box" style="max-height: none; width: 160px;" v-for="(item, index) in myItems">
                             <img class="menu-item-img" :src="item.IMAGE_DATA">
-                            <div class="menu-item-text" style="position: relative;">
+                            <div class="menu-item-text" style="position: relative; top: auto;">
                                 {{item.ITEM_NAME}}&nbsp;
                                 £{{item.PRICE}}
                             </div>
