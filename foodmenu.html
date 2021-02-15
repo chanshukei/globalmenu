@@ -50,7 +50,7 @@
                         </li>
                     </ul>
                     <div class="row" style="display: block; padding: 0; margin: 0;">
-                        <div class="menu-item-box" style="max-height: none; width: 160px;" v-for="(item, index) in myItems">
+                        <div class="menu-item-box" style="height: auto; width: 160px;" v-for="(item, index) in myItems">
                             <img class="menu-item-img" :src="item.IMAGE_DATA">
                             <div class="menu-item-text" style="position: relative; top: auto;">
                                 {{item.ITEM_NAME}}&nbsp;
@@ -62,13 +62,13 @@
                                         v-on:click="addItem(item.ITEM_ID)">Add</button>
                             </div>
                             <div class="item-button-bar" :style='[item.COUNT==0?{"display":"none"}:{}]'>
-                                <button class="btn btn-dark item-btn" style="width: 35%;"
+                                <button class="btn btn-dark item-btn" style="width: 30%;"
                                         type="button"
                                         v-on:click="addItem(item.ITEM_ID)">+</button>
                                 <div
-                                    style="width: 25%; margin: 0; padding: 0; display: inline-block; text-align: center;"
+                                    style="width: 30%; margin: 0; padding: 0; display: inline-block; text-align: center;"
                                     >{{item.COUNT}}</div>
-                                <button class="btn btn-dark item-btn" style="width: 35%;"
+                                <button class="btn btn-dark item-btn" style="width: 30%;"
                                         type="button"
                                         v-on:click="removeItem(item.ITEM_ID)">-</button>
                             </div>
