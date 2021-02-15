@@ -99,12 +99,13 @@
                 },
 
                 createAccount: function(){        
+                    var self = this;
                     var errors = checkForm();
                     if(errors.length>0){
+                        self.messages = errors;
                         return;
                     }
                     
-                    var self = this;
                     var pData = {
                         "email": self.email,
                         "firstName": self.firstName,
