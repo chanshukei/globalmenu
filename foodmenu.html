@@ -113,6 +113,12 @@
                     totalAmount = 0;
                 },
 
+                changeTab: function(t){
+                    var self = this;
+                    self.activeTabId = t;
+                    self.loadItemList();
+                },
+
                 loadTabList: function(){
                     startLoading();
                     var self = this;
@@ -220,6 +226,7 @@
                     var pLang = getUrlParameter("lang");
                     var pData = {
                         "SHOP_ID": Cookies.get('shopId'),
+                        "PAGE_ID": self.activeTabId,
                         "LANG": pLang,                      
                     };
                     $.ajax({
