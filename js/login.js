@@ -25,11 +25,11 @@ function validateSessionId(pSessionId, successCallback, failCallback) {
 
 function signIn() {
     startLoading();
-    console.log('called signIn');
     var pData = {
         "usernameEmail": $('#usernameEmail').val(),
         "password": $('#password').val()
     };
+    console.log('signIn 1');
     $.ajax({
         type: "POST",
         url: "https://globalmenu-login.azurewebsites.net/api/SignInSession",
@@ -38,10 +38,12 @@ function signIn() {
         dataType: "json",
         complete: function (jqXHR) {
             if (jqXHR.readyState === 4) {
+                console.log('signIn 2');
                 var signInSession = JSON.parse(jqXHR.responseText);
                 Cookies.remove('sessionID');
                 Cookies.set('sessionID', signInSession.signInSessionID);
-                window.location.href = './shops.html';
+                console.log('signIn 3');
+                //window.location.href = './shops.html';
             }
         }
     });
