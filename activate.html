@@ -13,7 +13,6 @@
 <body class="container">
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/common.js"></script>
 
@@ -74,8 +73,7 @@
                                 console.debug(jqXHR.responseText);
                                 var signInSessionID = JSON.parse(jqXHR.responseText).signInSessionID;
                                 if(signInSessionID!=''){
-                                    Cookies.remove('sessionID');
-                                    Cookies.set('sessionID', signInSessionID);
+                                    sessionStorage.setItem('sessionID', signInSessionID);
                                     stopLoading();
                                     setTimeout(gotoHome, 5000);
                                 }

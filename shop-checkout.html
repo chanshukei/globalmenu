@@ -13,7 +13,6 @@
 <body class="container">
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/common.js"></script>
     <script src="https://pay.google.com/gp/p/js/pay.js"></script>
@@ -86,9 +85,9 @@
             methods: {
                 completedPayment: function(){                
                     var self = this;
-                    var pAccountId = Cookies.get("orderSessionID");
+                    var pAccountId = sessionStorage.getItem("orderSessionID");
                     var pData = {
-                        "SHOP_ID": Cookies.get('shopId'),
+                        "SHOP_ID": sessionStorage.getItem('shopId'),
                         "SESSION_ID": pAccountId,
                         "ORDERS": self.myOrders,
                         "TOTAL_PRICE": self.totalAmount
@@ -135,8 +134,8 @@
 
                 loadOrderList: function(){
                     var self = this;
-                    var tempOrder = JSON.parse(Cookies.get("tempOrder"));
-                    Cookies.remove("tempOrder");
+                    var tempOrder = JSON.parse(sessionStorage.getItem("tempOrder"));
+                    sessionStorage.removeItem("tempOrder");
                     self.myOrders = tempOrder.myOrders;
                     for(i=0; i<self.myOrders.length; i++){
                         console.log(i + ": " + self.myOrders[i]);

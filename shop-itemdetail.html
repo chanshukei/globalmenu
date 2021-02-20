@@ -13,7 +13,6 @@
 <body class="container">
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/common.js"></script>
     <script src="./js/gm-image.js"></script>
@@ -191,8 +190,8 @@
                     var self = this;
                     self.ITEM_ID = getUrlParameter('itemId');
                     var pData = {
-                        "SESSION_ID": Cookies.get('sessionID'),
-                        "SHOP_ID": Cookies.get('shopId'),
+                        "SESSION_ID": sessionStorage.getItem('sessionID'),
+                        "SHOP_ID": sessionStorage.getItem('shopId'),
                         "ITEM_ID": self.ITEM_ID
                     };
                     $.ajax({
@@ -227,8 +226,8 @@
                 saveItem: function () {
                     startLoading();
                     var self = this;
-                    var pSessionId = Cookies.get('sessionID');
-                    var pShopId = Cookies.get('shopId');
+                    var pSessionId = sessionStorage.getItem('sessionID');
+                    var pShopId = sessionStorage.getItem('shopId');
                     var pData = {
                         "ITEM_ID": self.ITEM_ID,
                         "SHOP_ID": pShopId,

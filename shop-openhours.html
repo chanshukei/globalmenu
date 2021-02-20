@@ -15,7 +15,6 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/gm-image.js"></script>
     <script src="./js/openingHours.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
 
     <div style="max-width: 400px; width: 98%; padding: 10px; display:inline-block;">
@@ -218,8 +217,6 @@
 
                 saveOpenHours: function () {
                     var self = this;
-                    console.log('addNewShop');
-                    console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
                         "MON_OPEN_TIME": this.monOpen?this.MON_OPEN_TIME:"",
                         "TUE_OPEN_TIME": this.tueOpen?this.TUE_OPEN_TIME:"",
@@ -235,10 +232,9 @@
                         "FRI_CLOSE_TIME": this.friOpen?this.FRI_CLOSE_TIME:"",
                         "SAT_CLOSE_TIME": this.satOpen?this.SAT_CLOSE_TIME:"",
                         "SUN_CLOSE_TIME": this.sunOpen?this.SUN_CLOSE_TIME:"",
-                        "SESSION_ID": Cookies.get('sessionID'),
-                        "SHOP_ID": Cookies.get('shopId')
+                        "SESSION_ID": sessionStorage.getItem('sessionID'),
+                        "SHOP_ID": sessionStorage.getItem('shopId')
                     };
-                    console.log(JSON.stringify(pData));
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-shop.azurewebsites.net/api/UpdateOpenHours",

@@ -15,7 +15,6 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/bootstrap-toggle.min.js"></script>
     <script src="./js/vue.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
     <script src="./js/sitemap.js"></script>
     <script src="./js/gm-image.js"></script>
 
@@ -165,10 +164,9 @@
                 SelectedProject: Object
             },
             created: function () {
-                console.log('Load Projects: ' + Cookies.get('sessionID'));
                 var self = this;
                 var pData = {
-                    "SESSION_ID": Cookies.get('sessionID')
+                    "SESSION_ID": sessionStorage.getItem('sessionID')
                 };
                 $.ajax({
                     type: "POST",
