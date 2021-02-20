@@ -34,7 +34,7 @@
                 <img style="float: left;" src="./ico/user2.png" />
                 Your account has been activated.<br />
                 It will be redirect to the Home page after 5 seconds&nbsp;
-                or click <a href="#" v-on:click="activate()">here</a> to Home now.
+                or click <a href="#" onclick="gotoHome()">here</a> to Home now.
             </div>
         </div>
     </div>
@@ -72,15 +72,13 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 console.debug(jqXHR.responseText);
-                                var shopRes = JSON.parse(jqXHR.responseText);
-                                Cookies.remove('sessionID');
-                                Cookies.set('sessionID', shopRes.signInSessionID);
-                                stopLoading();
-                                /*
-                                setTimeout(function(){ 
-                                    window.location.href = './shops.html';
-                                }, 5000);                                
-                                */
+                                var signInSessionID = JSON.parse(jqXHR.responseText).signInSessionID;
+                                if(signInSessionID!=''){
+                                    Cookies.remove('sessionID');
+                                    Cookies.set('sessionID', signInSessionID);
+                                    stopLoading();
+                                    setTimeout(gotoHome, 5000);
+                                }
                             }else{
                                 stopLoading();
                             }
