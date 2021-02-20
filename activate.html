@@ -76,9 +76,11 @@
                                 Cookies.remove('sessionID');
                                 Cookies.set('sessionID', shopRes.signInSessionID);
                                 stopLoading();
+                                /*
                                 setTimeout(function(){ 
                                     window.location.href = './shops.html';
                                 }, 5000);                                
+                                */
                             }else{
                                 stopLoading();
                             }
