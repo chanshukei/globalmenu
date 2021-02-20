@@ -52,11 +52,11 @@
                 activationCode: getUrlParameter('code')            
             },
 
-            methods: {
-                created: function(){
-                    activate();
-                },
+            created: function(){
+                this.activate();
+            },
 
+            methods: {
                 activate: function () {
                     startLoading();
                     var pData = {
