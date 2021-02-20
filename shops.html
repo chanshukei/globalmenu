@@ -13,7 +13,6 @@
 <body class="container">
     <script src="./js/jquery-3.5.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/js.cookie.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="./js/shop.js"></script>
     <script src="./js/common.js"></script>
@@ -89,8 +88,6 @@
                             </div>
                         </div>
                     </div>
-                    <button id="btnRefresh" style="display: none;" type="button" 
-                            v-on:click="loadShopList()">Refresh</button>
                 </div>
                 <!-- end -->
 
@@ -153,14 +150,17 @@
                 myShops: Array,
                 messages: Array
             },
+
+            created: function(){
+                loadShopList();
+            },
+
             methods: {
                 loadShopList: function(){
                     startLoading();
                     var self = this;
-                    console.log('load shop list');
-                    console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
-                        "SESSION_ID": Cookies.get('sessionID')
+                        "SESSION_ID": sessionStorage.getItem('sessionID')
                     };
                     $.ajax({
                         type: "POST",
@@ -174,7 +174,7 @@
                                 self.myShops = shopRes.shops;
                                 if(self.myShops.length>0){
                                     self.messages = [];
-                                    Cookies.set('shopId', self.myShops[0].SHOP_ID);
+                                    sessionStorage.setItem('shopId', self.myShops[0].SHOP_ID);
                                     $('#shopCreateForm').hide();
                                     $('#shopList').show();
                                 }else{
@@ -194,8 +194,6 @@
                 addNewShop: function () {
                     startLoading();
                     var self = this;
-                    console.log('addNewShop');
-                    console.log('session-id:'+Cookies.get('sessionID'));
                     var pData = {
                         "SHOP_NAME": this.SHOP_NAME,
                         "POSTCODE": this.POSTCODE,
@@ -203,7 +201,7 @@
                         "ADDRESS2": this.ADDRESS2,
                         "ADDRESS3": this.ADDRESS3,
                         "FOOD_STYLE": this.FOOD_STYLE,
-                        "SESSION_ID": Cookies.get('sessionID')
+                        "SESSION_ID": sessionStorage.getItem('sessionID')
                     };
                     $.ajax({
                         type: "POST",
@@ -214,7 +212,7 @@
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
                                 var shop = JSON.parse(jqXHR.responseText);
-                                Cookies.set('shopId', shop.shopId);
+                                sessionStorage.setItem('shopId', shop.shopId);
                                 window.location.href = './shop-image.html?successCallbackUrl=shop-openhours';
                             }else{
                                 stopLoading();
@@ -223,11 +221,6 @@
                     });
                 }
             }
-        });
-
-        $(function() {
-            startLoading();
-            $('#btnRefresh').click();
         });
     </script>
 
