@@ -34,11 +34,9 @@
                 <img style="float: left;" src="./ico/user2.png" />
                 Your account has been activated.<br />
                 It will be redirect to the Home page after 5 seconds&nbsp;
-                or click <a href="#" v-on:click="">here</a> to Home now.
+                or click <a href="#" v-on:click="activate()">here</a> to Home now.
             </div>
-        </div>        
-
-        <button id="btnRefresh" v-on:click="activate()">Refresh</button>
+        </div>
     </div>
 
     <footer class="footer">
@@ -64,6 +62,7 @@
                     var pData = {
                         "code": this.activationCode
                     };
+                    console.debug("code: "+this.activationCode);
                     $.ajax({
                         type: "POST",
                         url: "https://globalmenu-login.azurewebsites.net/api/ActivateAccount",
@@ -72,6 +71,7 @@
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
+                                console.debug(jqXHR.responseText);
                                 var shopRes = JSON.parse(jqXHR.responseText);
                                 Cookies.remove('sessionID');
                                 Cookies.set('sessionID', shopRes.signInSessionID);
