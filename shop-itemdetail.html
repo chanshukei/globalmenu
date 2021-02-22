@@ -58,7 +58,8 @@
                 <div class="col-6">
                     <label>Item Tab</label>
                     <select class="form-control" v-model="ITEM_PAGE">
-                        <option :value="item.PAGE_ID" v-for="(item, index) in myTabs">
+                        <option :value="item.PAGE_ID" v-for="(item, index) in myTabs" 
+                        :selected="[item.PAGE_ID==ITEM_PAGE?'selected':'']">
                             {{item.PAGE_NAME}}
                         </option>
                     </select>
