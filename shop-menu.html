@@ -57,6 +57,7 @@
                     <div class="menu-item-box" v-for="(item, index) in myItems">                                                
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
                         <div class="menu-item-text">{{item.ITEM_NAME}}</div>
+                        <button type="button" v-on:click="editItem(item.ITEM_ID)">Edit</button>
                     </div>
                     <div class="row" style="display: block;">
                         <button class="btn btn-success" style="float: right;" type="button" 
@@ -66,8 +67,6 @@
                     </div>
                 </div>
             </div>
-            <button id="btnRefresh" style="display: none;" type="button" 
-                    v-on:click="loadTabList()">Refresh</button>
             <!-- end -->
 
             <!-- edit tab name -->
@@ -284,7 +283,15 @@
                 AVAILABLE_PERIOD: "All Day"
             },
 
+            created: function(){
+                this.loadTabList();
+            },
+
             methods: {
+                editItem: function(itemId){
+                    window.location.href = "./shop-itemdetail.html?itemId="+itemId;
+                },
+
                 changeTab: function(t){
                     console.log('changeTab:'+t);
                     var self = this;
@@ -564,11 +571,6 @@
                     });
                 }
             }
-        });
-
-        $(function() {
-            startLoading();
-            $('#btnRefresh').click();
         });
     </script>
 
