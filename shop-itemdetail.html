@@ -139,12 +139,10 @@
             </div>
 
             <div class="row" style="display: block;">
-                <button type="button" style="display: none;"
-                        v-on:click='loadItem()'>Refresh</button>
                 <button class="btn btn-success" type="button" style="float: right;"
-                        v-on:click='addNewItem()'>Add</button>
+                        v-on:click='updateItem()'>Save</button>
                 <button class="btn btn-dark" type="button" style="float: right;"
-                        v-on:click='backToStep2()'>Back</button>
+                        onclick='gotoShopMenu()'>Back</button>
             </div>
 
             <!-- end create form -->
@@ -179,6 +177,10 @@
                 AVAILABLE_PERIOD: "All Day"
             },
 
+            created: function(){
+                this.loadItem();
+            },
+
             methods: {
                 cancelEditItem: function(){
                     startLoading();
@@ -196,7 +198,7 @@
                     };
                     $.ajax({
                         type: "POST",
-                        url: "https://globalmenu-shop.azurewebsites.net/api/ItemList",
+                        url: "https://globalmenu-shop.azurewebsites.net/api/ItemDetail",
                         data: JSON.stringify(pData),
                         contentType: "application/json",
                         dataType: "json",
@@ -267,10 +269,6 @@
             }
         });
 
-        $(function() {
-            startLoading();            
-            $('#btnRefresh').click();
-        });
     </script>
 
 </body>

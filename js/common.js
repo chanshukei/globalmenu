@@ -25,6 +25,11 @@ function gotoHome(){
     window.location.href = "./shops.html";    
 }
 
+
+function gotoShopMenu(){
+    window.location.href = "./shop-menu.html";    
+}
+
 function goToFoodMenu(pLang){
     window.location.href = "./foodmenu.html?lang="+pLang;
 }
