@@ -211,6 +211,7 @@
 
                 loadItem: function(){
                     startLoading();
+                    loadTabList();
                     var self = this;
                     self.ITEM_ID = getUrlParameter('itemId');
                     var pData = {
