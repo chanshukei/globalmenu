@@ -57,7 +57,8 @@
                     <div class="menu-item-box" v-for="(item, index) in myItems">                                                
                         <img class="menu-item-img" :src="item.IMAGE_DATA">
                         <div class="menu-item-text">{{item.ITEM_NAME}}</div>
-                        <button type="button" v-on:click="editItem(item.ITEM_ID)">Edit</button>
+                        <button class="btn btn-dark menu-item-btn" 
+                            type="button" v-on:click="editItem(item.ITEM_ID)">Edit</button>
                     </div>
                     <div class="row" style="display: block;">
                         <button class="btn btn-success" style="float: right;" type="button" 

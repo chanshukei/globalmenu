@@ -206,7 +206,6 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0px;
     margin: 5px;
     background-color: #FFFFFF;
-    height: 170px;
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -221,10 +220,7 @@ input[type=number]::-webkit-outer-spin-button {
 .menu-item-text{
     font-size: 10pt;
     font-style: italic;
-    position: absolute;
-    top: 145px;
-    z-index: 10;
-    left: 0;
+    position: relative;
     background-color: rgba(255, 255, 255, 0.7);
     width: 100%;
     text-align: center;
@@ -377,4 +373,9 @@ input[type=number]::-webkit-outer-spin-button {
     display: block; 
     margin: 0; 
     padding: 0;
+}
+
+.menu-item-btn{
+    max-width: unset;
+    width: 95%;
 }
