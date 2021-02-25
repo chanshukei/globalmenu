@@ -12,15 +12,18 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./Chart.min.js"></script>
 
-    <div id="dateBox" onclick="updateChart()">        
+    <div id="dateBox" onclick="updateChart(5)">        
     </div>
     <canvas id="myChart" width="400" height="400"></canvas>    
 
     <script>
         var myChart;
-        function updateChart(){
+        function updateChart(i){
             chart.data.datasets.forEach((dataset) => {
-                dataset.data.push(data);
+                var l = dataset.data.length;
+                for(var j=0; j<l; j++){
+                    dataset.data[j] += i; 
+                }
             });
             chart.update();
         }
@@ -34,7 +37,7 @@
                     labels: ['Red', 'Blue', 'Yellow'],
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        data: [12, 19, 3],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
