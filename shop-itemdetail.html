@@ -243,7 +243,7 @@
                     });
                 },
 
-                saveItem: function () {
+                updateItem: function () {
                     startLoading();
                     var self = this;
                     var pSessionId = sessionStorage.getItem('sessionID');
@@ -272,7 +272,8 @@
                         dataType: "json",
                         complete: function (jqXHR) {
                             if (jqXHR.readyState === 4) {
-                                var shop = JSON.parse(jqXHR.responseText);
+                                console.log(jqXHR.responseText);
+                                var shop = JSON.parse(jqXHR.responseText);                                
                                 uploadImage(pSessionId, 'ITEM_PHOTO', shop.itemId, 'itemImageFile', 
                                     function(){
                                         window.location.href = './shops.html';                                    
