@@ -19,13 +19,13 @@
     <script>
         var myChart;
         function updateChart(i){
-            chart.data.datasets.forEach((dataset) => {
+            myChart.data.datasets.forEach((dataset) => {
                 var l = dataset.data.length;
                 for(var j=0; j<l; j++){
                     dataset.data[j] += i; 
                 }
             });
-            chart.update();
+            myChart.update();
         }
 
         function initChart(){
